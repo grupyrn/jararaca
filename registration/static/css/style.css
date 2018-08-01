@@ -1,63 +1,20 @@
-/* Custom Stylesheet */
-/**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
- *
- * Made By MaterializeCSS.com
- */
-
-nav ul a,
-nav .brand-logo {
-  color: #444;
-}
-
-
-p {
-  line-height: 2rem;
-}
-
-.sidenav-trigger {
-  color: #26a69a;
-}
-
-.parallax-container {
-  min-height: 380px;
-  line-height: 0;
-  height: auto;
-  color: rgba(255,255,255,.9);
-}
-  .parallax-container .section {
-    width: 100%;
-  }
-
-  .bg-blur{
-      filter: blur(1px);
-  }
-
   .h1-header{
       font-weight: bold;
+      color: rgba(43, 43, 43, 0.87);
   }
-
-  .h4::after{
-      content: '';
-      border-top: solid 4px #bd7944;
-      width: 10%;
-      display: block;
-      margin: 25px auto;
-  }
+  .h1-header::after{
+    content: '';
+    border-top: solid 4px #5e89ab;
+    width: 10%;
+    display: block;
+    margin: 20px auto;
+}
 
   .p-header{
+      line-height: 2rem;
       font-size: 1.3rem;
-
-  }
-
-  .btn-large{
-      box-shadow: none;
-  }
-
-  .btn-color-header{
-      background-color: #618cae;
-
+      margin-bottom: 3rem;
+      color: rgba(43, 43, 43, 0.87);
   }
 
   .center-logo{
@@ -67,54 +24,10 @@ p {
       height: 80px;
   }
 
-  .bg{
-      background-color: rgb(97, 106, 0)
-  }
-
-  .container-header{
-      height: 100vh;
-      background-image: url("../img/meetup.jpg");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      filter: blur(1px);
-      z-index: -1;
-
-  }
-
-  .cont-padding-top{
-      padding-top: 40px;
-  }
-
 @media only screen and (max-width : 992px) {
-  .parallax-container .section {
-    position: absolute;
-    top: 40%;
-  }
   .center-logo{
       width: 130px;
       height: 80px;
       margin-top: -12px;
     }
-
-  #index-banner .section {
-    top: 10%;
-  }
-}
-
-@media only screen and (max-width : 600px) {
-  #index-banner .section {
-    top: 0;
-  }
-}
-
-.icon-block {
-  padding: 0 15px;
-}
-.icon-block .material-icons {
-  font-size: inherit;
-}
-
-footer.page-footer {
-  margin: 0;
 }
