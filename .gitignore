@@ -229,8 +229,7 @@ venv.bak/
 .venv/
 
 #Output
-output
-participantes.csv
+staticfiles/
 
 
 # End of https://www.gitignore.io/api/osx,linux,python,pycharm+all
