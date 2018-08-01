@@ -15,6 +15,7 @@ dj-database-url = "*"
 whitenoise = "*"
 gunicorn = "*"
 django-localflavor = "*"
+"psycopg2-binary" = "*"
 
 [dev-packages]
 
