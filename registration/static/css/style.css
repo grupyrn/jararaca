@@ -91,10 +91,10 @@ p {
     position: absolute;
     top: 40%;
   }
-  .tamanho{
+  .center-logo{
       width: 130px;
       height: 80px;
-      margin-top: -10px;
+      margin-top: -12px;
     }
 
   #index-banner .section {
