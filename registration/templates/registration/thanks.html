@@ -37,9 +37,15 @@
   {#      <div class="parallax bg-blur"><img class="responsive-img" src="{% static 'img/meetup3.jpg' %}" alt="Unsplashed background img 1"></div>#}
   {#    </div>#}
   <div class="container">
-    <h1 class="center-align h1-header">Credenciais geradas com sucesso!</h1>
-    <img src="data:image/png;base64,{{ qr_code }}" />
-    <p class="center-align p-header">Por favor, verifique seu e-mail.</p>
+    <div class="row center">
+
+      <h1 class="center-align h1-header">Credenciais geradas com sucesso!</h1>
+      <p class="center-align p-header">Este QR-Code é o seu passaporte de entrada para todos os eventos do GruPy-RN, leve-o sempre com você.</p>
+      <img src="data:image/png;base64,{{ qr_code }}" class="responsive-img qrcode-size"/>
+      <p class="center-align p-header">Não se preocupe, também enviamos essas informações para o seu e-mail!</p>
+
+
+    </div>
   </div>
 
 </header>

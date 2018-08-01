@@ -1,8 +1,9 @@
-  .h1-header{
-      font-weight: bold;
-      color: rgba(43, 43, 43, 0.87);
-  }
-  .h1-header::after{
+.h1-header {
+    font-weight: bold;
+    color: rgba(43, 43, 43, 0.87);
+}
+
+.h1-header::after {
     content: '';
     border-top: solid 4px #5e89ab;
     width: 10%;
@@ -10,24 +11,39 @@
     margin: 20px auto;
 }
 
-  .p-header{
-      line-height: 2rem;
-      font-size: 1.3rem;
-      margin-bottom: 3rem;
-      color: rgba(43, 43, 43, 0.87);
-  }
+.p-header {
+    line-height: 2rem;
+    font-size: 1.3rem;
+    margin-bottom: 3rem;
+    color: rgba(43, 43, 43, 0.87);
+}
 
-  .center-logo{
-      padding: 0px;
-      margin-top: -5px;
-      width: 130px;
-      height: 80px;
-  }
+.center-logo {
+    padding: 0px;
+    margin-top: -5px;
+    width: 130px;
+    height: 80px;
+}
 
-@media only screen and (max-width : 992px) {
-  .center-logo{
-      width: 130px;
-      height: 80px;
-      margin-top: -12px;
+.qrcode-size {
+    width: 30vw;
+    height: 30vh;
+}
+
+@media only screen and (max-width: 992px) {
+    .center-logo {
+        width: 130px;
+        height: 80px;
+        margin-top: -12px;
     }
+
+    .h1-header {
+        font-size: 2.4rem;
+    }
+
+    .qrcode-size {
+        width: 40vw;
+        height: 40vh;
+    }
+
 }
