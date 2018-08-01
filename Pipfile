@@ -18,6 +18,8 @@ django-localflavor = "*"
 "psycopg2-binary" = "*"
 
 [dev-packages]
+django-extensions = "*"
+ipython = "*"
 
 [requires]
 python_version = "3.6"

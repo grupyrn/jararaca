@@ -1,5 +1,4 @@
 from registration.validators import cpf_validator
-from .models import MemberInfo
 from rest_framework import serializers
 
 

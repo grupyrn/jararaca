@@ -44,29 +44,28 @@
 </header>
 
 
-
 <div class="container cont-padding-top">
 
-    {% if form.errors %}
-  <div class="row">
-    <blockquote>
-      <h5>Corrija o(s) seguinte(s) erro(s):</h5>
-      <ul>
-        {% for field in form %}
-          {% if field.errors %}
-            {% for error in field.errors %}
-              <li>{{ error|escape }}</li>
-            {% endfor %}
-          {% endif %}
-        {% endfor %}
-      </ul>
-      {% if form.non_field_errors %}
-        {{ form.non_field_errors }}
-      {% endif %}
+  {% if form.errors %}
+    <div class="row">
+      <blockquote>
+        <h5>Corrija o(s) seguinte(s) erro(s):</h5>
+        <ul>
+          {% for field in form %}
+            {% if field.errors %}
+              {% for error in field.errors %}
+                <li>{{ error|escape }}</li>
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </ul>
+        {% if form.non_field_errors %}
+          {{ form.non_field_errors }}
+        {% endif %}
 
-    </blockquote>
+      </blockquote>
     </div>
-{% endif %}
+  {% endif %}
 
 
 
@@ -76,14 +75,16 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <input placeholder="Digite seu nome completo" required="required" name="name" id="name" type="text" class="validate">
+          <input placeholder="Digite seu nome completo" required="required" name="name" id="name" type="text"
+                 class="validate" value="{{ form.name.value|default_if_none:"" }}">
           <label for="name">Nome completo</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s12">
-          <input placeholder="Digite seu endereço de e-mail" required="required" name="email" id="email" type="email" class="validate">
+          <input placeholder="Digite seu endereço de e-mail" required="required" name="email" id="email" type="email"
+                 class="validate" value="{{ form.email.value|default_if_none:"" }}">
           <label for="email">Email</label>
           <span class="helper-text" data-error="E-mail inválido"></span>
         </div>
@@ -91,7 +92,8 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <input placeholder="(Opcional) Digite seu CPF, apenas números" id="cpf" name="cpf" type="text" maxlength="11" class="validate">
+          <input placeholder="(Opcional) Digite seu CPF, apenas números" id="cpf" name="cpf" type="text" maxlength="11"
+                 class="validate" value="{{ form.cpf.value|default_if_none:"" }}">
           <label for="cpf">CPF</label>
         </div>
       </div>
