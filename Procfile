@@ -1,0 +1,1 @@
+web: gunicorn grupyen_meetup.wsgi --log-file -

@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>GruPy-RN Meetup </title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+
+<header>
+  <div class="navbar-fixed">
+    <nav class="white" role="navigation">
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="index.html" class="brand-logo"><img class="center-logo"
+                                                                         src="{% static 'img/logo.png' %}"
+                                                                         alt="GruPy-RN"></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#">Inscrição</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+          <li><a href="#">Inscrição</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
+  </div>
+
+  {#    <div class="parallax-container">#}
+  {#      <div class="parallax bg-blur"><img class="responsive-img" src="{% static 'img/meetup3.jpg' %}" alt="Unsplashed background img 1"></div>#}
+  {#    </div>#}
+  <div class="container">
+    <h1 class="center-align h1-header">Credenciais emitidas com sucesso!</h1>
+    <p class="center-align p-header">Por favor, verifique seu e-mail.</p>
+  </div>
+
+</header>
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="{% static 'js/materialize.js' %}"></script>
+<script src="{% static 'js/init.js' %}"></script>
+
+</body>
+</html>

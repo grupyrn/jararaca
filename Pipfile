@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+cryptography = "*"
+pyqrcode = "*"
+pillow = "*"
+sendgrid = "*"
+pypng = "*"
+dj-database-url = "*"
+whitenoise = "*"
+gunicorn = "*"
+django-localflavor = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"
