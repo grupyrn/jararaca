@@ -45,9 +45,10 @@ INSTALLED_APPS = [
     'api',
     'registration',
     'rest_framework',
-    'django_extensions',
 ]
 
+if os.environ.get('DEBUG', False):
+    INSTALLED_APPS.append('django_extensions')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -111,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Recife'
 
 USE_I18N = True
 

@@ -16,6 +16,7 @@ whitenoise = "*"
 gunicorn = "*"
 django-localflavor = "*"
 "psycopg2-binary" = "*"
+django-extensions = "*"
 
 [dev-packages]
 django-extensions = "*"
