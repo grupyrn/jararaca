@@ -1,15 +1,19 @@
 # Create your views here.
-from rest_framework import viewsets, authentication
+from datetime import timedelta
+
+from django.db.models import Q
+from django.utils import timezone
+from rest_framework import viewsets
 from rest_framework.views import *
 
 from api import senders
-from api.models import MemberInfo, EventCheck
-from api.serializers import MemberInfoSerializer, EventCheckSerializer
+from api.models import MemberInfo, EventCheck, Event
+from api.serializers import MemberInfoSerializer, EventCheckSerializer, EventSerializer
 
 
 class MemberInfoViewSet(viewsets.ViewSet):
     """
-    API endpoint that allows users to be viewed or edited.
+    API endpoint that allows members to be registered.
     """
     serializer_class = MemberInfoSerializer
     queryset = None
@@ -35,7 +39,9 @@ class MemberInfoViewSet(viewsets.ViewSet):
 
 
 class EventCheckView(APIView):
-    authentication_classes = (authentication.TokenAuthentication,)
+    """
+    API endpoint that allows members to check in and out of events.
+    """
 
     def post(self, request, format=None):
         serializer = EventCheckSerializer(data=request.data)
@@ -71,3 +77,23 @@ class EventCheckView(APIView):
 
         check.checkout()
         return Response(data, status=status.HTTP_200_OK)
+
+
+class CurrentEventView(APIView):
+    """
+    API endpoint that shows current events.
+    """
+
+    def get(self, request, format=None):
+        now = timezone.now()
+        delta = timedelta(minutes=60)
+        now_plus = now + delta
+        now_minus = now - delta
+        events = Event.objects.filter(
+            (Q(start__lte=now) & Q(end__gte=now)) |
+            (Q(start__lte=now_plus) & Q(end__gte=now)) |
+            (Q(start__lte=now) & Q(end__gte=now_minus))
+        ).all()
+        serializer = EventSerializer(events, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)

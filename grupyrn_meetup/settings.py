@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'api',
     'registration',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 if os.environ.get('DEBUG', False):
@@ -78,6 +79,14 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 
 WSGI_APPLICATION = 'grupyrn_meetup.wsgi.application'
 

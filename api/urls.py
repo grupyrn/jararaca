@@ -9,4 +9,5 @@ router.register(r'members', MemberInfoViewSet, base_name='members')
 urlpatterns = [
     path('', include(router.urls)),
     path('check/', EventCheckView.as_view()),
+    path('currentevent/', CurrentEventView.as_view()),
 ]

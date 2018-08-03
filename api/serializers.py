@@ -13,3 +13,9 @@ class EventCheckSerializer(serializers.Serializer):
     member = MemberInfoSerializer()
     check = serializers.BooleanField()
     event = serializers.PrimaryKeyRelatedField(queryset=Event.objects.all())
+
+
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = ('id', 'name', 'start', 'end')
