@@ -22,34 +22,30 @@
         <a id="logo-container" href="index.html" class="brand-logo"><img class="center-logo"
                                                                          src="{% static 'img/logo.png' %}"
                                                                          alt="GruPy-RN"></a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="#">Inscrição</a></li>
-        </ul>
 
-        <ul id="nav-mobile" class="sidenav">
-          <li><a href="#">Inscrição</a></li>
-        </ul>
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
     </nav>
   </div>
+</header>
 
-  {#    <div class="parallax-container">#}
-  {#      <div class="parallax bg-blur"><img class="responsive-img" src="{% static 'img/meetup3.jpg' %}" alt="Unsplashed background img 1"></div>#}
-  {#    </div>#}
+<section class="teste">    
   <div class="container">
     <div class="row center">
-
-      <h1 class="center-align h1-header">Credenciais geradas com sucesso!</h1>
-      <p class="center-align p-header">Este QR-Code é o seu passaporte de entrada para todos os eventos do GruPy-RN, leve-o sempre com você.</p>
-      <img src="data:image/png;base64,{{ qr_code }}" class="responsive-img qrcode-size"/>
-      <p class="center-align p-header">Não se preocupe, também enviamos essas informações para o seu e-mail!</p>
-
-
+           <div class="col s12 m7">
+              <h1 class="center-align h1-header">Credenciais geradas com sucesso!</h1>
+              <p class="center-align p-thanks">Este QR-Code é o seu passaporte de entrada
+                  para todos os eventos do GruPy-RN, leve-o sempre com você. Não se
+                  preocupe, também enviamos essas informações para o seu e-mail!</p>
+          </div>
+          <div class="col s12 m5">
+              <img src="data:image/png;base64,{{ qr_code }}" class="responsive-img qrcode-size"/>
+          </div>
     </div>
   </div>
+</section>
 
-</header>
+
 
 <!--  Scripts-->
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
