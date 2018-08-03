@@ -30,7 +30,7 @@ SECRET_KEY = '@k!t4rpasopjjgdao!3iml)n1s1olest&z4i4xz7y85hpf9zdi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
 
-ALLOWED_HOSTS = ['meetup.grupyrn.org', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['meetup.grupyrn.org', 'www.meetup.grupyrn.org', 'localhost', '127.0.0.1']
 
 
 # Application definition
