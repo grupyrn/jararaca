@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+from django.utils import timezone
 
 from django.db import models
 
@@ -34,6 +35,13 @@ class EventCheck(models.Model):
     entrance_date = models.DateTimeField(auto_now_add=True)
     exit_date = models.DateTimeField(null=True)
 
-    def checkout(self, date=datetime.now()):
+    def checkout(self, date=timezone.now()):
         self.exit_date = date
+
+        delta_event = self.event.end - self.event.start
+        delta_check = self.exit_date - self.entrance_date
+        result = delta_check.seconds * 100 / delta_event.seconds
+        print('proportion: ', result)
         self.save()
+
+        return result >= 75

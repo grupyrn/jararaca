@@ -5,7 +5,6 @@ from django.db.models import Q
 from django.utils import timezone
 from rest_framework import viewsets
 from rest_framework.views import *
-from django.shortcuts import get_object_or_404
 
 from api import senders
 from api.models import MemberInfo, EventCheck, Event
@@ -47,23 +46,26 @@ class EventCheckView(APIView):
     def post(self, request, format=None):
         serializer = EventCheckSerializer(data=request.data)
         if serializer.is_valid():
-            if serializer.data['check']:
-                now = timezone.now()
-                delta = timedelta(minutes=60)
-                now_plus = now + delta
-                now_minus = now - delta
+            now = timezone.now()
+            delta = timedelta(minutes=60)
+            now_plus = now + delta
+            now_minus = now - delta
 
-                queryset = Event.objects.filter(
-                    (Q(start__lte=now) & Q(end__gte=now)) |
-                    (Q(start__lte=now_plus) & Q(end__gte=now)) |
-                    (Q(start__lte=now) & Q(end__gte=now_minus)),
-                    id=serializer.data['event']
-                )
+            queryset = Event.objects.filter(
+                (Q(start__lte=now) & Q(end__gte=now)) |
+                (Q(start__lte=now_plus) & Q(end__gte=now)) |
+                (Q(start__lte=now) & Q(end__gte=now_minus)),
+                id=serializer.data['event']
+            )
 
-                get_object_or_404(queryset)
+            if queryset.all():
+                if serializer.data['check']:
+                    return self.checkin(serializer.data)
+                return self.checkout(serializer.data)
+            else:
+                return Response({'status': 'BAD_REQUEST', 'message': 'Event inactive.'},
+                                status=status.HTTP_400_BAD_REQUEST)
 
-                return self.checkin(serializer.data)
-            return self.checkout(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def checkin(self, data):
@@ -90,7 +92,12 @@ class EventCheckView(APIView):
             return Response({'status': 'BAD_REQUEST', 'message': 'Member already checked-out.'},
                             status=status.HTTP_400_BAD_REQUEST)
 
-        check.checkout()
+        if check.checkout():
+            senders.send_certificate(data['member']['name'], data['member']['email'],
+                                     cpf=data['member'].get('cpf', None))
+        else:
+            senders.send_no_certificate(data['member']['name'], data['member']['email'])
+
         return Response(data, status=status.HTTP_200_OK)
 
 

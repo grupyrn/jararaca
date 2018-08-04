@@ -11,7 +11,7 @@ class MemberInfoSerializer(serializers.Serializer):
 
 class EventCheckSerializer(serializers.Serializer):
     member = MemberInfoSerializer()
-    check = serializers.BooleanField()
+    check = serializers.BooleanField(required=True)
     event = serializers.PrimaryKeyRelatedField(queryset=Event.objects.all())
 
 
