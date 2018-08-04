@@ -36,12 +36,12 @@ class EventCheck(models.Model):
     exit_date = models.DateTimeField(null=True)
 
     def checkout(self, date=timezone.now()):
-        self.exit_date = date
-
         delta_event = self.event.end - self.event.start
-        delta_check = self.exit_date - self.entrance_date
+        delta_check = date - self.entrance_date
         result = delta_check.seconds * 100 / delta_event.seconds
         print('proportion: ', result)
+
+        self.exit_date = date
         self.save()
 
         return result >= 75
