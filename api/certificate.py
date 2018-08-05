@@ -22,7 +22,7 @@ def generate_certificate(name, cpf=None):
     else:
         w, h = draw.textsize(name, font)
         draw.text(((im.width - w) / 2, (im.height - 50 - h) / 2), name, font=font, fill="#3F404B")
-        cpf_text = f'portador do CPF {cpf},'
+        cpf_text = f'portador(a) do CPF {cpf},'
         w, h = draw.textsize(cpf_text, font_cpf)
         draw.text(((im.width - w) / 2, (im.height + 130 - h) / 2), cpf_text, font=font_cpf, fill="#3F404B")
 
