@@ -93,10 +93,10 @@ class EventCheckView(APIView):
                             status=status.HTTP_400_BAD_REQUEST)
 
         if check.checkout():
-            senders.send_certificate(data['member']['name'], data['member']['email'],
-                                     cpf=data['member'].get('cpf', None))
+            senders.send_certificate_mail(data['member']['name'], data['member']['email'],
+                                          cpf=data['member'].get('cpf', None))
         else:
-            senders.send_no_certificate(data['member']['name'], data['member']['email'])
+            senders.send_no_certificate_mail(data['member']['name'], data['member']['email'])
 
         return Response(data, status=status.HTTP_200_OK)
 
