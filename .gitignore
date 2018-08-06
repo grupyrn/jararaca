@@ -231,7 +231,7 @@ venv.bak/
 #Output
 staticfiles/
 
-assets/modelo_certificado.png
+assets/certificate*.png
 
 
 # End of https://www.gitignore.io/api/osx,linux,python,pycharm+all

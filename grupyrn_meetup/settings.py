@@ -21,6 +21,8 @@ CRYPTO_KEY = os.environ.get('CRYPTO_KEY', None)
 
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY', None)
 
+ADMIN_HEADER = 'Administração de Check-in de Eventos do GruPy-RN'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
