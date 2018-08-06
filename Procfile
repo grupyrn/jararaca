@@ -1,1 +1,1 @@
-web: gunicorn grupyrn_meetup.wsgi --log-file -
+web: gunicorn grupyrn_checkin_api.wsgi --log-file -
