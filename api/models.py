@@ -21,7 +21,7 @@ class MemberInfo(object):
 
 
 class Event(models.Model):
-    name = models.CharField(_('name'), max_length=25)
+    name = models.CharField(_('name'), max_length=100)
     start = models.DateTimeField(_('start date/time'))
     end = models.DateTimeField(_('end date/time'), )
 
