@@ -51,13 +51,14 @@ class EventCheck(models.Model):
             passed = _('not checked out')
         return f'{self.member_name} - {passed}'
 
-    def checkout(self, date=timezone.now()):
-        delta_event = self.event.end - self.event.start
-        delta_check = date - self.entrance_date
-        result = delta_check.seconds * 100 / delta_event.seconds
+    def checkout(self):
+        if not self.exit_date:
+            self.exit_date = timezone.now()
+            self.save()
 
-        self.exit_date = date
-        self.save()
+        delta_event = self.event.end - self.event.start
+        delta_check = self.exit_date - self.entrance_date
+        result = delta_check.seconds * 100 / delta_event.seconds
 
         return result >= 75
 
