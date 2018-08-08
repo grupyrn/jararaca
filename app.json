@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dokku": {
-      "postdeploy": "django-admin compilemessages -f"
+      "predeploy": "django-admin compilemessages -f"
     }
   }
 }
