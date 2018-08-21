@@ -43,6 +43,10 @@ class Event(models.Model):
     created_by = models.ForeignKey(get_user_model(), _('created by'), null=True)
     content_link = models.URLField(_('content link'), null=True)
 
+    @property
+    def date(self):
+        return self.eventday_set.order_by('date').values_list('date', flat=True).all()
+
     def __str__(self):
         return self.name
 
