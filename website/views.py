@@ -7,11 +7,19 @@ from rest_framework import status
 from rest_framework.response import Response
 from django.views.generic import TemplateView
 from api import senders
+from api.models import Event
 from website.forms import AttendeeForm
+from datetime import date
 
 
 class WelcomeView(TemplateView):
     template_name = 'website/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['future_events'] = Event.objects.filter(eventday__date__gte=date.today())
+        context['past_events'] = Event.objects.filter(eventday__date__lte=date.today())
+        return context
 
 
 class AttendeeRegistrationView(FormView):

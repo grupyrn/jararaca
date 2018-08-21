@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-21 14:30-0300\n"
+"POT-Creation-Date: 2018-08-21 20:22-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: registration/forms.py:10
+#: website/forms.py:10
 msgid ""
 "Optional. Numbers only. Only if you wish to add this information in the "
 "certificate."
@@ -26,7 +26,7 @@ msgstr ""
 "Opcional. Somente números. Preencha se você desejar que conste essa "
 "informação no certificado."
 
-#: registration/forms.py:12
+#: website/forms.py:12
 #, fuzzy
 #| msgid ""
 #| "I authorize the use of the data reported solely and exclusively for "
@@ -35,16 +35,66 @@ msgid ""
 "I authorize the use of my data exclusively for my identification at this "
 "GruPy-RN event."
 msgstr ""
-"Eu autorizo o uso dos dados acima para propósito de identificação neste "
-" evento do GruPy-RN."
+"Eu autorizo o uso dos dados acima para propósito de identificação neste  "
+"evento do GruPy-RN."
 
-#: registration/forms.py:13
+#: website/forms.py:14
 msgid ""
 "I also authorize to share my name and e-mail information with GruPy-RN "
 "partners."
 msgstr ""
-"Eu também autorizo o compartilhamento do meu nome e e-mail com parceiros "
-"do GruPy-RN"
+"Eu também autorizo o compartilhamento do meu nome e e-mail com parceiros do "
+"GruPy-RN"
+
+#: website/templates/website/footer.html:8
+msgid "From developers to the community."
+msgstr "De desenvolvedores para a comunidade."
+
+#: website/templates/website/footer.html:11
+msgid "Social networks"
+msgstr "Redes sociais"
+
+#: website/templates/website/index.html:10
+#: website/templates/website/menu.html:10
+#: website/templates/website/menu.html:16
+msgid "Future events"
+msgstr "Eventos futuros"
+
+#: website/templates/website/index.html:21
+msgid "Register now!"
+msgstr "Inscreva-se já!"
+
+#: website/templates/website/index.html:36
+#: website/templates/website/menu.html:11
+#: website/templates/website/menu.html:17
+msgid "Who we are"
+msgstr "Quem somos"
+
+#: website/templates/website/index.html:52
+#: website/templates/website/menu.html:12
+#: website/templates/website/menu.html:18
+msgid "Past events"
+msgstr "Eventos anteriores"
+
+#: website/templates/website/index.html:56
+msgid "Event"
+msgstr "Evento"
+
+#: website/templates/website/index.html:57
+msgid "Date"
+msgstr "Data"
+
+#: website/templates/website/index.html:58
+msgid "Place"
+msgstr "Local"
+
+#: website/templates/website/index.html:59
+msgid "Content"
+msgstr "Conteúdo"
+
+#: website/templates/website/index.html:70
+msgid "Open"
+msgstr "Abrir"
 
 msgid "This field requires at most 11 digits or 14 characters."
 msgstr ""

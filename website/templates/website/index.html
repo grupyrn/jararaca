@@ -1,36 +1,29 @@
 {% extends 'website/base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
   <section>
     <div class="container">
       <div class="row">
-        <h1 id="futuro" class="center-align black-title scrollspy">Futuros Eventos</h1>
-        <div class="col s12 m6">
-          <div class="card blue-card darken-1">
-            <div class="card-content white-text">
-              <span class="card-title">#4 Meetup Natal </span>
-              <p>I am a very simple card. I am good at containing small bits of information.
-                I am convenient because I require little markup to use effectively.</p>
-            </div>
-            <div class="card-action">
-              <a class="yellow-link" href="{% url 'form' %}">Inscreva-se</a>
-            </div>
-          </div>
-        </div>
 
-        <div class="col s12 m6">
-          <div class="card blue-card darken-1">
-            <div class="card-content white-text">
-              <span class="card-title">#1 Meetup Mossoró</span>
-              <p>I am a very simple card. I am good at containing small bits of information.
-                I am convenient because I require little markup to use effectively.</p>
-            </div>
-            <div class="card-action">
-              <a class="yellow-link" href="#">Inscreva-se</a>
+        <h1 id="future-events" class="center-align black-title scrollspy">{% trans "Future events" %}</h1>
+
+        {% for event in future_events %}
+          <div class="col s12 m6">
+            <div class="card blue-card darken-1">
+              <div class="card-content white-text">
+                <span class="card-title">{{ event.name }}</span>
+                <p>{{ event.place }}</p>
+                <p>{% for date in event.date %}{{ date }}{% endfor %}</p>
+              </div>
+              <div class="card-action">
+                <a class="yellow-link" href="{% url 'form' %}">{% trans "Register now!" %}</a>
+              </div>
             </div>
           </div>
-        </div>
+        {% endfor %}
+
       </div>
     </div>
   </section>
@@ -39,13 +32,11 @@
     <div class="container ">
       <div class="row">
         <div class="s12">
-          <h1 id="quem-somos" class="center-align black-title scrollspy">Quem Somos</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci cum exercitationem incidunt
-            molestias quisquam. Asperiores dolore labore quasi quis! Aspernatur corporis dolor laudantium
-            nesciunt officiis quisquam quod voluptatibus? Aperiam, earum.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci cum exercitationem incidunt
-            molestias quisquam. Asperiores dolore labore quasi quis! Aspernatur corporis dolor laudantium
-            nesciunt officiis quisquam quod voluptatibus? Aperiam, earum.</p>
+          <h1 id="who-we-are" class="center-align black-title scrollspy">{% trans "Who we are" %}</h1>
+          <p>O GruPy - RN é a comunidade de Python do Rio Grande do Norte, tem como objetivo promover um ambiente
+            amistoso, de boa convivência, inclusivo e livre de intimidação, onde todas as pessoas são bem-vindas e a
+            civilidade é exigida.</p>
+          <p>Com esta finalidade, a organização do evento atua para garantir um ambiente com essas qualidades.</p>
         </div>
       </div>
     </div>
@@ -55,41 +46,39 @@
     <div class="container">
       <div class="row">
         <div class="col s12">
-          <h1 id="anterior" class="center-align black-title scrollspy">Eventos anteriores</h1>
+
+          <h1 id="past-events" class="center-align black-title scrollspy">{% trans "Past events" %}</h1>
+
           <table class="highlight centered ">
             <thead>
             <tr>
-              <th>Cidade</th>
-              <th>Data</th>
-              <th>Local</th>
-              <th>Conteúdo</th>
+              <th>{% trans "Event" %}</th>
+              <th>{% trans "Date" %}</th>
+              <th>{% trans "Place" %}</th>
+              <th>{% trans "Content" %}</th>
             </tr>
             </thead>
-
             <tbody>
-            <tr>
-              <td>Natal</td>
-              <td>02/06/2018</td>
-              <td>Instituto Metrópole Digital (IMD)</td>
-              <td><a href="https://github.com/GruPy-RN/Meetup/tree/master/Meetup-1" target="_blank">
-                Todos</a></td>
-            </tr>
-            <tr>
-              <td>Natal</td>
-              <td>07/07/2018</td>
-              <td>Instituto Metrópole Digital (IMD)</td>
-              <td><a href="https://github.com/GruPy-RN/Meetup/tree/master/Meetup-2" target="_blank">
-                Todos</a></td>
-            </tr>
-            <tr>
-              <td>Natal</td>
-              <td>04/08/2018</td>
-              <td>Sebrae</td>
-              <td><a href="https://github.com/GruPy-RN/Meetup/tree/master/Meetup-3" target="_blank">
-                Todos</a></td>
-            </tr>
+
+            {% for event in past_events %}
+              <tr>
+                <td>{{ event.name }}</td>
+                <td>{% for date in event.date %}{{ date|date:'SHORT_DATE_FORMAT' }}{% if not forloop.last %},
+                {% endif %}{% endfor %}</td>
+                <td>{{ event.place }}</td>
+                <td>
+                  {% if event.content_link %}
+                    <a href="{{ event.content_link }}" target="_blank">{% trans 'Open' %}</a>
+                  {% else %}
+                    ---
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+
             </tbody>
           </table>
+
         </div>
       </div>
     </div>
