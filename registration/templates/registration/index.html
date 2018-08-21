@@ -1,0 +1,172 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>GruPy-RN Meetup </title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+</head>
+<body>
+
+<header>
+    <div class="navbar-fixed">
+        <nav class="white" role="navigation">
+            <div class="nav-wrapper container">
+                <a id="logo-container" href="#" class="brand-logo"><img class="center-logo"
+                                                                        src="{% static '/img/logo.png' %}"></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#quem-somos">Quem somos</a></li>
+                    <li><a href="#futuro">Futuros Evento</a></li>
+                    <li><a href="#anterior">Eventos anteriores</a></li>
+                </ul>
+
+                <ul id="nav-mobile" class="sidenav">
+                    <li><a href="#">Quem somos</a></li>
+                    <li><a href="#">Futuros Evento</a></li>
+                    <li><a href="#">Eventos anteriores</a></li>
+                </ul>
+                <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="parallax-container">
+        <div class="parallax"><img src="{% static '/img/meetup.jpg' %}"></div>
+    </div>
+</header>
+
+<main>
+<section>
+<div class="container">
+<div class="row">
+  <h1 id="futuro"class="center-align black-title scrollspy">Futuros Eventos</h1>
+  <div class="col s12 m6">
+      <div class="card blue-card darken-1">
+          <div class="card-content white-text">
+              <span class="card-title">#4 Meetup Natal </span>
+              <p>I am a very simple card. I am good at containing small bits of information.
+                  I am convenient because I require little markup to use effectively.</p>
+          </div>
+          <div class="card-action">
+              <a class="yellow-link" href="{% url 'form' %}">Inscreva-se</a>
+          </div>
+      </div>
+  </div>
+
+  <div class="col s12 m6">
+      <div class="card blue-card darken-1">
+          <div class="card-content white-text">
+              <span class="card-title">#1 Meetup Mossoró</span>
+              <p>I am a very simple card. I am good at containing small bits of information.
+                  I am convenient because I require little markup to use effectively.</p>
+          </div>
+          <div class="card-action">
+              <a class="yellow-link" href="#">Inscreva-se</a>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+</section>
+
+<section class="about">
+<div class="container ">
+<div class="row">
+  <div class="s12">
+      <h1 id="quem-somos" class="center-align black-title scrollspy">Quem Somos</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci cum exercitationem incidunt
+          molestias quisquam. Asperiores dolore labore quasi quis! Aspernatur corporis dolor laudantium
+          nesciunt officiis quisquam quod voluptatibus? Aperiam, earum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci cum exercitationem incidunt
+          molestias quisquam. Asperiores dolore labore quasi quis! Aspernatur corporis dolor laudantium
+          nesciunt officiis quisquam quod voluptatibus? Aperiam, earum.</p>
+  </div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+<div class="row">
+  <div class="col s12">
+      <h1 id="anterior" class="center-align black-title scrollspy">Eventos anteriores</h1>
+      <table class="highlight centered ">
+          <thead>
+          <tr>
+              <th>Cidade</th>
+              <th>Data</th>
+              <th>Local</th>
+              <th>Conteúdo</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr>
+              <td>Natal</td>
+              <td>02/06/2018</td>
+              <td>Instituto Metrópole Digital (IMD)</td>
+              <td><a href="https://github.com/GruPy-RN/Meetup/tree/master/Meetup-1" target="_blank">
+                  Todos</a></td>
+          </tr>
+          <tr>
+              <td>Natal</td>
+              <td>07/07/2018</td>
+              <td>Instituto Metrópole Digital (IMD)</td>
+              <td><a href="https://github.com/GruPy-RN/Meetup/tree/master/Meetup-2" target="_blank">
+                  Todos</a></td>
+          </tr>
+          <tr>
+              <td>Natal</td>
+              <td>04/08/2018</td>
+              <td>Sebrae</td>
+              <td><a href="https://github.com/GruPy-RN/Meetup/tree/master/Meetup-3" target="_blank">
+                  Todos</a></td>
+          </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="page-footer">
+<div class="container">
+<div class="row">
+<div class="col l6 s12">
+<h5 class="white-text">GruPy-RN</h5>
+<p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+</div>
+<div class="col l4 offset-l2 s12">
+<h5 class="white-text">Redes Sociais</h5>
+<ul>
+<li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+<li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+<li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+<li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="footer-copyright">
+<div class="container">
+© 2018 GruPy-RN
+<a class="grey-text text-lighten-4 right" href="#!"></a>
+</div>
+</div>
+</footer>
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="{% static 'js/materialize.js' %}"></script>
+<script src="{% static 'js/init.js' %}"></script>
+
+</body>
+</html>

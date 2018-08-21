@@ -3,13 +3,10 @@
     color: rgba(43, 43, 43, 0.87);
 }
 
-.teste{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.about{
+    padding: 0.9rem;
+    background-color: #efc780;
 }
-
 .h1-header::after {
     content: '';
     border-top: solid 4px #5e89ab;
@@ -41,6 +38,44 @@
 .qrcode-size {
     margin:30px 30px 0 30px;
     width: 30vw;
+}
+
+.page-footer{
+    background-color: #102e46;
+}
+
+.blue-card{
+    background-color: #102e46;
+}
+
+.black-title{
+    color: #2d2d2d;
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform:uppercase;
+    font-stretch: condensed;
+}
+
+.yellow-link{
+    color: #efc780 !important
+}
+
+nav a {
+    color: black;
+}
+
+nav ul a{
+    color: #2d2d2d;
+}
+
+body{
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+}
+
+.navbar-fixed{
+  position: absolute
+  z-index: 999999999
 }
 
 @media only screen and (max-width: 992px) {

@@ -5,10 +5,14 @@ from django.shortcuts import render
 from django.views.generic import FormView
 from rest_framework import status
 from rest_framework.response import Response
-
+from django.views.generic import TemplateView
 from api import senders
 from api.models import MemberInfo
 from registration.forms import MemberForm
+
+
+class WelcomeView(TemplateView):
+    template_name = 'registration/index.html'
 
 
 class MemberRegistrationView(FormView):
