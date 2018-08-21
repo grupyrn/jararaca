@@ -26,7 +26,7 @@ class MemberInfo(object):
 
 
 class Attendee(models.Model):
-    uuid = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4())
+    uuid = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4)
     event = models.ForeignKey('Event', verbose_name=_('event'), on_delete=models.CASCADE)
     name = models.CharField(_('name'), max_length=500)
     email = models.EmailField(_('email'), max_length=50)
@@ -41,6 +41,7 @@ class Event(models.Model):
     longitude = models.FloatField(_('longitude'))
     organizers = models.CharField(_('organizers'), max_length=500)
     created_by = models.ForeignKey(get_user_model(), _('created by'), null=True)
+    content_link = models.URLField(_('content link'), null=True)
 
     def __str__(self):
         return self.name
