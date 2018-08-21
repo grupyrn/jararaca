@@ -5,13 +5,17 @@ from django.shortcuts import render
 from django.views.generic import FormView, CreateView
 from rest_framework import status
 from rest_framework.response import Response
-
+from django.views.generic import TemplateView
 from api import senders
-from registration.forms import AttendeeForm
+from website.forms import AttendeeForm
 
 
-class AttendeeRegistrationView(CreateView):
-    template_name = 'registration/form.html'
+class WelcomeView(TemplateView):
+    template_name = 'website/index.html'
+
+
+class AttendeeRegistrationView(FormView):
+    template_name = 'website/form.html'
     form_class = AttendeeForm
 
     success_url = '/thanks/'
@@ -23,7 +27,7 @@ class AttendeeRegistrationView(CreateView):
             qr_data = senders.send_registration_mail(attendee)
             context = self.get_context_data(qr_code=base64.b64encode(qr_data).decode('ascii'))
 
-            return render(self.request, 'registration/thanks.html', context)
+            return render(self.request, 'website/thanks.html', context)
         except Exception as e:
             return Response({
                 'status': 'Server error',

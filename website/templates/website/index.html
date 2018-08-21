@@ -1,0 +1,98 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block content %}
+  <section>
+    <div class="container">
+      <div class="row">
+        <h1 id="futuro" class="center-align black-title scrollspy">Futuros Eventos</h1>
+        <div class="col s12 m6">
+          <div class="card blue-card darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">#4 Meetup Natal </span>
+              <p>I am a very simple card. I am good at containing small bits of information.
+                I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a class="yellow-link" href="{% url 'form' %}">Inscreva-se</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s12 m6">
+          <div class="card blue-card darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">#1 Meetup Mossoró</span>
+              <p>I am a very simple card. I am good at containing small bits of information.
+                I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a class="yellow-link" href="#">Inscreva-se</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="container ">
+      <div class="row">
+        <div class="s12">
+          <h1 id="quem-somos" class="center-align black-title scrollspy">Quem Somos</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci cum exercitationem incidunt
+            molestias quisquam. Asperiores dolore labore quasi quis! Aspernatur corporis dolor laudantium
+            nesciunt officiis quisquam quod voluptatibus? Aperiam, earum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci cum exercitationem incidunt
+            molestias quisquam. Asperiores dolore labore quasi quis! Aspernatur corporis dolor laudantium
+            nesciunt officiis quisquam quod voluptatibus? Aperiam, earum.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <h1 id="anterior" class="center-align black-title scrollspy">Eventos anteriores</h1>
+          <table class="highlight centered ">
+            <thead>
+            <tr>
+              <th>Cidade</th>
+              <th>Data</th>
+              <th>Local</th>
+              <th>Conteúdo</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+              <td>Natal</td>
+              <td>02/06/2018</td>
+              <td>Instituto Metrópole Digital (IMD)</td>
+              <td><a href="https://github.com/GruPy-RN/Meetup/tree/master/Meetup-1" target="_blank">
+                Todos</a></td>
+            </tr>
+            <tr>
+              <td>Natal</td>
+              <td>07/07/2018</td>
+              <td>Instituto Metrópole Digital (IMD)</td>
+              <td><a href="https://github.com/GruPy-RN/Meetup/tree/master/Meetup-2" target="_blank">
+                Todos</a></td>
+            </tr>
+            <tr>
+              <td>Natal</td>
+              <td>04/08/2018</td>
+              <td>Sebrae</td>
+              <td><a href="https://github.com/GruPy-RN/Meetup/tree/master/Meetup-3" target="_blank">
+                Todos</a></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}

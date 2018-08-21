@@ -1,5 +1,5 @@
 from api.models import Event
-from registration.validators import cpf_validator
+from website.validators import cpf_validator
 from rest_framework import serializers
 
 
