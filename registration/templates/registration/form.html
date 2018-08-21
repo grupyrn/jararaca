@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -61,32 +62,8 @@
 
   <div class="row">
     <form class="col s12" method="post">
-      {% csrf_token %}
 
-      <div class="row">
-        <div class="input-field col s12">
-          <input placeholder="Digite seu nome completo" required="required" name="name" id="name" type="text"
-                 class="validate" value="{{ form.name.value|default_if_none:"" }}">
-          <label for="name">Nome completo</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <input placeholder="Digite seu endereço de e-mail" required="required" name="email" id="email" type="email"
-                 class="validate" value="{{ form.email.value|default_if_none:"" }}">
-          <label for="email">Email</label>
-          <span class="helper-text" data-error="E-mail inválido"></span>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <input placeholder="(Opcional) Digite seu CPF, apenas números" id="cpf" name="cpf" type="text" maxlength="11"
-                 class="validate" value="{{ form.cpf.value|default_if_none:"" }}">
-          <label for="cpf">CPF</label>
-        </div>
-      </div>
+      {% crispy form %}
 
       <div class="row">
         <div class="input-field col s12">

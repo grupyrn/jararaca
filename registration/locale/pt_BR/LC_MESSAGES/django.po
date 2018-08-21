@@ -1,0 +1,51 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-21 14:30-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: registration/forms.py:10
+msgid ""
+"Optional. Numbers only. Only if you wish to add this information in the "
+"certificate."
+msgstr ""
+"Opcional. Somente números. Preencha se você desejar que conste essa "
+"informação no certificado."
+
+#: registration/forms.py:12
+#, fuzzy
+#| msgid ""
+#| "I authorize the use of the data reported solely and exclusively for "
+#| "identification purposes in the GruPy-RN events."
+msgid ""
+"I authorize the use of my data exclusively for my identification at this "
+"GruPy-RN event."
+msgstr ""
+"Eu autorizo o uso dos dados acima para propósito de identificação neste "
+" evento do GruPy-RN."
+
+#: registration/forms.py:13
+msgid ""
+"I also authorize to share my name and e-mail information with GruPy-RN "
+"partners."
+msgstr ""
+"Eu também autorizo o compartilhamento do meu nome e e-mail com parceiros "
+"do GruPy-RN"
+
+msgid "This field requires at most 11 digits or 14 characters."
+msgstr ""
+"CPF requer pelo menos 11 dígitos ou 14 caracteres digitados corretamente."

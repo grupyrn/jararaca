@@ -2,26 +2,25 @@
 import base64
 
 from django.shortcuts import render
-from django.views.generic import FormView
+from django.views.generic import FormView, CreateView
 from rest_framework import status
 from rest_framework.response import Response
 
 from api import senders
-from api.models import MemberInfo
-from registration.forms import MemberForm
+from registration.forms import AttendeeForm
 
 
-class MemberRegistrationView(FormView):
+class AttendeeRegistrationView(CreateView):
     template_name = 'registration/form.html'
-    form_class = MemberForm
+    form_class = AttendeeForm
 
     success_url = '/thanks/'
 
     def form_valid(self, form):
-        member_info = MemberInfo(**form.cleaned_data)
+        attendee = form.save()
 
         try:
-            qr_data = senders.send_registration_mail(member_info)
+            qr_data = senders.send_registration_mail(attendee)
             context = self.get_context_data(qr_code=base64.b64encode(qr_data).decode('ascii'))
 
             return render(self.request, 'registration/thanks.html', context)

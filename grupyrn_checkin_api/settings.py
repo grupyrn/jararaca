@@ -21,6 +21,8 @@ CRYPTO_KEY = os.environ.get('CRYPTO_KEY', None)
 
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY', None)
 
+GEOPOSITION_GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY', None)
+
 ADMIN_HEADER = 'Administração de Check-in de Eventos do GruPy-RN'
 
 # Quick-start development settings - unsuitable for production
@@ -44,6 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'nested_inline',
+    'crispy_forms',
+    'crispy_forms_materialize',
     'api',
     'registration',
     'rest_framework',
@@ -130,6 +135,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = ('bootstrap', 'uni_form', 'bootstrap3', 'foundation-5', 'materialize')
+CRISPY_TEMPLATE_PACK = 'materialize'
+
 
 
 # Static files (CSS, JavaScript, Images)

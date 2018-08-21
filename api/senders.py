@@ -4,7 +4,7 @@ from django import conf
 
 from api.certificate import generate_certificate
 from api.qrcode import gen_qrcode
-from .models import MemberInfo
+from .models import MemberInfo, Attendee
 
 import json
 
@@ -16,13 +16,8 @@ from django.conf import settings
 sg = sendgrid.SendGridAPIClient(apikey=settings.SENDGRID_API_KEY)
 
 
-def send_registration_mail(member_info: MemberInfo):
-    json_data = member_info.to_json()
-
-    cipher_suite = Fernet(settings.CRYPTO_KEY)
-    cipher_text = cipher_suite.encrypt(json_data.encode('utf-8'))
-
-    qr_data = gen_qrcode(data=cipher_text).read()
+def send_registration_mail(attendee: Attendee):
+    qr_data = gen_qrcode(data=attendee.uuid).read()
 
     mail = Mail()
     mail.from_email = Email("coordenacao@grupyrn.org", "GruPy-RN")
@@ -35,8 +30,8 @@ def send_registration_mail(member_info: MemberInfo):
     mail.add_attachment(attachment1)
 
     personalization = Personalization()
-    personalization.add_substitution(Substitution("%first_name%", member_info.name.split()[0]))
-    personalization.add_to(Email(member_info.email, member_info.name))
+    personalization.add_substitution(Substitution("%first_name%", attendee.name.split()[0]))
+    personalization.add_to(Email(attendee.email, attendee.name))
     mail.add_personalization(personalization)
 
     try:

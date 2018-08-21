@@ -17,6 +17,9 @@ gunicorn = "*"
 django-localflavor = "*"
 "psycopg2-binary" = "*"
 django-extensions = "*"
+django-nested-inline = "*"
+django-crispy-forms = "*"
+crispy-materialize = {git = "https://github.com/sedir/crispy-forms-materialize.git", editable = true, ref = "master"}
 
 [dev-packages]
 django-extensions = "*"
