@@ -10,7 +10,7 @@ def generate_certificate(name, cpf=None):
     # TODO: there's gotta be a better way!
     font_path = Path(conf.settings.BASE_DIR) / 'assets' / 'Oswald-Regular.ttf'
     font_path_cpf = Path(conf.settings.BASE_DIR) / 'assets' / 'Montserrat-Medium.ttf'
-    certificate_path = Path(conf.settings.BASE_DIR) / 'assets' / 'certificate_model.png'
+    certificate_path = Path(conf.settings.BASE_DIR) / 'assets' / 'ext' / 'certificate_model.png'
     font = ImageFont.truetype(str(font_path), size=70)
     font_cpf = ImageFont.truetype(str(font_path_cpf), size=45)
 

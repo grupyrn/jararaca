@@ -7,7 +7,7 @@ from rest_framework import viewsets
 from rest_framework.views import *
 
 from api import senders
-from api.models import MemberInfo, EventCheck, Event
+from api.models import MemberInfo, EventDayCheck, Event
 from api.serializers import MemberInfoSerializer, EventCheckSerializer, EventSerializer
 
 
@@ -43,62 +43,62 @@ class EventCheckView(APIView):
     API endpoint that allows members to check in and out of events.
     """
 
-    def post(self, request, format=None):
-        serializer = EventCheckSerializer(data=request.data)
-        if serializer.is_valid():
-            now = timezone.now()
-            delta = timedelta(minutes=60)
-            now_plus = now + delta
-            now_minus = now - delta
-
-            queryset = Event.objects.filter(
-                (Q(start__lte=now) & Q(end__gte=now)) |
-                (Q(start__lte=now_plus) & Q(end__gte=now)) |
-                (Q(start__lte=now) & Q(end__gte=now_minus)),
-                id=serializer.data['event']
-            )
-
-            if queryset.all():
-                if serializer.data['check']:
-                    return self.checkin(serializer.data)
-                return self.checkout(serializer.data)
-            else:
-                return Response({'status': 'BAD_REQUEST', 'message': 'Event inactive.'},
-                                status=status.HTTP_400_BAD_REQUEST)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def checkin(self, data):
-        check = EventCheck.objects.filter(event_id=data['event'],
-                                          member_name=data['member']['name'],
-                                          member_email=data['member']['email']).first()
-        if check:
-            return Response({'status': 'BAD_REQUEST', 'message': 'Member already checked-in.'},
-                            status=status.HTTP_400_BAD_REQUEST)
-
-        EventCheck(event_id=data['event'],
-                   member_name=data['member']['name'],
-                   member_email=data['member']['email']).save()
-        return Response(data, status=status.HTTP_201_CREATED)
-
-    def checkout(self, data):
-        check = EventCheck.objects.filter(event_id=data['event'],
-                                          member_name=data['member']['name'],
-                                          member_email=data['member']['email']).first()
-        if not check:
-            return Response({'status': 'BAD_REQUEST', 'message': 'Member did not checkin.'},
-                            status=status.HTTP_400_BAD_REQUEST)
-        elif check.exit_date is not None:
-            return Response({'status': 'BAD_REQUEST', 'message': 'Member already checked-out.'},
-                            status=status.HTTP_400_BAD_REQUEST)
-
-        if check.checkout():
-            senders.send_certificate_mail(data['member']['name'], data['member']['email'],
-                                          cpf=data['member'].get('cpf', None))
-        else:
-            senders.send_no_certificate_mail(data['member']['name'], data['member']['email'])
-
-        return Response(data, status=status.HTTP_200_OK)
+    # def post(self, request, format=None):
+    #     serializer = EventCheckSerializer(data=request.data)
+    #     if serializer.is_valid():
+    #         now = timezone.now()
+    #         delta = timedelta(minutes=60)
+    #         now_plus = now + delta
+    #         now_minus = now - delta
+    #
+    #         queryset = Event.objects.filter(
+    #             (Q(start__lte=now) & Q(end__gte=now)) |
+    #             (Q(start__lte=now_plus) & Q(end__gte=now)) |
+    #             (Q(start__lte=now) & Q(end__gte=now_minus)),
+    #             id=serializer.data['event']
+    #         )
+    #
+    #         if queryset.all():
+    #             if serializer.data['check']:
+    #                 return self.checkin(serializer.data)
+    #             return self.checkout(serializer.data)
+    #         else:
+    #             return Response({'status': 'BAD_REQUEST', 'message': 'Event inactive.'},
+    #                             status=status.HTTP_400_BAD_REQUEST)
+    #
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    #
+    # def checkin(self, data):
+    #     check = EventDayCheck.objects.filter(event_id=data['event'],
+    #                                       member_name=data['member']['name'],
+    #                                       member_email=data['member']['email']).first()
+    #     if check:
+    #         return Response({'status': 'BAD_REQUEST', 'message': 'Member already checked-in.'},
+    #                         status=status.HTTP_400_BAD_REQUEST)
+    #
+    #     EventCheck(event_id=data['event'],
+    #                member_name=data['member']['name'],
+    #                member_email=data['member']['email']).save()
+    #     return Response(data, status=status.HTTP_201_CREATED)
+    #
+    # def checkout(self, data):
+    #     check = EventCheck.objects.filter(event_id=data['event'],
+    #                                       member_name=data['member']['name'],
+    #                                       member_email=data['member']['email']).first()
+    #     if not check:
+    #         return Response({'status': 'BAD_REQUEST', 'message': 'Member did not checkin.'},
+    #                         status=status.HTTP_400_BAD_REQUEST)
+    #     elif check.exit_date is not None:
+    #         return Response({'status': 'BAD_REQUEST', 'message': 'Member already checked-out.'},
+    #                         status=status.HTTP_400_BAD_REQUEST)
+    #
+    #     if check.checkout():
+    #         senders.send_certificate_mail(data['member']['name'], data['member']['email'],
+    #                                       cpf=data['member'].get('cpf', None))
+    #     else:
+    #         senders.send_no_certificate_mail(data['member']['name'], data['member']['email'])
+    #
+    #     return Response(data, status=status.HTTP_200_OK)
 
 
 class CurrentEventView(APIView):

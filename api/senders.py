@@ -4,7 +4,7 @@ from django import conf
 
 from api.certificate import generate_certificate
 from api.qrcode import gen_qrcode
-from .models import MemberInfo
+from .models import MemberInfo, Attendee, Event
 
 import json
 
@@ -16,13 +16,8 @@ from django.conf import settings
 sg = sendgrid.SendGridAPIClient(apikey=settings.SENDGRID_API_KEY)
 
 
-def send_registration_mail(member_info: MemberInfo):
-    json_data = member_info.to_json()
-
-    cipher_suite = Fernet(settings.CRYPTO_KEY)
-    cipher_text = cipher_suite.encrypt(json_data.encode('utf-8'))
-
-    qr_data = gen_qrcode(data=cipher_text).read()
+def send_registration_mail(attendee: Attendee, event: Event):
+    qr_data = gen_qrcode(data=str(attendee.uuid)).read()
 
     mail = Mail()
     mail.from_email = Email("coordenacao@grupyrn.org", "GruPy-RN")
@@ -35,8 +30,9 @@ def send_registration_mail(member_info: MemberInfo):
     mail.add_attachment(attachment1)
 
     personalization = Personalization()
-    personalization.add_substitution(Substitution("%first_name%", member_info.name.split()[0]))
-    personalization.add_to(Email(member_info.email, member_info.name))
+    personalization.add_substitution(Substitution("%first_name%", attendee.name.split()[0]))
+    personalization.add_substitution(Substitution("%event_name%", event.name))
+    personalization.add_to(Email(attendee.email, attendee.name))
     mail.add_personalization(personalization)
 
     try:
@@ -46,7 +42,7 @@ def send_registration_mail(member_info: MemberInfo):
         raise e
 
 
-def send_certificate_mail(name, email, cpf=None):
+def send_certificate_mail(name, email, event, cpf=None):
     mail = Mail()
     mail.from_email = Email("coordenacao@grupyrn.org", "GruPy-RN")
     mail.template_id = "f26688fc-1854-455a-a2c0-bd72d2a38b56"
@@ -60,6 +56,7 @@ def send_certificate_mail(name, email, cpf=None):
 
     personalization = Personalization()
     personalization.add_substitution(Substitution("%first_name%", name.split()[0]))
+    personalization.add_substitution(Substitution("%event_name%", event.name))
     personalization.add_to(Email(email, name))
     mail.add_personalization(personalization)
 
@@ -71,7 +68,7 @@ def send_certificate_mail(name, email, cpf=None):
         raise e
 
 
-def send_no_certificate_mail(name, email):
+def send_no_certificate_mail(name, email, event):
     mail = Mail()
     mail.from_email = Email("coordenacao@grupyrn.org", "GruPy-RN")
     mail.template_id = "637c0650-3dec-4505-a006-8b9149b3cce4"
@@ -79,6 +76,7 @@ def send_no_certificate_mail(name, email):
 
     personalization = Personalization()
     personalization.add_substitution(Substitution("%first_name%", name.split()[0]))
+    personalization.add_substitution(Substitution("%event_name%", event.name))
     personalization.add_to(Email(email, name))
     mail.add_personalization(personalization)
 

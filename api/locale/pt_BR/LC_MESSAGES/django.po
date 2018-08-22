@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-06 08:29-0300\n"
+"POT-Creation-Date: 2018-08-22 08:54-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,58 +18,174 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: models.py:24
-msgid "name"
-msgstr "nome"
-
-#: models.py:25
-msgid "start date/time"
-msgstr "data/hora de início"
-
-#: models.py:26
-msgid "end date/time"
-msgstr "data/hora de fim"
-
-#: models.py:32 models.py:37
+#: api/models.py:30 api/models.py:61 api/models.py:66
 msgid "event"
 msgstr "evento"
 
-#: models.py:33
+#: api/models.py:31 api/models.py:43
+msgid "name"
+msgstr "nome"
+
+#: api/models.py:32
+msgid "email"
+msgstr "e-mail"
+
+#: api/models.py:33
+msgid "CPF"
+msgstr "CPF"
+
+#: api/models.py:34
+#, fuzzy
+#| msgid "share with partners"
+msgid "share data with partners"
+msgstr "Autorizo o compartilhamento dos meus dados com parceiros do GruPy-RN"
+
+#: api/models.py:35 api/models.py:67
+msgid "date"
+msgstr "data"
+
+#: api/models.py:38 api/models.py:109
+msgid "attendee"
+msgstr "participante"
+
+#: api/models.py:39
+#, fuzzy
+#| msgid "attendee"
+msgid "attendees"
+msgstr "participantes"
+
+#: api/models.py:44 api/models.py:97
+msgid "description"
+msgstr "descrição"
+
+#: api/models.py:45 api/models.py:96
+msgid "place"
+msgstr "local"
+
+#: api/models.py:46
+msgid "latitude"
+msgstr ""
+
+#: api/models.py:47
+msgid "longitude"
+msgstr ""
+
+#: api/models.py:48
+msgid "organizers"
+msgstr "organizadores"
+
+#: api/models.py:49
+msgid "created by"
+msgstr "criado por"
+
+#: api/models.py:51
+msgid "content link"
+msgstr "link de conteúdo"
+
+#: api/models.py:62
 msgid "events"
 msgstr "eventos"
 
-#: models.py:38
-msgid "member name"
-msgstr "nome do membro"
+#: api/models.py:68 api/models.py:93
+#, fuzzy
+#| msgid "start date/time"
+msgid "start time"
+msgstr "hora de início"
 
-#: models.py:39
-msgid "member email"
-msgstr "e-mail do membro"
+#: api/models.py:69 api/models.py:94
+#, fuzzy
+#| msgid "end date/time"
+msgid "end time"
+msgstr "hora de término"
 
-#: models.py:40
+#: api/models.py:78
+#, fuzzy
+#| msgid "event check"
+msgid "change schedule"
+msgstr "alterar programação"
+
+#: api/models.py:87 api/models.py:92 api/models.py:110
+#, fuzzy
+#| msgid "event"
+msgid "event day"
+msgstr "dia de evento"
+
+#: api/models.py:88
+#, fuzzy
+#| msgid "events"
+msgid "event days"
+msgstr "dias de evento"
+
+#: api/models.py:95
+msgid "title"
+msgstr "título"
+
+#: api/models.py:98
+msgid "authors"
+msgstr "autores"
+
+#: api/models.py:104
+#, fuzzy
+#| msgid "event check"
+msgid "event schedule"
+msgstr "item de programação"
+
+#: api/models.py:105
+#, fuzzy
+#| msgid "event checks"
+msgid "event schedules"
+msgstr "itens de programação"
+
+#: api/models.py:111
 msgid "entrance date/time"
 msgstr "data/hora de entrada"
 
-#: models.py:41
+#: api/models.py:112
 msgid "exit date/time"
 msgstr "data/hora de saída"
 
-#: models.py:48
+#: api/models.py:124 api/models.py:127
 #, fuzzy
 #| msgid "entrance date/time"
 msgid "permanence time"
 msgstr "tempo de permanência"
 
-#: models.py:51
+#: api/models.py:130
 #, fuzzy
 #| msgid "event check"
 msgid "not checked out"
 msgstr "não realizou checkout"
 
-#: models.py:65
-msgid "event check"
+#: api/models.py:145
+#, fuzzy
+#| msgid "event check"
+msgid "event day check"
 msgstr "entrada de evento"
 
-#: models.py:66
-msgid "event checks"
+#: api/models.py:146
+#, fuzzy
+#| msgid "event checks"
+msgid "event day checks"
 msgstr "entradas de evento"
+
+#~ msgid ""
+#~ "Optional. Only if you wish to share name and e-mail information with our "
+#~ "partners."
+#~ msgstr ""
+#~ "Opcional. Somente se você desejar compartilhar seu nome e e-mail com "
+#~ "nossos parceiros."
+
+#~ msgid "start date/time"
+#~ msgstr "data/hora de início"
+
+#~ msgid "end date/time"
+#~ msgstr "data/hora de término"
+
+#~ msgid "schedule link"
+#~ msgstr "link da programação"
+
+#~ msgid "member name"
+#~ msgstr "nome do membro"
+
+#~ msgid "member email"
+#~ msgstr "e-mail do membro"
