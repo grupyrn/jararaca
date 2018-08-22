@@ -32,6 +32,11 @@ class Attendee(models.Model):
     email = models.EmailField(_('email'), max_length=50)
     cpf = models.CharField(_('CPF'), max_length=11)
     share_data_with_partners = models.BooleanField(_('share data with partners'), default=False)
+    date = models.DateTimeField(_('date'), auto_now_add=True)
+
+    class Meta:
+        verbose_name = _('attendee')
+        verbose_name_plural = _('attendees')
 
 
 class Event(models.Model):

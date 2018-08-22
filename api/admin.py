@@ -3,7 +3,7 @@ from django.conf import settings
 
 # Register your models here.
 
-from api.models import Event, EventDayCheck, EventSchedule, EventDay
+from api.models import Event, EventDayCheck, EventSchedule, EventDay, Attendee
 
 admin.site.site_header = settings.ADMIN_HEADER
 
@@ -40,6 +40,18 @@ class EventDayAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super(EventDayAdmin, self).get_queryset(request)
+        if not request.user.is_superuser:
+            qs = qs.filter(event__created_by=request.user)
+        return qs
+
+
+@admin.register(Attendee)
+class AttendeeAdmin(admin.ModelAdmin):
+    list_filter = ('event__name',)
+    list_display = ('name', 'event', 'date',)
+
+    def get_queryset(self, request):
+        qs = super(AttendeeAdmin, self).get_queryset(request)
         if not request.user.is_superuser:
             qs = qs.filter(event__created_by=request.user)
         return qs
