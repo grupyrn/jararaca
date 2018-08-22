@@ -108,5 +108,8 @@ body{
         padding: 15px 0px;
         margin-left: 8px;
     }
+    .input-field > label{
+        position: initial;
+    }
 
 }
