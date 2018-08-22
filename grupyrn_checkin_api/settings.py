@@ -21,7 +21,7 @@ CRYPTO_KEY = os.environ.get('CRYPTO_KEY', None)
 
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY', None)
 
-GEOPOSITION_GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY', None)
+GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY', None)
 
 ADMIN_HEADER = 'Administração de Check-in de Eventos do GruPy-RN'
 
@@ -81,6 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'grupyrn_checkin_api.context_processors.global_settings',
             ],
         },
     },

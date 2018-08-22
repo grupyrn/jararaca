@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-21 21:50-0300\n"
+"POT-Creation-Date: 2018-08-22 00:23-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,9 +46,9 @@ msgstr ""
 "Eu também autorizo o compartilhamento do meu nome e e-mail com parceiros do "
 "GruPy-RN"
 
-#: website/templates/website/event.html:20
+#: website/templates/website/event.html:19
 msgid "Schedule"
-msgstr ""
+msgstr "Programação"
 
 #: website/templates/website/footer.html:8
 msgid "From developers to the community."
@@ -65,12 +65,12 @@ msgid "Future events"
 msgstr "Eventos futuros"
 
 #: website/templates/website/index.html:25
-msgid "More info"
-msgstr "Mais informações"
-
-#: website/templates/website/index.html:26
 msgid "Register"
 msgstr "Inscreva-se"
+
+#: website/templates/website/index.html:26
+msgid "More info"
+msgstr "Mais informações"
 
 #: website/templates/website/index.html:31
 msgid "Coming soon..."
@@ -116,6 +116,14 @@ msgstr "Indisponível"
 msgid "There are no past events to show."
 msgstr "Não há eventos passados para exibir."
 
-#~ msgid "This field requires at most 11 digits or 14 characters."
-#~ msgstr ""
-#~ "CPF requer pelo menos 11 dígitos ou 14 caracteres digitados corretamente."
+#: website/views.py:57
+msgid "Registration failed."
+msgstr "Falha no cadastro."
+
+msgid "This field requires at most 11 digits or 14 characters."
+msgstr ""
+"CPF requer pelo menos 11 dígitos ou 14 caracteres digitados corretamente."
+
+msgid "Invalid CPF number."
+msgstr ""
+"Número de CPF inválido."

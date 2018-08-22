@@ -5,37 +5,65 @@
 
 {% block content %}
 
-    <section>
-        <div class="container">
-            <div class="row">
-                <h2 class="left">{{ event.name }}</h2>
-                <div class="col s12 m12">
-{#                    <div>#}
-{#                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda at aut consequatur eos,#}
-{#                            magnam, maxime natus nihil odit provident quisquam ratione sapiente sed similique soluta#}
-{#                            sunt. Accusantium maxime sit ut!</p>#}
-{#                    </div>#}
+  <section>
+    <div class="container">
+      <div class="row">
+        <h2 class="left">{{ event.name }}</h2>
+        <div class="col s12 m12">
+          <div>
+            <p>{{ event.description }}</p>
+          </div>
 
-                    <div>
-                        <h3>{% trans "Schedule" %}</h3>
-                        <ul class="collection">
-
-                            <li class="collection-item avatar">
-                                <span class="title"></span>
-                                <p>Zé pequeno <br>
-                                    8h - 8h40
-                                </p>
-                            </li>
-
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col s12 m6">
-                    <div id="map" style="width:100%;height:400px;"></div>
-                </div>
+          {% for day in event.eventday_set.all %}
+            <div>
+              <h4>{% trans "Schedule" %} - {{ day.date|date:'SHORT_DATE_FORMAT' }}</h4>
+              <ul class="collection">
+                {% for item in day.eventschedule_set.all %}
+                  <li class="collection-item avatar">
+                    <span class="title"></span>
+                    <p>{{ item.title }}<br>
+                      {{ item.start }}h - {{ item.end }}h
+                    </p>
+                    {% if item.authors %}
+                      <p>{{ item.authors }}</p>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
             </div>
+          {% endfor %}
         </div>
-    </section>
+
+        <div class="col s12 m6">
+          <h4>{% trans "Place" %}</h4>
+          <div id="map" style="width:100%;height:400px;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock content %}
+
+{% block scripts %}
+  <script>
+      function myMap() {
+          var mapCanvas = document.getElementById("map");
+          var myLatLng = {'lat': {{ event.latitude|stringformat:"f" }}, 'lng': {{ event.longitude|stringformat:"f" }}};
+          var mapOptions = {
+              center: new google.maps.LatLng(myLatLng),
+              zoom: 14
+          };
+          var map = new google.maps.Map(mapCanvas, mapOptions);
+
+
+          var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+          });
+
+      }
+  </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&callback=myMap"></script>
+
+{% endblock scripts %}
