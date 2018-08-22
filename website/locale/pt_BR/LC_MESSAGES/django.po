@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-21 20:22-0300\n"
+"POT-Creation-Date: 2018-08-21 21:04-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,48 +54,60 @@ msgstr "De desenvolvedores para a comunidade."
 msgid "Social networks"
 msgstr "Redes sociais"
 
-#: website/templates/website/index.html:10
+#: website/templates/website/index.html:14
 #: website/templates/website/menu.html:10
 #: website/templates/website/menu.html:16
 msgid "Future events"
 msgstr "Eventos futuros"
 
-#: website/templates/website/index.html:21
+#: website/templates/website/index.html:25
 msgid "Register now!"
 msgstr "Inscreva-se já!"
 
-#: website/templates/website/index.html:36
+#: website/templates/website/index.html:30
+msgid "Coming soon..."
+msgstr "Em breve..."
+
+#: website/templates/website/index.html:41
 #: website/templates/website/menu.html:11
 #: website/templates/website/menu.html:17
 msgid "Who we are"
 msgstr "Quem somos"
 
-#: website/templates/website/index.html:52
+#: website/templates/website/index.html:56
 #: website/templates/website/menu.html:12
 #: website/templates/website/menu.html:18
 msgid "Past events"
 msgstr "Eventos anteriores"
 
-#: website/templates/website/index.html:56
+#: website/templates/website/index.html:62
 msgid "Event"
 msgstr "Evento"
 
-#: website/templates/website/index.html:57
+#: website/templates/website/index.html:63
 msgid "Date"
 msgstr "Data"
 
-#: website/templates/website/index.html:58
+#: website/templates/website/index.html:64
 msgid "Place"
 msgstr "Local"
 
-#: website/templates/website/index.html:59
+#: website/templates/website/index.html:65
 msgid "Content"
 msgstr "Conteúdo"
 
-#: website/templates/website/index.html:70
+#: website/templates/website/index.html:78
 msgid "Open"
 msgstr "Abrir"
 
-msgid "This field requires at most 11 digits or 14 characters."
-msgstr ""
-"CPF requer pelo menos 11 dígitos ou 14 caracteres digitados corretamente."
+#: website/templates/website/index.html:80
+msgid "Unavailable"
+msgstr "Indisponível"
+
+#: website/templates/website/index.html:89
+msgid "There are no past events to show."
+msgstr "Não há eventos passados para exibir."
+
+#~ msgid "This field requires at most 11 digits or 14 characters."
+#~ msgstr ""
+#~ "CPF requer pelo menos 11 dígitos ou 14 caracteres digitados corretamente."

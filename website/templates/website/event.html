@@ -1,0 +1,41 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block content %}
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <h1 class="left">{{ event.name }}</h1>
+                <div class="col s12 m12">
+{#                    <div>#}
+{#                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda at aut consequatur eos,#}
+{#                            magnam, maxime natus nihil odit provident quisquam ratione sapiente sed similique soluta#}
+{#                            sunt. Accusantium maxime sit ut!</p>#}
+{#                    </div>#}
+
+                    <div>
+                        <h3>{% trans "Schedule" %}</h3>
+                        <ul class="collection">
+
+                            <li class="collection-item avatar">
+                                <span class="title"></span>
+                                <p>Zé pequeno <br>
+                                    8h - 8h40
+                                </p>
+                            </li>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col s12 m6">
+                    <div id="map" style="width:100%;height:400px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

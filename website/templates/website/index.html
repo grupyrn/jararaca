@@ -3,6 +3,10 @@
 {% load i18n %}
 
 {% block content %}
+
+  {% include 'website/parallax.html' %}
+
+
   <section>
     <div class="container">
       <div class="row">
@@ -18,10 +22,13 @@
                 <p>{% for date in event.date %}{{ date }}{% endfor %}</p>
               </div>
               <div class="card-action">
-                <a class="yellow-link" href="{% url 'form' %}">{% trans "Register now!" %}</a>
+                <a class="yellow-link" href="{% url 'event-info' %}">{% trans "More info" %}</a>
+                <a class="yellow-link" href="{% url 'attendee-registration' event.id %}">{% trans "Register now!" %}</a>
               </div>
             </div>
           </div>
+        {% empty %}
+          <p>{% trans "Coming soon..." %}</p>
         {% endfor %}
 
       </div>
@@ -49,6 +56,7 @@
 
           <h1 id="past-events" class="center-align black-title scrollspy">{% trans "Past events" %}</h1>
 
+        {% if past_events %}
           <table class="highlight centered ">
             <thead>
             <tr>
@@ -70,7 +78,7 @@
                   {% if event.content_link %}
                     <a href="{{ event.content_link }}" target="_blank">{% trans 'Open' %}</a>
                   {% else %}
-                    ---
+                    {% trans "Unavailable" %}
                   {% endif %}
                 </td>
               </tr>
@@ -78,6 +86,9 @@
 
             </tbody>
           </table>
+        {% else %}
+          <p>{% trans "There are no past events to show." %}</p>
+        {% endif %}
 
         </div>
       </div>

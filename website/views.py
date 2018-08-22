@@ -22,11 +22,24 @@ class WelcomeView(TemplateView):
         return context
 
 
+class EventInfoView(TemplateView):
+    template_name = 'website/event.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
 class AttendeeRegistrationView(FormView):
     template_name = 'website/form.html'
     form_class = AttendeeForm
 
     success_url = '/thanks/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # TODO: Put event ID
+        return context
 
     def form_valid(self, form):
         attendee = form.save()

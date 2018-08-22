@@ -1,38 +1,13 @@
+{% extends 'website/base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>GruPy-RN Meetup </title>
-
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
-</head>
-<body>
-
-<header>
-  <div class="navbar-fixed">
-    <nav class="white" role="navigation">
-      <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="brand-logo"><img class="center-logo"
-                                                                         src="{% static 'img/logo.png' %}"
-                                                                         alt="GruPy-RN"></a>
-      </div>
-    </nav>
-  </div>
-
+{% block content %}
   <div class="container">
     <h1 class="center-align h1-header">Crie aqui sua credencial</h1>
     <p class="center-align p-form">Faça parte da comunidade do GruPy-RN</p>
   </div>
-
-</header>
 
 
 <div class="container cont-padding-top">
@@ -77,6 +52,7 @@
   </div>
 </div>
 
+{% endblock content %}
 
 <!--  Scripts-->
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
