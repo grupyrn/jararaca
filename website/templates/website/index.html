@@ -22,8 +22,8 @@
                 <p>{% for date in event.date %}{{ date }}{% endfor %}</p>
               </div>
               <div class="card-action">
-                <a class="yellow-link" href="{% url 'event-info' %}">{% trans "More info" %}</a>
                 <a class="yellow-link" href="{% url 'attendee-registration' event.id %}">{% trans "Register now!" %}</a>
+                <a class="yellow-link" href="{% url 'event-info' %}">{% trans "More info" %}</a>
               </div>
             </div>
           </div>
