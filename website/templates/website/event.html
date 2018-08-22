@@ -13,6 +13,7 @@
           <div>
             <p>{{ event.description }}</p>
           </div>
+          <a class="waves-effect waves-light btn yellow darken-2 btn-large" href="{% url 'attendee-registration' event.slug %}">{% trans "Register" %}</a>
 
           {% for day in event.eventday_set.all %}
             <div>
@@ -22,10 +23,10 @@
                   <li class="collection-item avatar">
                     <span class="title"></span>
                     <p>{{ item.title }}<br>
-                      {{ item.start }}h - {{ item.end }}h
+                      <span class="yellow-text text-darken-3">{{ item.start }}h - {{ item.end }}h</span>
                     </p>
                     {% if item.authors %}
-                      <p>{{ item.authors }}</p>
+                      <p class="light-blue-text text-lighten-2">{{ item.authors }}</p>
                     {% endif %}
                   </li>
                 {% endfor %}
@@ -54,11 +55,10 @@
           };
           var map = new google.maps.Map(mapCanvas, mapOptions);
 
-
           var marker = new google.maps.Marker({
             position: myLatLng,
             map: map,
-            title: 'Hello World!'
+            title: "{{ event. }}"
           });
 
       }

@@ -6,7 +6,7 @@
 {% block content %}
   <div class="container">
     <h2 class="center-align h1-header">{{ event.name }}</h2>
-    <p class="center-align p-form">Cadastre-se!</p>
+    <p class="center-align p-form">{% trans "Register now!" %}</p>
   </div>
 
 
@@ -15,7 +15,7 @@
   {% if form.errors %}
     <div class="row">
       <blockquote>
-        <h5>Corrija o(s) seguinte(s) erro(s):</h5>
+        <h5>{% trans "Correct the following error(s):" %}</h5>
         <ul>
           {% for field in form %}
             {% if field.errors %}
@@ -37,7 +37,7 @@
 
   <div class="row">
     <form class="col s12" method="post" action="">
-      <input type="hidden" name="event" value="{{ event.id }}">
+      <input type="hidden" name="event" value="{{ event.slug }}">
 
       {% crispy form %}
 

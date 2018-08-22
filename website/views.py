@@ -38,11 +38,11 @@ class AttendeeRegistrationView(FormView):
     success_url = '/thanks/'
 
     def get(self, request, *args, **kwargs):
-        event = get_object_or_404(Event, id=kwargs['event'], eventday__date__gte=date.today())
+        event = get_object_or_404(Event, slug=kwargs['event'], eventday__date__gte=date.today())
         return self.render_to_response(self.get_context_data(event=event))
 
     def form_valid(self, form):
-        event = get_object_or_404(Event, id=self.request.POST['event'], eventday__date__gte=date.today())
+        event = get_object_or_404(Event, slug=self.request.POST['event'], eventday__date__gte=date.today())
 
         attendee = form.instance
         attendee.event = event
@@ -58,5 +58,5 @@ class AttendeeRegistrationView(FormView):
             return self.form_invalid(form)
 
     def form_invalid(self, form):
-        event = get_object_or_404(Event, id=self.request.POST['event'], eventday__date__gte=date.today())
+        event = get_object_or_404(Event, slug=self.request.POST['event'], eventday__date__gte=date.today())
         return self.render_to_response(self.get_context_data(form=form, event=event))

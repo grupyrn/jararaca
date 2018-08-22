@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-22 00:23-0300\n"
+"POT-Creation-Date: 2018-08-22 08:54-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,6 +50,11 @@ msgstr ""
 msgid "Schedule"
 msgstr "Programação"
 
+#: website/templates/website/event.html:38
+#: website/templates/website/index.html:65
+msgid "Place"
+msgstr "Local"
+
 #: website/templates/website/footer.html:8
 msgid "From developers to the community."
 msgstr "De desenvolvedores para a comunidade."
@@ -57,6 +62,16 @@ msgstr "De desenvolvedores para a comunidade."
 #: website/templates/website/footer.html:11
 msgid "Social networks"
 msgstr "Redes sociais"
+
+#: website/templates/website/form.html:9
+#, fuzzy
+#| msgid "Register"
+msgid "Register now!"
+msgstr "Inscreva-se!"
+
+#: website/templates/website/form.html:18
+msgid "Correct the following error(s):"
+msgstr "Corrija o(s) seguinte(s) erro(s):"
 
 #: website/templates/website/index.html:14
 #: website/templates/website/menu.html:10
@@ -96,10 +111,6 @@ msgstr "Evento"
 msgid "Date"
 msgstr "Data"
 
-#: website/templates/website/index.html:65
-msgid "Place"
-msgstr "Local"
-
 #: website/templates/website/index.html:66
 msgid "Content"
 msgstr "Conteúdo"
@@ -125,5 +136,4 @@ msgstr ""
 "CPF requer pelo menos 11 dígitos ou 14 caracteres digitados corretamente."
 
 msgid "Invalid CPF number."
-msgstr ""
-"Número de CPF inválido."
+msgstr "Número de CPF inválido."
