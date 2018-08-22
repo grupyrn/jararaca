@@ -41,6 +41,7 @@ class Attendee(models.Model):
 
 class Event(models.Model):
     name = models.CharField(_('name'), max_length=500)
+    description = models.TextField(_('description'), blank=True)
     place = models.CharField(_('place'), max_length=500)
     latitude = models.FloatField(_('latitude'))
     longitude = models.FloatField(_('longitude'))

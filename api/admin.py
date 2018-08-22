@@ -8,6 +8,7 @@ from api.models import Event, EventDayCheck, EventSchedule, EventDay, Attendee
 admin.site.site_header = settings.ADMIN_HEADER
 
 
+@admin.register(EventDayCheck)
 class EventDayCheckAdmin(admin.ModelAdmin):
     list_filter = ('event_day__event__name',)
     list_display = ('attendee_name', 'event', 'entrance_date', 'exit_date')
@@ -74,7 +75,3 @@ class EventAdmin(admin.ModelAdmin):
         if getattr(obj, 'created_by', None) is None:
             obj.created_by = request.user
         obj.save()
-
-# admin.site.register(EventDay)
-# admin.site.register(EventSchedule)
-admin.site.register(EventDayCheck, EventDayCheckAdmin)
