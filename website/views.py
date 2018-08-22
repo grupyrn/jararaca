@@ -37,8 +37,9 @@ class AttendeeRegistrationView(FormView):
     success_url = '/thanks/'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(AttendeeRegistrationView, self).get_context_data(**kwargs)
         # TODO: Put event ID
+        print(context)
         return context
 
     def form_valid(self, form):

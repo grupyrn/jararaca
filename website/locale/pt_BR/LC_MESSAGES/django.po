@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-21 21:04-0300\n"
+"POT-Creation-Date: 2018-08-21 21:50-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,6 +46,10 @@ msgstr ""
 "Eu também autorizo o compartilhamento do meu nome e e-mail com parceiros do "
 "GruPy-RN"
 
+#: website/templates/website/event.html:20
+msgid "Schedule"
+msgstr ""
+
 #: website/templates/website/footer.html:8
 msgid "From developers to the community."
 msgstr "De desenvolvedores para a comunidade."
@@ -61,50 +65,54 @@ msgid "Future events"
 msgstr "Eventos futuros"
 
 #: website/templates/website/index.html:25
+msgid "More info"
+msgstr "Mais informações"
+
+#: website/templates/website/index.html:26
 msgid "Register now!"
 msgstr "Inscreva-se já!"
 
-#: website/templates/website/index.html:30
+#: website/templates/website/index.html:31
 msgid "Coming soon..."
 msgstr "Em breve..."
 
-#: website/templates/website/index.html:41
+#: website/templates/website/index.html:42
 #: website/templates/website/menu.html:11
 #: website/templates/website/menu.html:17
 msgid "Who we are"
 msgstr "Quem somos"
 
-#: website/templates/website/index.html:56
+#: website/templates/website/index.html:57
 #: website/templates/website/menu.html:12
 #: website/templates/website/menu.html:18
 msgid "Past events"
 msgstr "Eventos anteriores"
 
-#: website/templates/website/index.html:62
+#: website/templates/website/index.html:63
 msgid "Event"
 msgstr "Evento"
 
-#: website/templates/website/index.html:63
+#: website/templates/website/index.html:64
 msgid "Date"
 msgstr "Data"
 
-#: website/templates/website/index.html:64
+#: website/templates/website/index.html:65
 msgid "Place"
 msgstr "Local"
 
-#: website/templates/website/index.html:65
+#: website/templates/website/index.html:66
 msgid "Content"
 msgstr "Conteúdo"
 
-#: website/templates/website/index.html:78
+#: website/templates/website/index.html:79
 msgid "Open"
 msgstr "Abrir"
 
-#: website/templates/website/index.html:80
+#: website/templates/website/index.html:81
 msgid "Unavailable"
 msgstr "Indisponível"
 
-#: website/templates/website/index.html:89
+#: website/templates/website/index.html:90
 msgid "There are no past events to show."
 msgstr "Não há eventos passados para exibir."
 

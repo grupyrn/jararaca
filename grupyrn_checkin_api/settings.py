@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'nested_inline',
     'crispy_forms',
     'crispy_forms_materialize',
     'api',
