@@ -1,15 +1,15 @@
 # Create your views here.
 import base64
 
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import FormView, CreateView
-from rest_framework import status
-from rest_framework.response import Response
 from django.views.generic import TemplateView
 from api import senders
 from api.models import Event
 from website.forms import AttendeeForm
 from datetime import date
+from django.utils.translation import gettext_lazy as _
 
 
 class WelcomeView(TemplateView):
@@ -25,9 +25,10 @@ class WelcomeView(TemplateView):
 class EventInfoView(TemplateView):
     template_name = 'website/event.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        context.update(event=get_object_or_404(Event, slug=context['event']))
+        return self.render_to_response(context)
 
 
 class AttendeeRegistrationView(FormView):
@@ -36,25 +37,25 @@ class AttendeeRegistrationView(FormView):
 
     success_url = '/thanks/'
 
-    def get_context_data(self, **kwargs):
-        context = super(AttendeeRegistrationView, self).get_context_data(**kwargs)
-        # TODO: Put event ID
-        print(context)
-        return context
+    def get(self, request, *args, **kwargs):
+        event = get_object_or_404(Event, id=kwargs['event'], eventday__date__gte=date.today())
+        return self.render_to_response(self.get_context_data(event=event))
 
     def form_valid(self, form):
-        attendee = form.save()
+        event = get_object_or_404(Event, id=self.request.POST['event'], eventday__date__gte=date.today())
+
+        attendee = form.instance
+        attendee.event = event
 
         try:
-            qr_data = senders.send_registration_mail(attendee)
+            qr_data = senders.send_registration_mail(attendee, event)
             context = self.get_context_data(qr_code=base64.b64encode(qr_data).decode('ascii'))
+            attendee.save()
 
             return render(self.request, 'website/thanks.html', context)
         except Exception as e:
-            return Response({
-                'status': 'Server error',
-                'message': 'Error at sending e-mail. Please try again.'
-            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            messages.error(self.request, _('Registration failed.'))
+            return self.form_invalid(form)
 
     def form_invalid(self, form):
         return super().form_invalid(form)

@@ -36,7 +36,8 @@
 
 
   <div class="row">
-    <form class="col s12" method="post">
+    <form class="col s12" method="post" action="">
+      <input type="hidden" name="event" value="{{ event.id }}">
 
       {% crispy form %}
 
