@@ -69,8 +69,8 @@ msgid "More info"
 msgstr "Mais informações"
 
 #: website/templates/website/index.html:26
-msgid "Register now!"
-msgstr "Inscreva-se já!"
+msgid "Register"
+msgstr "Inscreva-se"
 
 #: website/templates/website/index.html:31
 msgid "Coming soon..."

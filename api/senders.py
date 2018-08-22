@@ -42,7 +42,7 @@ def send_registration_mail(attendee: Attendee, event: Event):
         raise e
 
 
-def send_certificate_mail(name, email, cpf=None):
+def send_certificate_mail(name, email, event, cpf=None):
     mail = Mail()
     mail.from_email = Email("coordenacao@grupyrn.org", "GruPy-RN")
     mail.template_id = "f26688fc-1854-455a-a2c0-bd72d2a38b56"
@@ -56,6 +56,7 @@ def send_certificate_mail(name, email, cpf=None):
 
     personalization = Personalization()
     personalization.add_substitution(Substitution("%first_name%", name.split()[0]))
+    personalization.add_substitution(Substitution("%event_name%", event.name))
     personalization.add_to(Email(email, name))
     mail.add_personalization(personalization)
 
@@ -67,7 +68,7 @@ def send_certificate_mail(name, email, cpf=None):
         raise e
 
 
-def send_no_certificate_mail(name, email):
+def send_no_certificate_mail(name, email, event):
     mail = Mail()
     mail.from_email = Email("coordenacao@grupyrn.org", "GruPy-RN")
     mail.template_id = "637c0650-3dec-4505-a006-8b9149b3cce4"
@@ -75,6 +76,7 @@ def send_no_certificate_mail(name, email):
 
     personalization = Personalization()
     personalization.add_substitution(Substitution("%first_name%", name.split()[0]))
+    personalization.add_substitution(Substitution("%event_name%", event.name))
     personalization.add_to(Email(email, name))
     mail.add_personalization(personalization)
 

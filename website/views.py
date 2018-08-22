@@ -58,4 +58,5 @@ class AttendeeRegistrationView(FormView):
             return self.form_invalid(form)
 
     def form_invalid(self, form):
-        return super().form_invalid(form)
+        event = get_object_or_404(Event, id=self.request.POST['event'], eventday__date__gte=date.today())
+        return self.render_to_response(self.get_context_data(form=form, event=event))
