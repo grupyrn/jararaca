@@ -3,6 +3,21 @@
     color: rgba(43, 43, 43, 0.87);
 }
 
+.h1-welcome{
+    color: white;
+    font-weight: bold;
+}
+
+.container-header{
+    height: 70vh;
+    background-image: url(/static/img/meetup.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    filter: opacity(80%)
+}
+
 .about{
     padding: 0.9rem;
     background-color: #efc780;
@@ -73,11 +88,6 @@ body{
     font-weight: 700;
 }
 
-.navbar-fixed{
-  position: absolute
-  z-index: 999999999
-}
-
 @media only screen and (max-width: 992px) {
     .center-logo {
         width: 130px;
@@ -92,6 +102,11 @@ body{
     .qrcode-size {
         margin: 0;
         width: 80vw;
+    }
+
+    .card .card-action{
+        padding: 15px 0px;
+        margin-left: 8px;
     }
 
 }
