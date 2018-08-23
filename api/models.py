@@ -103,6 +103,7 @@ class EventSchedule(models.Model):
     class Meta:
         verbose_name = _('event schedule')
         verbose_name_plural = _('event schedules')
+        ordering = ['start']
 
 
 class EventDayCheck(models.Model):
