@@ -1,7 +1,11 @@
 (function($){
   $(function(){
 
-    $('.sidenav').sidenav();
+    $('.sidenav').sidenav().on('click tap', 'li a', () => {
+      $('.sidenav').sidenav('close');
+    });
+
+
     $('.parallax').parallax();
     $('.scrollspy').scrollSpy();
 
