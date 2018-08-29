@@ -2,6 +2,7 @@
 from datetime import timedelta
 
 from django.shortcuts import *
+from django.utils.translation import gettext as _
 from rest_framework import viewsets, generics, views
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import *
@@ -29,22 +30,22 @@ class MemberInfoViewSet(viewsets.ViewSet):
                 return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
             except Exception as e:
                 return Response({
-                    'status': 'Server error',
-                    'message': 'Error at sending e-mail. Please try again.'
+                    'status': 'EMAIL_ERROR',
+                    'message': _('Error at sending e-mail. Please try again.')
                 }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         return Response({
-            'status': 'Bad request',
-            'message': 'Member could not be created with received data.'
+            'status': 'INVALID_DATA',
+            'message': _('Attendee could not be registered with the received data.')
         }, status=status.HTTP_400_BAD_REQUEST)
 
 
 class EventCheckView(views.APIView):
     """
-    API endpoint that allows members to check in and out of events.
+    API endpoint that allows attendees to check in and out of events.
     """
 
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def post(self, request, format=None):
         serializer = EventCheckSerializer(data=request.data)
@@ -58,7 +59,7 @@ class EventCheckView(views.APIView):
                     return self.checkin(serializer.validated_data)
                 return self.checkout(serializer.validated_data)
             else:
-                return Response({'status': 'EVENT_INACTIVE', 'message': 'Event inactive.'},
+                return Response({'status': 'EVENT_INACTIVE', 'message': _('Event inactive.')},
                                 status=status.HTTP_400_BAD_REQUEST)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -69,13 +70,13 @@ class EventCheckView(views.APIView):
                                              attendee=attendee).first()
 
         if check:
-            return Response({'status': 'ALREADY_CHECKED_IN', 'message': 'Member already checked-in.'},
+            return Response({'status': 'ALREADY_CHECKED_IN', 'message': _('Attendee already checked-in.')},
                             status=status.HTTP_400_BAD_REQUEST)
 
         EventDayCheck(event_day=attendee.event.current_day,
                       attendee=attendee).save()
 
-        return Response({'status': 'OK', 'message': 'Member checked-in.'}, status=status.HTTP_201_CREATED)
+        return Response({'status': 'OK', 'message': _('Attendee successfully checked-in.')}, status=status.HTTP_201_CREATED)
 
     def checkout(self, data):
         attendee = data['attendee']
@@ -84,10 +85,10 @@ class EventCheckView(views.APIView):
                                                        attendee=attendee).first()
 
         if not event_day_check:
-            return Response({'status': 'NOT_CHECKED_IN', 'message': 'Member did not checkin.'},
+            return Response({'status': 'NOT_CHECKED_IN', 'message': _('Attendee did not checkin.')},
                             status=status.HTTP_400_BAD_REQUEST)
         elif event_day_check.exit_date is not None:
-            return Response({'status': 'ALREADY_CHECKED_OUT', 'message': 'Member already checked-out.'},
+            return Response({'status': 'ALREADY_CHECKED_OUT', 'message': _('Attendee already checked-out.')},
                             status=status.HTTP_400_BAD_REQUEST)
 
         event_day_check.checkout()
@@ -99,7 +100,7 @@ class EventCheckView(views.APIView):
             else:
                 senders.send_no_certificate_mail(attendee.name, attendee.email, attendee.event)
 
-        return Response({'status': 'OK', 'message': 'Member checked-out.'}, status=status.HTTP_200_OK)
+        return Response({'status': 'OK', 'message': _('Attendee successfully checked-out.')}, status=status.HTTP_200_OK)
 
 
 class CurrentEventsView(APIView):
@@ -136,3 +137,4 @@ class AttendeeListView(generics.RetrieveAPIView):
         attendees = get_list_or_404(Attendee, event_id=instance.id)
         serializer = self.get_serializer(attendees, many=True)
         return Response(serializer.data)
+x
