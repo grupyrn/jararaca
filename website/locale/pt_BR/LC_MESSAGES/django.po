@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-22 08:54-0300\n"
+"POT-Creation-Date: 2018-08-29 12:22-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,11 +46,16 @@ msgstr ""
 "Eu também autorizo o compartilhamento do meu nome e e-mail com parceiros do "
 "GruPy-RN"
 
-#: website/templates/website/event.html:19
+#: website/templates/website/event.html:16
+#: website/templates/website/index.html:25
+msgid "Register"
+msgstr "Inscreva-se"
+
+#: website/templates/website/event.html:20
 msgid "Schedule"
 msgstr "Programação"
 
-#: website/templates/website/event.html:38
+#: website/templates/website/event.html:39
 #: website/templates/website/index.html:65
 msgid "Place"
 msgstr "Local"
@@ -75,13 +80,9 @@ msgstr "Corrija o(s) seguinte(s) erro(s):"
 
 #: website/templates/website/index.html:14
 #: website/templates/website/menu.html:10
-#: website/templates/website/menu.html:16
+#: website/templates/website/menu.html:21
 msgid "Future events"
 msgstr "Eventos futuros"
-
-#: website/templates/website/index.html:25
-msgid "Register"
-msgstr "Inscreva-se"
 
 #: website/templates/website/index.html:26
 msgid "More info"
@@ -93,13 +94,13 @@ msgstr "Em breve..."
 
 #: website/templates/website/index.html:42
 #: website/templates/website/menu.html:11
-#: website/templates/website/menu.html:17
+#: website/templates/website/menu.html:22
 msgid "Who we are"
 msgstr "Quem somos"
 
 #: website/templates/website/index.html:57
 #: website/templates/website/menu.html:12
-#: website/templates/website/menu.html:18
+#: website/templates/website/menu.html:23
 msgid "Past events"
 msgstr "Eventos anteriores"
 
@@ -131,9 +132,9 @@ msgstr "Não há eventos passados para exibir."
 msgid "Registration failed."
 msgstr "Falha no cadastro."
 
-msgid "This field requires at most 11 digits or 14 characters."
-msgstr ""
-"CPF requer pelo menos 11 dígitos ou 14 caracteres digitados corretamente."
+#~ msgid "This field requires at most 11 digits or 14 characters."
+#~ msgstr ""
+#~ "CPF requer pelo menos 11 dígitos ou 14 caracteres digitados corretamente."
 
-msgid "Invalid CPF number."
-msgstr "Número de CPF inválido."
+#~ msgid "Invalid CPF number."
+#~ msgstr "Número de CPF inválido."

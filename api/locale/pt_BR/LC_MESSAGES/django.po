@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-29 09:09-0300\n"
+"POT-Creation-Date: 2018-08-29 12:22-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -168,37 +168,51 @@ msgstr "entrada de evento"
 msgid "event day checks"
 msgstr "entradas de evento"
 
-#: api/views.py:34
-msgid "Error at sending e-mail. Please try again."
-msgstr "Falha ao enviar e-mail. Por favor, tente novamente."
+#: api/serializers.py:42
+msgid ""
+"I authorize the use of my data exclusively for my identification at this "
+"GruPy-RN event."
+msgstr ""
 
-#: api/views.py:39
-msgid "Attendee could not be registered with the received data."
-msgstr "Participante não pôde ser registrado com os dados recebidos. "
-
-#: api/views.py:62
+#: api/views.py:43
 msgid "Event inactive."
 msgstr "O evento está inativo."
 
-#: api/views.py:73
-msgid "Attendee already checked-in."
-msgstr "O participante já realizou check-in."
+#: api/views.py:55
+#, fuzzy, python-format
+#| msgid "Attendee already checked-in."
+msgid "%(attendee)s already checked-in."
+msgstr "%(attendee)s já realizou check-in."
 
-#: api/views.py:79
-msgid "Attendee successfully checked-in."
-msgstr "O participante realizou check-in com sucesso."
+#: api/views.py:62
+#, fuzzy, python-format
+#| msgid "Attendee successfully checked-in."
+msgid "%(attendee)s successfully checked-in."
+msgstr "%(attendee)s realizou check-in com sucesso."
 
-#: api/views.py:88
-msgid "Attendee did not checkin."
-msgstr "O participante não realizou check-in."
+#: api/views.py:76
+#, fuzzy, python-format
+#| msgid "Attendee did not checkin."
+msgid "%(attendee)s did not checkin."
+msgstr "%(attendee)s não realizou check-in."
 
-#: api/views.py:91
-msgid "Attendee already checked-out."
-msgstr "O participante já realizou check-out anteriormente."
+#: api/views.py:80
+#, fuzzy, python-format
+#| msgid "Attendee already checked-out."
+msgid "%(attendee)s already checked-out."
+msgstr "%(attendee)s já realizou check-out."
 
-#: api/views.py:103
-msgid "Attendee successfully checked-out."
-msgstr "O participante realizou check-out com sucesso."
+#: api/views.py:93
+#, fuzzy, python-format
+#| msgid "Attendee successfully checked-out."
+msgid "%(attendee)s successfully checked-out."
+msgstr "%(attendee)s realizou check-out com sucesso."
+
+#~ msgid "Error at sending e-mail. Please try again."
+#~ msgstr "Falha ao enviar e-mail. Por favor, tente novamente."
+
+#~ msgid "Attendee could not be registered with the received data."
+#~ msgstr "Participante não pôde ser registrado com os dados recebidos. "
 
 #~ msgid ""
 #~ "Optional. Only if you wish to share name and e-mail information with our "

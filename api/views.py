@@ -51,14 +51,16 @@ class EventCheckView(views.APIView):
                                              attendee=attendee).first()
 
         if check:
-            return Response({'status': 'ALREADY_CHECKED_IN', 'message': _('Attendee already checked-in.')},
+            return Response({'status': 'ALREADY_CHECKED_IN',
+                             'message': _('%(attendee)s already checked-in.') % {'attendee': attendee.name.split()[0]}},
                             status=status.HTTP_400_BAD_REQUEST)
 
         EventDayCheck(event_day=attendee.event.current_day,
                       attendee=attendee).save()
 
         return Response(
-            {'status': 'OK', 'message': _('Attendee successfully checked-in.'),
+            {'status': 'OK',
+             'message': _('%(attendee)s successfully checked-in.') % {'attendee': attendee.name.split()[0]},
              'attendee': {
                  'name': attendee.name, 'email': attendee.email
              }},
@@ -71,10 +73,12 @@ class EventCheckView(views.APIView):
                                                        attendee=attendee).first()
 
         if not event_day_check:
-            return Response({'status': 'NOT_CHECKED_IN', 'message': _('Attendee did not checkin.')},
+            return Response({'status': 'NOT_CHECKED_IN',
+                             'message': _('%(attendee)s did not checkin.') % {'attendee': attendee.name.split()[0]}},
                             status=status.HTTP_400_BAD_REQUEST)
         elif event_day_check.exit_date is not None:
-            return Response({'status': 'ALREADY_CHECKED_OUT', 'message': _('Attendee already checked-out.')},
+            return Response({'status': 'ALREADY_CHECKED_OUT',
+                             'message': _('%(attendee)s already checked-out.') % {'attendee': attendee.name.split()[0]}},
                             status=status.HTTP_400_BAD_REQUEST)
 
         event_day_check.checkout()
@@ -86,11 +90,13 @@ class EventCheckView(views.APIView):
             else:
                 senders.send_no_certificate_mail(attendee.name, attendee.email, attendee.event)
 
-        return Response({'status': 'OK', 'message': _('Attendee successfully checked-out.'),
-                         'attendee': {
-                             'name': attendee.name, 'email': attendee.email
-                         }},
-                        status=status.HTTP_200_OK)
+        return Response(
+            {'status': 'OK',
+             'message': _('%(attendee)s successfully checked-out.') % {'attendee': attendee.name.split()[0]},
+             'attendee': {
+                 'name': attendee.name, 'email': attendee.email
+             }},
+            status=status.HTTP_200_OK)
 
 
 class CurrentEventsView(APIView):
