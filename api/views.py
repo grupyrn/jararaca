@@ -3,13 +3,13 @@ from datetime import timedelta
 
 from django.shortcuts import *
 from django.utils.translation import gettext as _
-from rest_framework import viewsets, generics, views, mixins
+from rest_framework import generics, views
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import *
 
 from api import permissions
 from api import senders
-from api.models import MemberInfo, EventDayCheck, Event, Attendee
+from api.models import EventDayCheck, Event, Attendee
 from api.serializers import AttendeeRegistrationSerializer, EventCheckSerializer, EventSerializer, AttendeeSerializer
 
 
@@ -57,7 +57,12 @@ class EventCheckView(views.APIView):
         EventDayCheck(event_day=attendee.event.current_day,
                       attendee=attendee).save()
 
-        return Response({'status': 'OK', 'message': _('Attendee successfully checked-in.')}, status=status.HTTP_201_CREATED)
+        return Response(
+            {'status': 'OK', 'message': _('Attendee successfully checked-in.'),
+             'attendee': {
+                 'name': attendee.name, 'email': attendee.email
+             }},
+            status=status.HTTP_201_CREATED)
 
     def checkout(self, data):
         attendee = data['attendee']
@@ -81,7 +86,11 @@ class EventCheckView(views.APIView):
             else:
                 senders.send_no_certificate_mail(attendee.name, attendee.email, attendee.event)
 
-        return Response({'status': 'OK', 'message': _('Attendee successfully checked-out.')}, status=status.HTTP_200_OK)
+        return Response({'status': 'OK', 'message': _('Attendee successfully checked-out.'),
+                         'attendee': {
+                             'name': attendee.name, 'email': attendee.email
+                         }},
+                        status=status.HTTP_200_OK)
 
 
 class CurrentEventsView(APIView):
