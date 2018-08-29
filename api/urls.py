@@ -3,12 +3,10 @@ from django.urls import path, include
 from rest_framework import routers
 from .views import *
 
-router = routers.DefaultRouter()
-router.register(r'members', MemberInfoViewSet, base_name='members')
 
 urlpatterns = [
-    path('', include(router.urls)),
     path('check/', EventCheckView.as_view()),
+    path('attendees/create/', AttendeeCreateView.as_view()),
     path('attendees/<int:pk>', AttendeeListView.as_view()),
     path('events/', EventListView.as_view()),
     path('currentevents/', CurrentEventsView.as_view()),

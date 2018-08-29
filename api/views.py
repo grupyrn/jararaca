@@ -3,41 +3,22 @@ from datetime import timedelta
 
 from django.shortcuts import *
 from django.utils.translation import gettext as _
-from rest_framework import viewsets, generics, views
+from rest_framework import viewsets, generics, views, mixins
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import *
 
 from api import permissions
 from api import senders
 from api.models import MemberInfo, EventDayCheck, Event, Attendee
-from api.serializers import MemberInfoSerializer, EventCheckSerializer, EventSerializer, AttendeeSerializer
+from api.serializers import AttendeeRegistrationSerializer, EventCheckSerializer, EventSerializer, AttendeeSerializer
 
 
-class MemberInfoViewSet(viewsets.ViewSet):
+class AttendeeCreateView(generics.CreateAPIView):
     """
-    API endpoint that allows members to be registered.
+    API endpoint that allows attendees to be registered.
     """
-    serializer_class = MemberInfoSerializer
-    queryset = None
-
-    def create(self, request):
-        serializer = self.serializer_class(data=request.data)
-
-        if serializer.is_valid():
-            try:
-                member_info = MemberInfo(**serializer.validated_data)
-                senders.send_registration_mail(member_info)
-                return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
-            except Exception as e:
-                return Response({
-                    'status': 'EMAIL_ERROR',
-                    'message': _('Error at sending e-mail. Please try again.')
-                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-        return Response({
-            'status': 'INVALID_DATA',
-            'message': _('Attendee could not be registered with the received data.')
-        }, status=status.HTTP_400_BAD_REQUEST)
+    queryset = Attendee.objects
+    serializer_class = AttendeeRegistrationSerializer
 
 
 class EventCheckView(views.APIView):
