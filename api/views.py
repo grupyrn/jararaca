@@ -1,17 +1,15 @@
 # Create your views here.
-from datetime import timedelta, datetime
+from datetime import timedelta
 
-from django.db.models import Q
-from django.utils import timezone
-from rest_framework import viewsets, generics, views
-from rest_framework.views import *
 from django.shortcuts import *
-from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions
+from rest_framework import viewsets, generics, views
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import *
 
+from api import permissions
 from api import senders
 from api.models import MemberInfo, EventDayCheck, Event, Attendee
 from api.serializers import MemberInfoSerializer, EventCheckSerializer, EventSerializer, AttendeeSerializer
-from api import permissions
 
 
 class MemberInfoViewSet(viewsets.ViewSet):
@@ -46,62 +44,62 @@ class EventCheckView(views.APIView):
     API endpoint that allows members to check in and out of events.
     """
 
-    # def post(self, request, format=None):
-    #     serializer = EventCheckSerializer(data=request.data)
-    #     if serializer.is_valid():
-    #         now = timezone.now()
-    #         delta = timedelta(minutes=60)
-    #         now_plus = now + delta
-    #         now_minus = now - delta
-    #
-    #         queryset = Event.objects.filter(
-    #             (Q(start__lte=now) & Q(end__gte=now)) |
-    #             (Q(start__lte=now_plus) & Q(end__gte=now)) |
-    #             (Q(start__lte=now) & Q(end__gte=now_minus)),
-    #             id=serializer.data['event']
-    #         )
-    #
-    #         if queryset.all():
-    #             if serializer.data['check']:
-    #                 return self.checkin(serializer.data)
-    #             return self.checkout(serializer.data)
-    #         else:
-    #             return Response({'status': 'BAD_REQUEST', 'message': 'Event inactive.'},
-    #                             status=status.HTTP_400_BAD_REQUEST)
-    #
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    #
-    # def checkin(self, data):
-    #     check = EventDayCheck.objects.filter(event_id=data['event'],
-    #                                       member_name=data['member']['name'],
-    #                                       member_email=data['member']['email']).first()
-    #     if check:
-    #         return Response({'status': 'BAD_REQUEST', 'message': 'Member already checked-in.'},
-    #                         status=status.HTTP_400_BAD_REQUEST)
-    #
-    #     EventCheck(event_id=data['event'],
-    #                member_name=data['member']['name'],
-    #                member_email=data['member']['email']).save()
-    #     return Response(data, status=status.HTTP_201_CREATED)
-    #
-    # def checkout(self, data):
-    #     check = EventCheck.objects.filter(event_id=data['event'],
-    #                                       member_name=data['member']['name'],
-    #                                       member_email=data['member']['email']).first()
-    #     if not check:
-    #         return Response({'status': 'BAD_REQUEST', 'message': 'Member did not checkin.'},
-    #                         status=status.HTTP_400_BAD_REQUEST)
-    #     elif check.exit_date is not None:
-    #         return Response({'status': 'BAD_REQUEST', 'message': 'Member already checked-out.'},
-    #                         status=status.HTTP_400_BAD_REQUEST)
-    #
-    #     if check.checkout():
-    #         senders.send_certificate_mail(data['member']['name'], data['member']['email'],
-    #                                       cpf=data['member'].get('cpf', None))
-    #     else:
-    #         senders.send_no_certificate_mail(data['member']['name'], data['member']['email'])
-    #
-    #     return Response(data, status=status.HTTP_200_OK)
+    # permission_classes = (IsAuthenticated,)
+
+    def post(self, request, format=None):
+        serializer = EventCheckSerializer(data=request.data)
+        if serializer.is_valid():
+
+            events = Event.current_events(tolerance=timedelta(minutes=60)).filter(
+                id=serializer.validated_data['attendee'].event.id)
+
+            if events.all():
+                if serializer.validated_data['check']:
+                    return self.checkin(serializer.validated_data)
+                return self.checkout(serializer.validated_data)
+            else:
+                return Response({'status': 'EVENT_INACTIVE', 'message': 'Event inactive.'},
+                                status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def checkin(self, data):
+        attendee = data['attendee']
+        check = EventDayCheck.objects.filter(event_day=attendee.event.current_day,
+                                             attendee=attendee).first()
+
+        if check:
+            return Response({'status': 'ALREADY_CHECKED_IN', 'message': 'Member already checked-in.'},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        EventDayCheck(event_day=attendee.event.current_day,
+                      attendee=attendee).save()
+
+        return Response({'status': 'OK', 'message': 'Member checked-in.'}, status=status.HTTP_201_CREATED)
+
+    def checkout(self, data):
+        attendee = data['attendee']
+        event_day = attendee.event.current_day
+        event_day_check = EventDayCheck.objects.filter(event_day=event_day,
+                                                       attendee=attendee).first()
+
+        if not event_day_check:
+            return Response({'status': 'NOT_CHECKED_IN', 'message': 'Member did not checkin.'},
+                            status=status.HTTP_400_BAD_REQUEST)
+        elif event_day_check.exit_date is not None:
+            return Response({'status': 'ALREADY_CHECKED_OUT', 'message': 'Member already checked-out.'},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        event_day_check.checkout()
+
+        if event_day.is_last:
+            if attendee.presence_percentage > 75:
+                senders.send_certificate_mail(attendee.name, attendee.email, attendee.event,
+                                              cpf=attendee.cpf)
+            else:
+                senders.send_no_certificate_mail(attendee.name, attendee.email, attendee.event)
+
+        return Response({'status': 'OK', 'message': 'Member checked-out.'}, status=status.HTTP_200_OK)
 
 
 class CurrentEventsView(APIView):
@@ -111,7 +109,7 @@ class CurrentEventsView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
-        events = Event.current_events(tolerance=timedelta(minutes=60))
+        events = Event.current_events(tolerance=timedelta(minutes=60)).all()
         serializer = EventSerializer(events, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

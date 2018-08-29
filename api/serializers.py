@@ -10,12 +10,6 @@ class MemberInfoSerializer(serializers.Serializer):
     cpf = serializers.CharField(max_length=11, required=False, validators=[cpf_validator])
 
 
-class EventCheckSerializer(serializers.Serializer):
-    member = MemberInfoSerializer()
-    check = serializers.BooleanField(required=True)
-    event = serializers.PrimaryKeyRelatedField(queryset=Event.objects.all())
-
-
 class EventScheduleSerializer(serializers.ModelSerializer):
     class Meta:
         model = EventSchedule
@@ -43,3 +37,8 @@ class AttendeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attendee
         fields = ('uuid', 'name', 'email', 'date', 'share_data_with_partners')
+
+
+class EventCheckSerializer(serializers.Serializer):
+    attendee = serializers.PrimaryKeyRelatedField(queryset=Attendee.objects)
+    check = serializers.BooleanField(required=True)

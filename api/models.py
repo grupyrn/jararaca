@@ -35,6 +35,24 @@ class Attendee(models.Model):
     share_data_with_partners = models.BooleanField(_('share data with partners'), default=False)
     date = models.DateTimeField(_('date'), auto_now_add=True)
 
+    @property
+    def presence_percentage(self):
+        event_time = 0
+        for day in self.event.eventday_set.all():
+            event_time += (datetime.combine(date.min, day.end)- datetime.combine(date.min, day.start)).seconds
+
+        checked_time = 0
+        for checked_day in self.eventdaycheck_set.filter(exit_date__isnull=False):
+            checked_time += (checked_day.exit_date-checked_day.entrance_date).seconds
+
+        # delta_event = datetime.combine(date.min, self.event_day.end) - datetime.combine(date.min, self.event_day.start)
+        # delta_check = self.exit_date - self.entrance_date
+        result = checked_time * 100 / event_time
+
+        print(self.name, f'Porcentagem: {result}', f'Absoluto: {checked_time}')
+
+        return result
+
     class Meta:
         verbose_name = _('attendee')
         verbose_name_plural = _('attendees')
@@ -80,8 +98,7 @@ class Event(models.Model):
             (Q(eventday__date=now.date()) & Q(eventday__start__lte=now.time()) & Q(eventday__end__gte=now.time())) |
             (Q(eventday__date=now.date()) & Q(eventday__start__lte=now_plus.time()) & Q(eventday__end__gte=now.time())) |
             (Q(eventday__date=now.date()) & Q(eventday__start__lte=now.time()) & Q(eventday__end__gte=now_minus.time()))
-        ).all()
-
+        )
 
     def __str__(self):
         return self.name
@@ -96,6 +113,10 @@ class EventDay(models.Model):
     date = models.DateField(_('date'))
     start = models.TimeField(_('start time'))
     end = models.TimeField(_('end time'))
+
+    @property
+    def is_last(self):
+        return self == self.event.eventday_set.latest('date')
 
     @mark_safe
     def schedule_link(self):
@@ -115,6 +136,7 @@ class EventDay(models.Model):
     class Meta:
         verbose_name = _('event day')
         verbose_name_plural = _('event days')
+        unique_together = ('event', 'date')
 
 
 class EventSchedule(models.Model):
@@ -164,12 +186,6 @@ class EventDayCheck(models.Model):
         if not self.exit_date:
             self.exit_date = timezone.now()
             self.save()
-
-        delta_event = datetime.combine(date.min, self.event_day.end) - datetime.combine(date.min, self.event_day.start)
-        delta_check = self.exit_date - self.entrance_date
-        result = delta_check.seconds * 100 / delta_event.seconds
-
-        return result >= 75
 
     class Meta:
         verbose_name = _('event day check')
