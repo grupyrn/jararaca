@@ -3,12 +3,15 @@ from datetime import timedelta
 
 from django.db.models import Q
 from django.utils import timezone
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from rest_framework.views import *
+from django.shortcuts import *
+from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions
 
 from api import senders
-from api.models import MemberInfo, EventDayCheck, Event
-from api.serializers import MemberInfoSerializer, EventCheckSerializer, EventSerializer
+from api.models import MemberInfo, EventDayCheck, Event, Attendee
+from api.serializers import MemberInfoSerializer, EventCheckSerializer, EventSerializer, AttendeeSerializer
+from api import permissions
 
 
 class MemberInfoViewSet(viewsets.ViewSet):
@@ -105,6 +108,7 @@ class CurrentEventView(APIView):
     """
     API endpoint that shows current events.
     """
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
         now = timezone.now()
@@ -119,3 +123,27 @@ class CurrentEventView(APIView):
         serializer = EventSerializer(events, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class EventListView(generics.ListAPIView):
+    """
+    API endpoint that lists all events.
+    """
+    queryset = Event.objects
+    permission_classes = (IsAuthenticated,)
+    serializer_class = EventSerializer
+
+
+class AttendeeListView(generics.RetrieveAPIView):
+    """
+    API endpoint that lists all attendees from a specified event.
+    """
+    queryset = Event.objects
+    permission_classes = (IsAuthenticated, permissions.IsOwnerOrSuperUser,)
+    serializer_class = AttendeeSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        attendees = get_list_or_404(Attendee, event_id=instance.id)
+        serializer = self.get_serializer(attendees, many=True)
+        return Response(serializer.data)
