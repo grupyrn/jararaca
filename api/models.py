@@ -2,13 +2,14 @@ import json
 
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import Q
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.safestring import mark_safe
 from django.utils.text import format_lazy
 from django.utils.translation import gettext_lazy as _
 import uuid
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 
 
 class MemberInfo(object):
@@ -53,6 +54,34 @@ class Event(models.Model):
     @property
     def date(self):
         return self.eventday_set.order_by('date').values_list('date', flat=True).all()
+
+    @property
+    def start(self):
+        day = self.eventday_set.order_by('date').first()
+        return datetime.combine(day.date, day.start)
+
+    @property
+    def end(self):
+        day = self.eventday_set.order_by('-date').first()
+        return datetime.combine(day.date, day.end)
+
+    @property
+    def current_day(self):
+        return self.eventday_set.get(date=date.today())
+
+    @staticmethod
+    def current_events(tolerance: timedelta):
+        now = datetime.now()
+        tolerance = timedelta(minutes=60)
+        now_plus = now + tolerance
+        now_minus = now - tolerance
+
+        return Event.objects.filter(
+            (Q(eventday__date=now.date()) & Q(eventday__start__lte=now.time()) & Q(eventday__end__gte=now.time())) |
+            (Q(eventday__date=now.date()) & Q(eventday__start__lte=now_plus.time()) & Q(eventday__end__gte=now.time())) |
+            (Q(eventday__date=now.date()) & Q(eventday__start__lte=now.time()) & Q(eventday__end__gte=now_minus.time()))
+        ).all()
+
 
     def __str__(self):
         return self.name

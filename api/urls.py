@@ -11,5 +11,5 @@ urlpatterns = [
     path('check/', EventCheckView.as_view()),
     path('attendees/<int:pk>', AttendeeListView.as_view()),
     path('events/', EventListView.as_view()),
-    path('currentevent/', CurrentEventView.as_view()),
+    path('currentevents/', CurrentEventsView.as_view()),
 ]

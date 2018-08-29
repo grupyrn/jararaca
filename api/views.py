@@ -1,9 +1,9 @@
 # Create your views here.
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 from django.db.models import Q
 from django.utils import timezone
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, views
 from rest_framework.views import *
 from django.shortcuts import *
 from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions
@@ -41,7 +41,7 @@ class MemberInfoViewSet(viewsets.ViewSet):
         }, status=status.HTTP_400_BAD_REQUEST)
 
 
-class EventCheckView(APIView):
+class EventCheckView(views.APIView):
     """
     API endpoint that allows members to check in and out of events.
     """
@@ -104,24 +104,15 @@ class EventCheckView(APIView):
     #     return Response(data, status=status.HTTP_200_OK)
 
 
-class CurrentEventView(APIView):
+class CurrentEventsView(APIView):
     """
     API endpoint that shows current events.
     """
     permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
-        now = timezone.now()
-        delta = timedelta(minutes=60)
-        now_plus = now + delta
-        now_minus = now - delta
-        events = Event.objects.filter(
-            (Q(start__lte=now) & Q(end__gte=now)) |
-            (Q(start__lte=now_plus) & Q(end__gte=now)) |
-            (Q(start__lte=now) & Q(end__gte=now_minus))
-        ).all()
+        events = Event.current_events(tolerance=timedelta(minutes=60))
         serializer = EventSerializer(events, many=True)
-
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
