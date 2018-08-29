@@ -137,4 +137,3 @@ class AttendeeListView(generics.RetrieveAPIView):
         attendees = get_list_or_404(Attendee, event_id=instance.id)
         serializer = self.get_serializer(attendees, many=True)
         return Response(serializer.data)
-x
