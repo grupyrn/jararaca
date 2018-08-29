@@ -1,4 +1,6 @@
 import json
+import uuid
+from datetime import date, datetime, timedelta
 
 from django.contrib.auth import get_user_model
 from django.db import models
@@ -8,8 +10,6 @@ from django.utils import timezone
 from django.utils.safestring import mark_safe
 from django.utils.text import format_lazy
 from django.utils.translation import gettext_lazy as _
-import uuid
-from datetime import date, datetime, timedelta
 
 
 class MemberInfo(object):
@@ -39,17 +39,13 @@ class Attendee(models.Model):
     def presence_percentage(self):
         event_time = 0
         for day in self.event.eventday_set.all():
-            event_time += (datetime.combine(date.min, day.end)- datetime.combine(date.min, day.start)).seconds
+            event_time += (datetime.combine(date.min, day.end) - datetime.combine(date.min, day.start)).seconds
 
         checked_time = 0
         for checked_day in self.eventdaycheck_set.filter(exit_date__isnull=False):
-            checked_time += (checked_day.exit_date-checked_day.entrance_date).seconds
+            checked_time += (checked_day.exit_date - checked_day.entrance_date).seconds
 
-        # delta_event = datetime.combine(date.min, self.event_day.end) - datetime.combine(date.min, self.event_day.start)
-        # delta_check = self.exit_date - self.entrance_date
         result = checked_time * 100 / event_time
-
-        print(self.name, f'Porcentagem: {result}', f'Absoluto: {checked_time}')
 
         return result
 
@@ -96,7 +92,8 @@ class Event(models.Model):
 
         return Event.objects.filter(
             (Q(eventday__date=now.date()) & Q(eventday__start__lte=now.time()) & Q(eventday__end__gte=now.time())) |
-            (Q(eventday__date=now.date()) & Q(eventday__start__lte=now_plus.time()) & Q(eventday__end__gte=now.time())) |
+            (Q(eventday__date=now.date()) & Q(eventday__start__lte=now_plus.time()) & Q(
+                eventday__end__gte=now.time())) |
             (Q(eventday__date=now.date()) & Q(eventday__start__lte=now.time()) & Q(eventday__end__gte=now_minus.time()))
         )
 
@@ -120,7 +117,6 @@ class EventDay(models.Model):
 
     @mark_safe
     def schedule_link(self):
-        print('id: ', self.id)
         if self.id:
             changeform_url = reverse(
                 'admin:api_eventday_change', args=(self.id,)
