@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-29 12:22-0300\n"
+"POT-Creation-Date: 2018-08-31 00:31-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: api/admin.py:68
+msgid "Generate XLSX spreadsheet"
+msgstr "Gerar planilha XLSX"
 
 #: api/models.py:31 api/models.py:104 api/models.py:109
 msgid "event"
@@ -184,25 +188,25 @@ msgstr "O evento está inativo."
 msgid "%(attendee)s already checked-in."
 msgstr "%(attendee)s já realizou check-in."
 
-#: api/views.py:62
+#: api/views.py:63
 #, fuzzy, python-format
 #| msgid "Attendee successfully checked-in."
 msgid "%(attendee)s successfully checked-in."
 msgstr "%(attendee)s realizou check-in com sucesso."
 
-#: api/views.py:76
+#: api/views.py:77
 #, fuzzy, python-format
 #| msgid "Attendee did not checkin."
 msgid "%(attendee)s did not checkin."
 msgstr "%(attendee)s não realizou check-in."
 
-#: api/views.py:80
+#: api/views.py:81
 #, fuzzy, python-format
 #| msgid "Attendee already checked-out."
 msgid "%(attendee)s already checked-out."
 msgstr "%(attendee)s já realizou check-out."
 
-#: api/views.py:93
+#: api/views.py:95
 #, fuzzy, python-format
 #| msgid "Attendee successfully checked-out."
 msgid "%(attendee)s successfully checked-out."

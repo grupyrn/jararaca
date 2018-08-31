@@ -60,12 +60,12 @@ class AttendeeAdmin(admin.ModelAdmin):
             qs = qs.filter(event__created_by=request.user)
         return qs
 
-    def generate_xslx(self, request, queryset):
+    def generate_xlsx(self, request, queryset):
         response = HttpResponse(content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
         response['Content-Disposition'] = f"attachment; filename=participantes.xlsx"
         xlsx_file = generate_xlsx(response, queryset, ['event', 'name', 'email', 'share_data_with_partners'])
         return response
-    generate_xslx.short_description = _('Generate XSLX')
+    generate_xlsx.short_description = _('Generate XLSX spreadsheet')
 
     def get_actions(self, request):
         actions = super().get_actions(request)
