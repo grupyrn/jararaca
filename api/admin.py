@@ -52,7 +52,7 @@ class EventDayAdmin(admin.ModelAdmin):
 class AttendeeAdmin(admin.ModelAdmin):
     list_filter = ('event', 'share_data_with_partners')
     list_display = ('name', 'event', 'date', 'share_data_with_partners')
-    actions = ['generate_xslx']
+    actions = ['generate_xlsx']
 
     def get_queryset(self, request):
         qs = super(AttendeeAdmin, self).get_queryset(request)
