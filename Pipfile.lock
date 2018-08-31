@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "45ce9ffc84863adb13888fecc45db5e620192ee91216b9eb64bd89eda9428775"
+            "sha256": "0fbdc999b356286d416f5dfb86fd897615a3194fc2b7796efb3e8a851ac112ed"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -116,19 +116,19 @@
         },
         "django-extensions": {
             "hashes": [
-                "sha256:c3c8524056ab1174c6fc769b0599e60f7e7797ce34f38db2effc48885a0a982c",
-                "sha256:e279344c6d825adb27694755aa924702d3cc401f8fad5ad9ef2d577948778a5f"
+                "sha256:1f626353a11479014bfe0d77e76d8f866ebca1bb5d595cb57b776230b9e0eb92",
+                "sha256:f21b898598a1628cb73017fb9672e2c5e624133be9764f0eb138e0abf8a62b62"
             ],
             "index": "pypi",
-            "version": "==2.1.0"
+            "version": "==2.1.2"
         },
         "django-localflavor": {
             "hashes": [
-                "sha256:50d7b694c9851224c352dba9cac63879343be8bd2f86f6b8e1465de53da34c90",
-                "sha256:d9cde0b531c0d33f9d22e90a0bf27f56a8394c6a68e68cacdc03942a797b2aff"
+                "sha256:0cee94c4b8f0214a5ba7be7e935019a8c062f4e7726d1df4b1e453cb812b2039",
+                "sha256:12ce98b13adcd68bb4babcd937d0ae5a0fd5801f71acaf9a6bf1784c218ef53c"
             ],
             "index": "pypi",
-            "version": "==2.0"
+            "version": "==2.1"
         },
         "djangorestframework": {
             "hashes": [
@@ -301,6 +301,14 @@
             ],
             "index": "pypi",
             "version": "==4.0"
+        },
+        "xlsxwriter": {
+            "hashes": [
+                "sha256:619f3e2653707b24aa4540c67a04ac68c1267e5d22e12a53e7fd2d4157313870",
+                "sha256:98a94b32d4929d3e34595b4654b8e7f951182f540056b9cb734c88899912f729"
+            ],
+            "index": "pypi",
+            "version": "==1.0.9"
         }
     },
     "develop": {
@@ -328,11 +336,11 @@
         },
         "django-extensions": {
             "hashes": [
-                "sha256:c3c8524056ab1174c6fc769b0599e60f7e7797ce34f38db2effc48885a0a982c",
-                "sha256:e279344c6d825adb27694755aa924702d3cc401f8fad5ad9ef2d577948778a5f"
+                "sha256:1f626353a11479014bfe0d77e76d8f866ebca1bb5d595cb57b776230b9e0eb92",
+                "sha256:f21b898598a1628cb73017fb9672e2c5e624133be9764f0eb138e0abf8a62b62"
             ],
             "index": "pypi",
-            "version": "==2.1.0"
+            "version": "==2.1.2"
         },
         "ipython": {
             "hashes": [

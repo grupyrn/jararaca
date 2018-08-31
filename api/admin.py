@@ -1,8 +1,10 @@
 from django.contrib import admin
 from django.conf import settings
+from django.http import HttpResponse
+from django.utils.translation import gettext_lazy as _
 
 # Register your models here.
-
+from api.exporters import generate_xlsx
 from api.models import Event, EventDayCheck, EventSchedule, EventDay, Attendee
 
 admin.site.site_header = settings.ADMIN_HEADER
@@ -48,8 +50,9 @@ class EventDayAdmin(admin.ModelAdmin):
 
 @admin.register(Attendee)
 class AttendeeAdmin(admin.ModelAdmin):
-    list_filter = ('event__name',)
-    list_display = ('name', 'event', 'date',)
+    list_filter = ('event', 'share_data_with_partners')
+    list_display = ('name', 'event', 'date', 'share_data_with_partners')
+    actions = ['generate_xslx']
 
     def get_queryset(self, request):
         qs = super(AttendeeAdmin, self).get_queryset(request)
@@ -57,6 +60,18 @@ class AttendeeAdmin(admin.ModelAdmin):
             qs = qs.filter(event__created_by=request.user)
         return qs
 
+    def generate_xslx(self, request, queryset):
+        response = HttpResponse(content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        response['Content-Disposition'] = f"attachment; filename=participantes.xlsx"
+        xlsx_file = generate_xlsx(response, queryset, ['event', 'name', 'email', 'share_data_with_partners'])
+        return response
+    generate_xslx.short_description = _('Generate XSLX')
+
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
