@@ -26,7 +26,7 @@ cp .env.sample .env
 Install the dependencies
 
 ```
-pipenv install
+pipenv install sync --dev
 ```
 
 ### Running
@@ -41,6 +41,18 @@ Apply the migrations
 
 ```
 python manage.py migrate
+```
+
+Create admin user
+
+```
+python manage.py createsuperuser
+```
+
+Compile translations        
+
+```
+python manage.py compilemessages -f
 ```
 
 And finally run the project
@@ -60,4 +72,31 @@ Now you can open [http://localhost:8000](http://localhost:8000) in your browser
 
 ## Contributing
 
-Please feel free for submitting pull requests to us.
+
+### Steps for Submitting Code
+
+1. Fork the repository on GitHub.
+2. Make your change.
+3. Send a GitHub Pull Request to the main repository’s `master` branch. GitHub Pull Requests are the expected method of code collaboration on this project.
+
+### Translate
+
+1. Prepare message files for the desired language.
+
+```
+python manage.py makemessages --locale <language_code>
+```
+
+Example:
+
+```
+python manage.py makemessages --locale pt_BR
+```
+
+2. Translate the \*.po files inside each project application <app_name>/locale/<language_code>/LC_MESSAGES/
+
+3. Compile messages
+
+```
+python manage.py compilemessages -f
+```
