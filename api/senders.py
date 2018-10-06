@@ -51,7 +51,7 @@ def send_certificate_mail(name, email, event, cpf=None):
     attachment1 = Attachment()
     certificate_data = generate_certificate(name, cpf)
     attachment1.content = base64.b64encode(certificate_data.read()).decode('ascii')
-    attachment1.filename = "certificado_3_meetup.pdf"
+    attachment1.filename = "certificado_meetup.pdf"
     mail.add_attachment(attachment1)
 
     personalization = Personalization()
