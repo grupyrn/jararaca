@@ -1,4 +1,3 @@
-# Create your views here.
 import base64
 
 from django.contrib import messages
