@@ -232,6 +232,7 @@ venv.bak/
 staticfiles/
 
 assets/ext/
+media/
 
 
 # End of https://www.gitignore.io/api/osx,linux,python,pycharm+all

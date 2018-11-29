@@ -17,8 +17,8 @@ class WelcomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['future_events'] = Event.objects.filter(eventday__date__gte=date.today())
-        context['past_events'] = Event.objects.filter(eventday__date__lte=date.today())
+        context['future_events'] = Event.objects.filter(eventday__date__gte=date.today()).order_by('eventday__date')
+        context['past_events'] = Event.objects.filter(eventday__date__lte=date.today()).order_by('-eventday__date')
         return context
 
 

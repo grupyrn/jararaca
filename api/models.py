@@ -1,6 +1,8 @@
 import json
 import uuid
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, time
+from itertools import groupby
+from operator import attrgetter
 
 from django.contrib.auth import get_user_model
 from django.db import models
@@ -10,6 +12,8 @@ from django.utils import timezone
 from django.utils.safestring import mark_safe
 from django.utils.text import format_lazy
 from django.utils.translation import gettext_lazy as _
+
+from api.helpers import date_range_format
 
 
 class MemberInfo(object):
@@ -64,6 +68,19 @@ class Event(models.Model):
     created_by = models.ForeignKey(get_user_model(), _('created by'), null=True)
     slug = models.SlugField(unique=True)
     content_link = models.URLField(_('content link'), null=True, blank=True)
+    certificate_model = models.ImageField(_('certificate model'), null=True, blank=True,
+                                          help_text=_('Image sized 2000x1545'))
+    certificate_hours = models.IntegerField(_('certificate hours'), default=4)
+
+    @property
+    def formated_duration(self):
+        hours = self.certificate_hours
+        return f'{hours} horas' if hours != 1 else f'{hours} hora'
+
+    @property
+    def formated_dates(self):
+        dates = self.eventday_set.values_list('date', flat=True)
+        return date_range_format(dates)
 
     @property
     def date(self):
@@ -186,3 +203,56 @@ class EventDayCheck(models.Model):
     class Meta:
         verbose_name = _('event day check')
         verbose_name_plural = _('event day checks')
+
+
+class SubEvent(models.Model):
+    event_day = models.ForeignKey('EventDay', verbose_name=_('event day'), on_delete=models.CASCADE)
+    start = models.TimeField(_('start time'))
+    end = models.TimeField(_('end time'))
+    title = models.CharField(_('title'), max_length=150)
+    certificate_model = models.ImageField(_('certificate model'), null=True, blank=True,
+                                          help_text=_('Image sized 2000x1545'))
+    certificate_hours = models.IntegerField(_('certificate hours'), default=4)
+
+    @property
+    def name(self):
+        return self.title
+
+    @property
+    def formated_duration(self):
+        hours = self.certificate_hours
+        return f'{hours} horas' if hours != 1 else f'{hours} hora'
+
+    @property
+    def formated_dates(self):
+        dates = [self.event_day.date]
+        return date_range_format(dates)
+
+    @property
+    def is_active(self):
+        today = date.today()
+        now = datetime.now().time()
+        return today == self.event_day.date and self.start < now < self.end
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('subevent')
+        verbose_name_plural = _('subevents')
+        ordering = ['start']
+
+
+class SubEventCheck(models.Model):
+    attendee = models.ForeignKey('Attendee', verbose_name=_('attendee'), on_delete=models.CASCADE)
+    subevent = models.ForeignKey('SubEvent', verbose_name=_('subevent'), on_delete=models.CASCADE)
+    entrance_date = models.DateTimeField(_('entrance date/time'), null=True, blank=True)
+    exit_date = models.DateTimeField(_('exit date/time'), null=True, blank=True)
+
+    @property
+    def attendee_name(self):
+        return self.attendee.name
+
+    class Meta:
+        verbose_name = _('subevent check')
+        verbose_name_plural = _('subevent checks')

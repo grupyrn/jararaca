@@ -1,7 +1,7 @@
 from django.utils import timezone
 from rest_framework import serializers
 
-from api.models import Event, Attendee, EventDay, EventSchedule
+from api.models import Event, Attendee, EventDay, EventSchedule, SubEvent
 from website.validators import cpf_validator
 from datetime import datetime
 
@@ -53,6 +53,23 @@ class AttendeeSerializer(serializers.ModelSerializer):
         fields = ('uuid', 'name', 'email', 'date', 'share_data_with_partners')
 
 
+class SubEventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SubEvent
+        fields = ['id', 'title', 'event_day']
+
+
 class EventCheckSerializer(serializers.Serializer):
     attendee = serializers.PrimaryKeyRelatedField(queryset=Attendee.objects)
     check = serializers.BooleanField(required=True)
+
+
+class SubEventCheckSerializer(serializers.Serializer):
+    attendee = serializers.PrimaryKeyRelatedField(queryset=Attendee.objects)
+    subevent = serializers.SlugRelatedField(queryset=SubEvent.objects, slug_field='id')
+    force = serializers.BooleanField(default=False, required=False)
+    check = serializers.BooleanField(required=True)
+
+
+class SubEventCheckoutSerializer(serializers.Serializer):
+    attendee = serializers.PrimaryKeyRelatedField(queryset=Attendee.objects)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-31 00:31-0300\n"
+"POT-Creation-Date: 2018-11-28 18:04-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,159 +18,195 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: api/admin.py:68
+#: api/admin.py:69 api/admin.py:115
 msgid "Generate XLSX spreadsheet"
 msgstr "Gerar planilha XLSX"
 
-#: api/models.py:31 api/models.py:104 api/models.py:109
+#: api/models.py:35 api/models.py:121 api/models.py:126
 msgid "event"
 msgstr "evento"
 
-#: api/models.py:32 api/models.py:58
+#: api/models.py:36 api/models.py:62
 msgid "name"
 msgstr "nome"
 
-#: api/models.py:33
+#: api/models.py:37
 msgid "email"
 msgstr "e-mail"
 
-#: api/models.py:34
+#: api/models.py:38
 msgid "CPF"
 msgstr "CPF"
 
-#: api/models.py:35
+#: api/models.py:39
 #, fuzzy
 #| msgid "share with partners"
 msgid "share data with partners"
 msgstr "Autorizo o compartilhamento dos meus dados com parceiros do GruPy-RN"
 
-#: api/models.py:36 api/models.py:110
+#: api/models.py:40 api/models.py:127
 msgid "date"
 msgstr "data"
 
-#: api/models.py:53 api/models.py:157
+#: api/models.py:57 api/models.py:174 api/models.py:247
 msgid "attendee"
 msgstr "participante"
 
-#: api/models.py:54
+#: api/models.py:58
 #, fuzzy
 #| msgid "attendee"
 msgid "attendees"
 msgstr "participantes"
 
-#: api/models.py:59 api/models.py:144
+#: api/models.py:63 api/models.py:161
 msgid "description"
 msgstr "descrição"
 
-#: api/models.py:60 api/models.py:143
+#: api/models.py:64 api/models.py:160
 msgid "place"
 msgstr "local"
 
-#: api/models.py:61
+#: api/models.py:65
 msgid "latitude"
 msgstr ""
 
-#: api/models.py:62
+#: api/models.py:66
 msgid "longitude"
 msgstr ""
 
-#: api/models.py:63
+#: api/models.py:67
 msgid "organizers"
 msgstr "organizadores"
 
-#: api/models.py:64
+#: api/models.py:68
 msgid "created by"
 msgstr "criado por"
 
-#: api/models.py:66
+#: api/models.py:70
 msgid "content link"
 msgstr "link de conteúdo"
 
-#: api/models.py:105
+#: api/models.py:71 api/models.py:213
+msgid "certificate model"
+msgstr "modelo de certificado"
+
+#: api/models.py:72 api/models.py:214
+msgid "Image sized 2000x1545"
+msgstr "Imagem de tamanho 2000x1545"
+
+#: api/models.py:73 api/models.py:215
+msgid "certificate hours"
+msgstr "horas para certificado"
+
+#: api/models.py:122
 msgid "events"
 msgstr "eventos"
 
-#: api/models.py:111 api/models.py:140
+#: api/models.py:128 api/models.py:157 api/models.py:210
 #, fuzzy
 #| msgid "start date/time"
 msgid "start time"
 msgstr "hora de início"
 
-#: api/models.py:112 api/models.py:141
+#: api/models.py:129 api/models.py:158 api/models.py:211
 #, fuzzy
 #| msgid "end date/time"
 msgid "end time"
 msgstr "hora de término"
 
-#: api/models.py:124
+#: api/models.py:141
 #, fuzzy
 #| msgid "event check"
 msgid "change schedule"
 msgstr "alterar programação"
 
-#: api/models.py:133 api/models.py:139 api/models.py:158
+#: api/models.py:150 api/models.py:156 api/models.py:175 api/models.py:209
 #, fuzzy
 #| msgid "event"
 msgid "event day"
 msgstr "dia de evento"
 
-#: api/models.py:134
+#: api/models.py:151
 #, fuzzy
 #| msgid "events"
 msgid "event days"
 msgstr "dias de evento"
 
-#: api/models.py:142
+#: api/models.py:159 api/models.py:212
 msgid "title"
 msgstr "título"
 
-#: api/models.py:145
+#: api/models.py:162
 msgid "authors"
 msgstr "autores"
 
-#: api/models.py:151
+#: api/models.py:168
 #, fuzzy
 #| msgid "event check"
 msgid "event schedule"
 msgstr "item de programação"
 
-#: api/models.py:152
+#: api/models.py:169
 #, fuzzy
 #| msgid "event checks"
 msgid "event schedules"
 msgstr "itens de programação"
 
-#: api/models.py:159
+#: api/models.py:176 api/models.py:249
 msgid "entrance date/time"
 msgstr "data/hora de entrada"
 
-#: api/models.py:160
+#: api/models.py:177 api/models.py:250
 msgid "exit date/time"
 msgstr "data/hora de saída"
 
-#: api/models.py:172 api/models.py:175
+#: api/models.py:189 api/models.py:192
 #, fuzzy
 #| msgid "entrance date/time"
 msgid "permanence time"
 msgstr "tempo de permanência"
 
-#: api/models.py:178
+#: api/models.py:195
 #, fuzzy
 #| msgid "event check"
 msgid "not checked out"
 msgstr "não realizou checkout"
 
-#: api/models.py:187
+#: api/models.py:204
 #, fuzzy
 #| msgid "event check"
 msgid "event day check"
 msgstr "entrada de evento"
 
-#: api/models.py:188
+#: api/models.py:205
 #, fuzzy
 #| msgid "event checks"
 msgid "event day checks"
 msgstr "entradas de evento"
+
+#: api/models.py:241 api/models.py:248
+#, fuzzy
+#| msgid "event"
+msgid "subevent"
+msgstr "sub-evento"
+
+#: api/models.py:242
+#, fuzzy
+#| msgid "events"
+msgid "subevents"
+msgstr "sub-eventos"
+
+#: api/models.py:257
+#, fuzzy
+#| msgid "event check"
+msgid "subevent check"
+msgstr "entrada de sub-evento"
+
+#: api/models.py:258
+#, fuzzy
+#| msgid "event checks"
+msgid "subevent checks"
+msgstr "entradas de sub-evento"
 
 #: api/serializers.py:42
 msgid ""
@@ -178,45 +214,59 @@ msgid ""
 "GruPy-RN event."
 msgstr ""
 
-#: api/views.py:43
+#: api/views.py:45 api/views.py:119
 msgid "Event inactive."
 msgstr "O evento está inativo."
 
-#: api/views.py:55
+#: api/views.py:57 api/views.py:140
 #, fuzzy, python-format
 #| msgid "Attendee already checked-in."
 msgid "%(attendee)s already checked-in."
 msgstr "%(attendee)s já realizou check-in."
 
-#: api/views.py:63
+#: api/views.py:65 api/views.py:133
 #, fuzzy, python-format
 #| msgid "Attendee successfully checked-in."
 msgid "%(attendee)s successfully checked-in."
 msgstr "%(attendee)s realizou check-in com sucesso."
 
-#: api/views.py:77
+#: api/views.py:79
 #, fuzzy, python-format
 #| msgid "Attendee did not checkin."
 msgid "%(attendee)s did not checkin."
 msgstr "%(attendee)s não realizou check-in."
 
-#: api/views.py:81
+#: api/views.py:83
 #, fuzzy, python-format
 #| msgid "Attendee already checked-out."
 msgid "%(attendee)s already checked-out."
 msgstr "%(attendee)s já realizou check-out."
 
-#: api/views.py:95
+#: api/views.py:97 api/views.py:180
 #, fuzzy, python-format
 #| msgid "Attendee successfully checked-out."
 msgid "%(attendee)s successfully checked-out."
 msgstr "%(attendee)s realizou check-out com sucesso."
 
+#: api/views.py:146
+#, fuzzy
+#| msgid "Attendee could not be registered with the received data."
+msgid "Attendee previsously not registered."
+msgstr "Participante não pôde ser registrado com os dados recebidos. "
+
+#: api/views.py:149 api/views.py:186
+msgid "Invalid data."
+msgstr "Dados inválidos."
+
+#: api/views.py:169
+msgid "Check-ins not found."
+msgstr "Check-in não encontrado."
+
+#~ msgid "Image sized 2000x1545 "
+#~ msgstr "imagem de tamanho 2000x1545"
+
 #~ msgid "Error at sending e-mail. Please try again."
 #~ msgstr "Falha ao enviar e-mail. Por favor, tente novamente."
-
-#~ msgid "Attendee could not be registered with the received data."
-#~ msgstr "Participante não pôde ser registrado com os dados recebidos. "
 
 #~ msgid ""
 #~ "Optional. Only if you wish to share name and e-mail information with our "
