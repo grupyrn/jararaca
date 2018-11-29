@@ -74,7 +74,27 @@
 .yellow-link{
     color: #efc780 !important
 }
+.error{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.error-h1{
+    font-weight: bold;
+    color: rgba(43, 43, 43, 0.87);
+    font-size: 2rem;
+    text-align: center;
+}
 
+.error img{
+    width: 25vw;
+}
+.error-p{
+    font-weight: bold;
+    color: rgba(43, 43, 43, 0.87);
+    font-size: 2rem;
+    text-align: center;
+}
 nav a {
     color: black;
 }
@@ -119,6 +139,13 @@ body{
     }
     .input-field > label{
         position: initial;
+    }
+
+}
+
+@media only screen and (max-width: 425px) {
+    .error img{
+        width: 100vw;
     }
 
 }

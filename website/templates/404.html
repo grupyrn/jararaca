@@ -1,0 +1,12 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <section class="error">
+        <h1 class="error-h1">Página não encontrada</h1>
+        <img src="{% static 'img/404.png' %}" alt="">
+        <p class="error-p">Talvez você tenha digitado alguma coisa errada.</p>
+    </section>
+
+{% endblock content %}
