@@ -71,6 +71,7 @@ class Event(models.Model):
     certificate_model = models.ImageField(_('certificate model'), null=True, blank=True,
                                           help_text=_('Image sized 2000x1545'))
     certificate_hours = models.IntegerField(_('certificate hours'), default=4)
+    closed_registration = models.BooleanField(_('closed registration'), default=False)
 
     @property
     def formated_duration(self):

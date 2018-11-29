@@ -1,15 +1,16 @@
 # Create your views here.
 import base64
+from datetime import date
 
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import FormView, CreateView
+from django.utils.translation import gettext_lazy as _
+from django.views.generic import FormView
 from django.views.generic import TemplateView
+
 from api import senders
 from api.models import Event
 from website.forms import AttendeeForm
-from datetime import date
-from django.utils.translation import gettext_lazy as _
 
 
 class WelcomeView(TemplateView):
@@ -38,11 +39,13 @@ class AttendeeRegistrationView(FormView):
     success_url = '/thanks/'
 
     def get(self, request, *args, **kwargs):
-        event = get_object_or_404(Event, slug=kwargs['event'], eventday__date__gte=date.today())
+        event = get_object_or_404(Event, slug=kwargs['event'], eventday__date__gte=date.today(),
+                                  closed_registration=False)
         return self.render_to_response(self.get_context_data(event=event))
 
     def form_valid(self, form):
-        event = get_object_or_404(Event, slug=self.request.POST['event'], eventday__date__gte=date.today())
+        event = get_object_or_404(Event, slug=self.request.POST['event'], eventday__date__gte=date.today(),
+                                  closed_registration=False)
 
         attendee = form.instance
         attendee.event = event

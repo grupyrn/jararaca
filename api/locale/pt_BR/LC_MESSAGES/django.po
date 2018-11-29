@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-28 18:04-0300\n"
+"POT-Creation-Date: 2018-11-29 09:42-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Generate XLSX spreadsheet"
 msgstr "Gerar planilha XLSX"
 
-#: api/models.py:35 api/models.py:121 api/models.py:126
+#: api/models.py:35 api/models.py:122 api/models.py:127
 msgid "event"
 msgstr "evento"
 
@@ -44,11 +44,11 @@ msgstr "CPF"
 msgid "share data with partners"
 msgstr "Autorizo o compartilhamento dos meus dados com parceiros do GruPy-RN"
 
-#: api/models.py:40 api/models.py:127
+#: api/models.py:40 api/models.py:128
 msgid "date"
 msgstr "data"
 
-#: api/models.py:57 api/models.py:174 api/models.py:247
+#: api/models.py:57 api/models.py:175 api/models.py:248
 msgid "attendee"
 msgstr "participante"
 
@@ -58,11 +58,11 @@ msgstr "participante"
 msgid "attendees"
 msgstr "participantes"
 
-#: api/models.py:63 api/models.py:161
+#: api/models.py:63 api/models.py:162
 msgid "description"
 msgstr "descrição"
 
-#: api/models.py:64 api/models.py:160
+#: api/models.py:64 api/models.py:161
 msgid "place"
 msgstr "local"
 
@@ -86,123 +86,127 @@ msgstr "criado por"
 msgid "content link"
 msgstr "link de conteúdo"
 
-#: api/models.py:71 api/models.py:213
+#: api/models.py:71 api/models.py:214
 msgid "certificate model"
 msgstr "modelo de certificado"
 
-#: api/models.py:72 api/models.py:214
+#: api/models.py:72 api/models.py:215
 msgid "Image sized 2000x1545"
 msgstr "Imagem de tamanho 2000x1545"
 
-#: api/models.py:73 api/models.py:215
+#: api/models.py:73 api/models.py:216
 msgid "certificate hours"
 msgstr "horas para certificado"
 
-#: api/models.py:122
+#: api/models.py:74
+msgid "closed registration"
+msgstr "inscrições encerradas"
+
+#: api/models.py:123
 msgid "events"
 msgstr "eventos"
 
-#: api/models.py:128 api/models.py:157 api/models.py:210
+#: api/models.py:129 api/models.py:158 api/models.py:211
 #, fuzzy
 #| msgid "start date/time"
 msgid "start time"
 msgstr "hora de início"
 
-#: api/models.py:129 api/models.py:158 api/models.py:211
+#: api/models.py:130 api/models.py:159 api/models.py:212
 #, fuzzy
 #| msgid "end date/time"
 msgid "end time"
 msgstr "hora de término"
 
-#: api/models.py:141
+#: api/models.py:142
 #, fuzzy
 #| msgid "event check"
 msgid "change schedule"
 msgstr "alterar programação"
 
-#: api/models.py:150 api/models.py:156 api/models.py:175 api/models.py:209
+#: api/models.py:151 api/models.py:157 api/models.py:176 api/models.py:210
 #, fuzzy
 #| msgid "event"
 msgid "event day"
 msgstr "dia de evento"
 
-#: api/models.py:151
+#: api/models.py:152
 #, fuzzy
 #| msgid "events"
 msgid "event days"
 msgstr "dias de evento"
 
-#: api/models.py:159 api/models.py:212
+#: api/models.py:160 api/models.py:213
 msgid "title"
 msgstr "título"
 
-#: api/models.py:162
+#: api/models.py:163
 msgid "authors"
 msgstr "autores"
 
-#: api/models.py:168
+#: api/models.py:169
 #, fuzzy
 #| msgid "event check"
 msgid "event schedule"
 msgstr "item de programação"
 
-#: api/models.py:169
+#: api/models.py:170
 #, fuzzy
 #| msgid "event checks"
 msgid "event schedules"
 msgstr "itens de programação"
 
-#: api/models.py:176 api/models.py:249
+#: api/models.py:177 api/models.py:250
 msgid "entrance date/time"
 msgstr "data/hora de entrada"
 
-#: api/models.py:177 api/models.py:250
+#: api/models.py:178 api/models.py:251
 msgid "exit date/time"
 msgstr "data/hora de saída"
 
-#: api/models.py:189 api/models.py:192
+#: api/models.py:190 api/models.py:193
 #, fuzzy
 #| msgid "entrance date/time"
 msgid "permanence time"
 msgstr "tempo de permanência"
 
-#: api/models.py:195
+#: api/models.py:196
 #, fuzzy
 #| msgid "event check"
 msgid "not checked out"
 msgstr "não realizou checkout"
 
-#: api/models.py:204
+#: api/models.py:205
 #, fuzzy
 #| msgid "event check"
 msgid "event day check"
 msgstr "entrada de evento"
 
-#: api/models.py:205
+#: api/models.py:206
 #, fuzzy
 #| msgid "event checks"
 msgid "event day checks"
 msgstr "entradas de evento"
 
-#: api/models.py:241 api/models.py:248
+#: api/models.py:242 api/models.py:249
 #, fuzzy
 #| msgid "event"
 msgid "subevent"
 msgstr "sub-evento"
 
-#: api/models.py:242
+#: api/models.py:243
 #, fuzzy
 #| msgid "events"
 msgid "subevents"
 msgstr "sub-eventos"
 
-#: api/models.py:257
+#: api/models.py:258
 #, fuzzy
 #| msgid "event check"
 msgid "subevent check"
 msgstr "entrada de sub-evento"
 
-#: api/models.py:258
+#: api/models.py:259
 #, fuzzy
 #| msgid "event checks"
 msgid "subevent checks"
