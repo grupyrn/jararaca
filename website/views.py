@@ -63,7 +63,7 @@ class AttendeeRegistrationView(FormView):
         attendee.event = event
 
         try:
-            qr_data = senders.send_registration_mail(attendee, event[0])
+            qr_data = senders.send_registration_mail(attendee, event)
             context = self.get_context_data(qr_code=base64.b64encode(qr_data).decode('ascii'))
             attendee.save()
 
@@ -73,5 +73,9 @@ class AttendeeRegistrationView(FormView):
             return self.form_invalid(form)
 
     def form_invalid(self, form):
-        event = get_object_or_404(Event, slug=self.request.POST['event'], eventday__date__gte=date.today())
+        event = OrderedSet(Event.objects.filter(slug=self.request.POST['event'], eventday__date__gte=date.today(),
+                                                closed_registration=False))
+        if not len(event):
+            raise Http404
+        event = list(event)[0]
         return self.render_to_response(self.get_context_data(form=form, event=event))
