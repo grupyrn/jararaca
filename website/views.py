@@ -3,6 +3,7 @@ from datetime import date
 
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
+from django.utils.datastructures import OrderedSet
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import FormView
 from django.views.generic import TemplateView
@@ -17,8 +18,10 @@ class WelcomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['future_events'] = Event.objects.filter(eventday__date__gte=date.today()).order_by('eventday__date')
-        context['past_events'] = Event.objects.filter(eventday__date__lte=date.today()).order_by('-eventday__date')
+        context['future_events'] = OrderedSet(Event.objects.filter(eventday__date__gte=date.today()).order_by(
+            'eventday__date'))
+        context['past_events'] = OrderedSet(Event.objects.filter(eventday__date__lte=date.today()).order_by(
+            '-eventday__date'))
         return context
 
 
