@@ -1,0 +1,16 @@
+git+https://github.com/sedir/crispy-forms-materialize.git
+django>=2.1.2
+djangorestframework
+cryptography
+pyqrcode
+pillow
+sendgrid
+pypng
+dj-database-url
+whitenoise
+gunicorn
+django-localflavor
+psycopg2-binary
+django-extensions
+django-crispy-forms
+xlsxwriter
