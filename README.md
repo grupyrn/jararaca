@@ -11,7 +11,6 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 - Python 3
-- [`pipenv`](https://pipenv.readthedocs.io/en/latest/)
 
 ### Installing
 
@@ -26,16 +25,12 @@ cp .env.sample .env
 Install the dependencies
 
 ```
-pipenv install sync --dev
+pip install -r requirements.txt
 ```
 
 ### Running
 
-Enter the `pipenv` virtual environment
-
-```
-pipenv shell
-```
+Enter in your virtual environment.
 
 Apply the migrations
 
