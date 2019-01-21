@@ -10,7 +10,7 @@ from django.views.generic import FormView
 from django.views.generic import TemplateView
 
 from api import senders
-from api.models import Event
+from api.models import Event, Attendee
 from website.forms import AttendeeForm
 
 
@@ -61,13 +61,14 @@ class AttendeeRegistrationView(FormView):
 
         attendee = form.instance
         attendee.event = event
-
+        find_user = Attendee.objects.filter(event=event, email=attendee.email)
         try:
             qr_data = senders.send_registration_mail(attendee, event)
             context = self.get_context_data(qr_code=base64.b64encode(qr_data).decode('ascii'))
-            attendee.save()
-
-            return render(self.request, 'website/thanks.html', context)
+            if not find_user:
+                attendee.save()
+                return render(self.request, 'website/thanks.html', context)
+            return render(self.request, 'website/duplicate.html', context)
         except Exception as e:
             messages.error(self.request, _('Registration failed.'))
             return self.form_invalid(form)
