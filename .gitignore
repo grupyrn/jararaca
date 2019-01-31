@@ -10,6 +10,7 @@ __pycache__/
 local_settings.py
 db.sqlite3
 media
+staticfiles/
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
@@ -108,6 +109,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+dev/
 
 # Spyder project settings
 .spyderproject

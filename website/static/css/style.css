@@ -108,6 +108,10 @@ body{
     font-weight: 700;
 }
 
+ul > li{
+    list-style: square !important;
+    padding-bottom: 15px;
+}
 .social-network-li {
     display: inline;
     margin: 0 0 3px 0

@@ -10,7 +10,8 @@
         <li><a href="{% url 'home' %}#future-events">{% trans "Future events" %}</a></li>
         <li><a href="{% url 'home' %}#who-we-are">{% trans "Who we are" %}</a></li>
         <li><a href="{% url 'home' %}#past-events">{% trans "Past events" %}</a></li>
-      </ul>      
+        <li><a href="{% url 'rules' %}">{% trans "Rules" %}</a></li>
+      </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
@@ -21,6 +22,6 @@
     <li><a href="/#future-events">{% trans "Future events" %}</a></li>
     <li><a href="/#who-we-are">{% trans "Who we are" %}</a></li>
     <li><a href="/#past-events">{% trans "Past events" %}</a></li>
+    <li><a href="{% url 'rules' %}">{% trans "Rules" %}</a></li>    
   </ul>
 </div>
-

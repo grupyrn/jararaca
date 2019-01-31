@@ -35,6 +35,10 @@ class EventInfoView(TemplateView):
         return self.render_to_response(context)
 
 
+class Rule(TemplateView):
+    template_name = 'website/rules.html'
+
+
 class AttendeeRegistrationView(FormView):
     template_name = 'website/form.html'
     form_class = AttendeeForm
