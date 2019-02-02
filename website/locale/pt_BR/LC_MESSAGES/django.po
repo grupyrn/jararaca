@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-31 00:31-0300\n"
+"POT-Creation-Date: 2019-02-01 21:16-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,17 +46,17 @@ msgstr ""
 "Eu também autorizo o compartilhamento do meu nome e e-mail com parceiros do "
 "GruPy-RN"
 
-#: website/templates/website/event.html:16
-#: website/templates/website/index.html:25
+#: website/templates/website/event.html:17
+#: website/templates/website/index.html:27
 msgid "Register"
 msgstr "Inscreva-se"
 
-#: website/templates/website/event.html:20
+#: website/templates/website/event.html:22
 msgid "Schedule"
 msgstr "Programação"
 
-#: website/templates/website/event.html:39
-#: website/templates/website/index.html:65
+#: website/templates/website/event.html:41
+#: website/templates/website/index.html:68
 msgid "Place"
 msgstr "Local"
 
@@ -80,61 +80,66 @@ msgstr "Corrija o(s) seguinte(s) erro(s):"
 
 #: website/templates/website/index.html:14
 #: website/templates/website/menu.html:10
-#: website/templates/website/menu.html:21
+#: website/templates/website/menu.html:22
 msgid "Future events"
 msgstr "Eventos futuros"
 
-#: website/templates/website/index.html:26
+#: website/templates/website/index.html:29
 msgid "More info"
 msgstr "Mais informações"
 
-#: website/templates/website/index.html:31
+#: website/templates/website/index.html:34
 msgid "Coming soon..."
 msgstr "Em breve..."
 
-#: website/templates/website/index.html:42
+#: website/templates/website/index.html:45
 #: website/templates/website/menu.html:11
-#: website/templates/website/menu.html:22
+#: website/templates/website/menu.html:23
 msgid "Who we are"
 msgstr "Quem somos"
 
-#: website/templates/website/index.html:57
+#: website/templates/website/index.html:60
 #: website/templates/website/menu.html:12
-#: website/templates/website/menu.html:23
+#: website/templates/website/menu.html:24
 msgid "Past events"
 msgstr "Eventos anteriores"
 
-#: website/templates/website/index.html:63
+#: website/templates/website/index.html:66
 msgid "Event"
 msgstr "Evento"
 
-#: website/templates/website/index.html:64
+#: website/templates/website/index.html:67
 msgid "Date"
 msgstr "Data"
 
-#: website/templates/website/index.html:66
+#: website/templates/website/index.html:69
 msgid "Content"
 msgstr "Conteúdo"
 
-#: website/templates/website/index.html:79
+#: website/templates/website/index.html:82
 msgid "Open"
 msgstr "Abrir"
 
-#: website/templates/website/index.html:81
+#: website/templates/website/index.html:84
 msgid "Unavailable"
 msgstr "Indisponível"
 
-#: website/templates/website/index.html:90
+#: website/templates/website/index.html:93
 msgid "There are no past events to show."
 msgstr "Não há eventos passados para exibir."
 
-#: website/views.py:57
+#: website/templates/website/menu.html:13
+#: website/templates/website/menu.html:25
+msgid "Rules"
+msgstr "Regras"
+
+#: website/views.py:77
 msgid "Registration failed."
 msgstr "Falha no cadastro."
 
-msgid "This field requires at most 11 digits or 14 characters."
-msgstr ""
-"CPF requer pelo menos 11 dígitos ou 14 caracteres digitados corretamente."
+#~ msgid "This field requires at most 11 digits or 14 characters."
+#~ msgstr ""
+#~ "CPF requer pelo menos 11 dígitos ou 14 caracteres digitados corretamente."
 
-msgid "Invalid CPF number."
-msgstr "Número de CPF inválido."
+#~ msgid "Invalid CPF number."
+#~ msgstr "Número de CPF inválido."
