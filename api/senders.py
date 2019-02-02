@@ -2,7 +2,6 @@ import base64
 from cryptography.fernet import Fernet
 from django import conf
 
-from api.certificate import generate_certificate
 from api.qrcode import gen_qrcode
 from .models import MemberInfo, Attendee, Event
 
@@ -49,7 +48,14 @@ def send_certificate_mail(name, email, event, cpf=None):
     mail.add_category(Category("certificados_grupy"))
 
     attachment1 = Attachment()
-    certificate_data = generate_certificate(name, event, cpf)
+
+
+    cpf_text = f', portador(a) do CPF {cpf},' if cpf else ''
+    data = {'name': name, 'event': event.name, 'cpf': cpf_text, 'event_date': event.formated_dates,
+            'event_place': event.place, 'event_duration': event.formated_duration}
+    certificate_data = event.certificate_model.generate_certificate(data)
+
+
     attachment1.content = base64.b64encode(certificate_data.read()).decode('ascii')
     attachment1.filename = "certificado.pdf"
     mail.add_attachment(attachment1)

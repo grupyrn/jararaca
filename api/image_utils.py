@@ -46,7 +46,7 @@ class ImageText(object):
             text_size = self.get_text_size(font, font_size, text)
 
     def write_text(self, xy, text, font_filename, font_size=11,
-                   max_width=None, max_height=None, color=(0, 0, 0)):
+                   color=(0, 0, 0), max_width=None, max_height=None):
         x, y = xy
         if font_size == 'fill' and \
            (max_width is not None or max_height is not None):

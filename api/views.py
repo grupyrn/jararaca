@@ -5,12 +5,12 @@ from django.shortcuts import *
 from django.utils import timezone
 from django.utils.translation import gettext as _
 from rest_framework import generics, views
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.views import *
 
 from api import permissions
 from api import senders
-from api.models import EventDayCheck, Event, Attendee, SubEvent, SubEventCheck
+from api.models import EventDayCheck, Event, Attendee, SubEvent, SubEventCheck, CertificateModel
 from api.serializers import AttendeeRegistrationSerializer, EventCheckSerializer, EventSerializer, AttendeeSerializer, \
     SubEventSerializer, SubEventCheckSerializer, SubEventCheckoutSerializer
 
@@ -206,6 +206,23 @@ class EventListView(generics.ListAPIView):
     queryset = Event.objects
     permission_classes = (IsAuthenticated,)
     serializer_class = EventSerializer
+
+
+class PreviewCertificateView(generics.RetrieveAPIView):
+    """
+    API endpoint that presents a certificate preview.
+    """
+    queryset = CertificateModel.objects
+    permission_classes = (IsAuthenticated, IsAdminUser)
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        data = instance.generate_certificate(None, preview=True)
+
+        response = HttpResponse(data, content_type='image/png')
+        response['Content-Disposition'] = 'attachment; filename=image.png'
+        return response
+
 
 
 class SubEventListView(generics.ListAPIView):

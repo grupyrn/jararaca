@@ -1,6 +1,8 @@
 from itertools import groupby
 from operator import attrgetter
 
+from django.utils import formats
+
 
 def date_range_format(dates: list):
     text = ''
@@ -14,16 +16,16 @@ def date_range_format(dates: list):
         for date in dates_month:
             # middle
             if not date == dates_month[0] and not date == dates_month[-1]:
-                text += date.strftime(', %d')
+                text += formats.date_format(date, ', d', True)
             # first
             elif date == dates_month[0] and not date == dates_month[-1]:
-                text += date.strftime('%d')
+                text += formats.date_format(date, 'd', True)
             # last
             elif date == dates_month[-1] and not date == dates_month[0]:
-                text += date.strftime(' e %d de %B de %Y')
+                text += formats.date_format(date, ' \e d \d\e F \d\e Y', True)
             # only
             elif date == dates_month[0] and date == dates_month[0]:
-                text += date.strftime('%d de %B de %Y')
+                text += formats.date_format(date, 'd \d\e F \d\e Y', True)
         if i == total - 2:
             text += ' e '
         elif total == 1:
@@ -32,3 +34,8 @@ def date_range_format(dates: list):
             text += ', '
 
     return text
+
+
+def scale_to_width(dimensions, width):
+    height = (width * dimensions[1]) / dimensions[0]
+    return int(width), int(height)

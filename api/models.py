@@ -1,19 +1,22 @@
 import json
+import traceback
 import uuid
-from datetime import date, datetime, timedelta, time
-from itertools import groupby
-from operator import attrgetter
+from datetime import date, datetime, timedelta
+from io import BytesIO
 
+from PIL import Image
+from colorful.fields import RGBColorField
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import Q
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.text import format_lazy
 from django.utils.translation import gettext_lazy as _
 
-from api.helpers import date_range_format
+from api.helpers import date_range_format, scale_to_width
 
 
 class MemberInfo(object):
@@ -68,8 +71,8 @@ class Event(models.Model):
     created_by = models.ForeignKey(get_user_model(), _('created by'), null=True)
     slug = models.SlugField(unique=True)
     content_link = models.URLField(_('content link'), null=True, blank=True)
-    certificate_model = models.ImageField(_('certificate model'), null=True, blank=True,
-                                          help_text=_('Image sized 2000x1545'))
+    certificate_model = models.ForeignKey('CertificateModel', verbose_name=_('certificate model'), null=True,
+                                          blank=True, on_delete=models.PROTECT)
     certificate_hours = models.IntegerField(_('certificate hours'), default=4)
     closed_registration = models.BooleanField(_('closed registration'), default=False)
 
@@ -211,8 +214,8 @@ class SubEvent(models.Model):
     start = models.TimeField(_('start time'))
     end = models.TimeField(_('end time'))
     title = models.CharField(_('title'), max_length=150)
-    certificate_model = models.ImageField(_('certificate model'), null=True, blank=True,
-                                          help_text=_('Image sized 2000x1545'))
+    certificate_model = models.ForeignKey('CertificateModel', verbose_name=_('certificate model'), null=True,
+                                          blank=True, on_delete=models.PROTECT)
     certificate_hours = models.IntegerField(_('certificate hours'), default=4)
 
     @property
@@ -257,3 +260,72 @@ class SubEventCheck(models.Model):
     class Meta:
         verbose_name = _('subevent check')
         verbose_name_plural = _('subevent checks')
+
+
+class CertificateModel(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.ImageField(_('certificate image'), help_text=_('Image sized 2000x1545'))
+    text = models.TextField(_('text'))
+    font = models.FileField(_('font'), help_text=_('TrueType font file'))
+    font_size = models.IntegerField(_('font size'))
+    font_color = RGBColorField(_('font color'))
+    alignment = models.CharField(_('alignment'), max_length=10,
+                                 choices=[('left', _('Left')), ('right', _('Right')), ('center', _('Center')),
+                                          ('justify', _('Justify')), ])
+    line_spacing = models.IntegerField(_('line spacing'))
+    text_x = models.FloatField(_('text X position'), help_text=_('Percentage from model width'))
+    text_y = models.FloatField(_('text Y position'), help_text=_('Percentage from model height'))
+    text_width = models.FloatField(_('text width'), help_text=_('Percentage from model width'))
+
+    def preview(self):
+        if self.image:
+            return format_html('<img src="%s" />' % reverse('preview_certificate', args=(self.id,)))
+        else:
+            return '-'
+
+    preview.short_description = _('preview')
+    preview.allow_tags = True
+
+    def __str__(self):
+        return self.name
+
+    def generate_certificate(self, data, preview=False):
+        font_path = str(self.font.path)
+        im = Image.open(str(self.image.path))
+
+        text_y = im.height * self.text_y / 100
+        text_x = im.width * self.text_x / 100
+        text_width = im.width * self.text_width / 100
+
+        from api.image_utils import ImageText
+
+        im = ImageText(im)
+
+        if data:
+            try:
+                text = self.text.format(**data)
+            except Exception as e:
+                text = self.text
+                traceback.print_exc()
+        else:
+            text = self.text
+
+        im.write_text_box(text_x, text_y, box_width=text_width, font_filename=font_path,
+                          text=text, font_size=self.font_size, line_spacing=self.line_spacing,
+                          color=self.font_color, place=self.alignment)
+
+        if preview:
+            size = scale_to_width(im.image.size, 500)
+            b = BytesIO()
+            im.image.resize(size, Image.BICUBIC).convert('RGB').save(b, format='PNG')
+            b.seek(0)
+            return b
+        else:
+            output = BytesIO()
+            im.image.convert("RGB").save(output, format='PDF')
+            output.seek(0)
+            return output
+
+    class Meta:
+        verbose_name = _('certificate model')
+        verbose_name_plural = _('certificate models')
