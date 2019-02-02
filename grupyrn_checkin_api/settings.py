@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'website',
     'rest_framework',
     'rest_framework.authtoken',
+    'colorful'
 ]
 
 if os.environ.get('DEBUG', False):

@@ -1,12 +1,13 @@
-from django.contrib import admin
 from django.conf import settings
+from django.contrib import admin
 from django.db.models import F
 from django.http import HttpResponse
 from django.utils.translation import gettext_lazy as _
 
 # Register your models here.
 from api.exporters import generate_xlsx
-from api.models import Event, EventDayCheck, EventSchedule, EventDay, Attendee, SubEventCheck, SubEvent
+from api.models import Event, EventDayCheck, EventSchedule, EventDay, Attendee, SubEventCheck, SubEvent, \
+    CertificateModel
 
 admin.site.site_header = settings.ADMIN_HEADER
 
@@ -33,7 +34,7 @@ class EventDayInline(admin.TabularInline):
     model = EventDay
     extra = 1
     fields = ['date', 'start', 'end', 'schedule_link']
-    readonly_fields = ('schedule_link', )
+    readonly_fields = ('schedule_link',)
 
 
 @admin.register(EventDay)
@@ -66,6 +67,7 @@ class AttendeeAdmin(admin.ModelAdmin):
         response['Content-Disposition'] = f"attachment; filename=participantes.xlsx"
         xlsx_file = generate_xlsx(response, queryset, ['event', 'name', 'email', 'share_data_with_partners'])
         return response
+
     generate_xlsx.short_description = _('Generate XLSX spreadsheet')
 
     def get_actions(self, request):
@@ -112,6 +114,11 @@ class SubEventCheckAdmin(admin.ModelAdmin):
         response['Content-Disposition'] = f"attachment; filename=participantes_subeventos.xlsx"
         xlsx_file = generate_xlsx(response, queryset, ['name', 'subevent', 'email', 'cpf'])
         return response
+
     generate_xlsx.short_description = _('Generate XLSX spreadsheet')
 
 
+@admin.register(CertificateModel)
+class CertificateModelAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    readonly_fields = ('preview',)

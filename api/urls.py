@@ -5,6 +5,7 @@ from .views import *
 
 
 urlpatterns = [
+    path('previewcertificate/<int:pk>', PreviewCertificateView.as_view(), name='preview_certificate'),
     path('check/', EventCheckView.as_view()),
     path('subeventcheck/', SubEventCheckView.as_view()),
     path('subeventcheckoutall/', SubEventCheckoutAllView.as_view()),

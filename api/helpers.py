@@ -32,3 +32,8 @@ def date_range_format(dates: list):
             text += ', '
 
     return text
+
+
+def scale_to_width(dimensions, width):
+    height = (width * dimensions[1]) / dimensions[0]
+    return int(width), int(height)
