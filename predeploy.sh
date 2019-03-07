@@ -1,5 +1,12 @@
 #!/bin/bash
 
+echo "Packing React Check-in front end..."
 npm run webpack
+
+echo "Collecting static files..."
 python manage.py collectstatic --noinput
-django-admin compilemessages -f
+
+echo "Compiling translations..."
+django-admin compilemessages -f -v 0
+
+echo "Done."
