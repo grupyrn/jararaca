@@ -1,7 +1,29 @@
 {
+  "name": "Meetup GruPy-RN",
+  "description": "GruPy-RN Meetup and Check-in System",
+  "website": "https://meetup.grupyrn.org/",
+  "repository": "https://github.com/GruPy-RN/checkin_api",
+  "logo": "https://raw.githubusercontent.com/grupy-rn/checkin_api/master/assets/logo.png",
   "scripts": {
     "dokku": {
       "predeploy": "bash predeploy.sh"
     }
-  }
+  },
+  "env": {
+    "DISABLE_COLLECTSTATIC": {
+      "description": "Avoids collecting static prematurely.",
+      "value": "1"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/grauwoelfchen/heroku-buildpack-gettext"
+    },
+  {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs"
+    },
+  {
+      "url": "https://github.com/heroku/heroku-buildpack-python"
+    }
+  ]
 }
