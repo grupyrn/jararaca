@@ -8,8 +8,6 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: [
-        'webpack-dev-server/client?http://localhost:3000',
-        'webpack/hot/only-dev-server',
         path.join(__dirname, 'assets/src/js/index')
     ],
 
@@ -20,8 +18,6 @@ module.exports = {
 
 
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        // new webpack.NoErrorsPlugin(), // don't reload if there is an error
         new BundleTracker({
             path: __dirname,
             filename: 'webpack-stats.json'
