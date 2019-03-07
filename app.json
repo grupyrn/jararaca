@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dokku": {
-      "predeploy": "django-admin compilemessages -f"
+      "predeploy": ["npm run webpack", "django-admin compilemessages -f"]
     }
   }
 }
