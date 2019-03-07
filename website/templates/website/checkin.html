@@ -1,0 +1,23 @@
+{% load render_bundle from webpack_loader %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Check-in GruPy-RN</title>
+    <!-- Webpack rendered CSS -->
+    {% render_bundle 'main' 'css' %}
+</head>
+
+<body class="bg-light">
+<div class="container">
+    <div class="py-4 text-center">
+        <img class="d-block mx-auto mb-2" src="{% static 'img/logo_small.png' %}" alt="GruPy-RN Logo" >
+    </div>
+    <div id="root"></div>
+</div>
+
+<!-- Webpack rendered JS -->
+{% render_bundle 'main' 'js' %}
+</body>
+</html>

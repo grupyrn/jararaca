@@ -317,3 +317,10 @@ Pipfile.lock
 .history
 
 # End of https://www.gitignore.io/api/osx,linux,python,django,pycharm+all,visualstudiocode
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+webpack-stats.json
+

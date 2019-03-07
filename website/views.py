@@ -35,7 +35,15 @@ class EventInfoView(TemplateView):
         return self.render_to_response(context)
 
 
-class Rule(TemplateView):
+class CheckinView(TemplateView):
+    template_name = 'website/checkin.html'
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        return self.render_to_response(context)
+
+
+class RuleView(TemplateView):
     template_name = 'website/rules.html'
 
 

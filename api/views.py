@@ -85,12 +85,12 @@ class EventCheckView(views.APIView):
 
         event_day_check.checkout()
 
-        if event_day.is_last:
-            if attendee.presence_percentage > 75:
-                senders.send_certificate_mail(attendee.name, attendee.email, attendee.event,
-                                              cpf=attendee.cpf)
-            else:
-                senders.send_no_certificate_mail(attendee.name, attendee.email, attendee.event)
+        # if event_day.is_last:
+        #     if attendee.presence_percentage > 75:
+        #         senders.send_certificate_mail(attendee.name, attendee.email, attendee.event,
+        #                                       cpf=attendee.cpf)
+        #     else:
+        #         senders.send_no_certificate_mail(attendee.name, attendee.email, attendee.event)
 
         return Response(
             {'status': 'OK',
