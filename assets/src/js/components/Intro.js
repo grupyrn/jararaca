@@ -34,7 +34,7 @@ class Intro extends Component {
             }).catch(error => {
                 if (error.response) {
                     console.log(error.response);
-                    this.setState({error: 'Falha ao conectar: '+error.response.statusText})
+                    this.setState({error: 'Falha ao conectar: ' + error.response.statusText})
                 } else if (error.request) {
                     // The request was made but no response was received
                     // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
@@ -62,12 +62,28 @@ class Intro extends Component {
         const lista = [];
         this.state.data.forEach((event, i) => {
             lista.push(<div key={event.id}>
-                <button className={"btn btn-secondary"} onClick={() => this.selectEvent.bind(this)(event)}>{event.name}</button><br />
+                <button className={"btn btn-secondary"}
+                        onClick={() => this.selectEvent.bind(this)(event)}>{event.name}</button>
+                <br/>
             </div>)
         });
 
+
         // console.log(this.state.data);
-        return lista;
+        if (lista.length > 0)
+            return <div>
+                <p>Selecione o evento: </p>
+
+                <div className={'lista'}>
+                    <div>
+                        {lista}
+                    </div>
+                </div>
+            </div>;
+        return <div className="alert alert-info" role="alert">
+            <h5>Não há nenhum evento ativo no momento.</h5></div>
+            ;
+
     }
 
     render() {
@@ -77,30 +93,25 @@ class Intro extends Component {
                     this.state.busy ?
                         <p>Carregando...</p> :
                         this.state.error ? <div className="alert alert-danger" role="alert">
-                            {this.state.error}</div> :
+                                {this.state.error}</div> :
                             this.props.event == null ?
-                                <div>
-                                    <p>Selecione o evento: </p>
-
-                                    <div className={'lista'}>
-                                        <div>
-                                            {this.renderItems()}
-                                        </div>
-                                    </div>
-                                </div>
+                                this.renderItems()
                                 :
                                 <div>
                                     <h4>Bem vindo(a) ao {this.props.event.name} </h4>
                                     {/*<Link routeName="Camera" className={'btn btn-primary'} params={{ check: 'in' }}>Realizar Check-in</Link> <br />*/}
                                     <p>
                                         <button className={'btn btn-outline-success btn-lg'}
-                                           onClick={() => this.props.navigation.navigate('Camera', {check: 'in'})}>Realizar
-                                            Check-in</button>
-                                    </p><p>
-                                    <button className={'btn btn-outline-danger btn-lg'}
-                                       onClick={() => this.props.navigation.navigate('Camera', {check: 'out'})}>Realizar
-                                        Check-out</button>
-                                </p>
+                                                onClick={() => this.props.navigation.navigate('Camera', {check: 'in'})}>Realizar
+                                            Check-in
+                                        </button>
+                                    </p>
+                                    <p>
+                                        <button className={'btn btn-outline-danger btn-lg'}
+                                                onClick={() => this.props.navigation.navigate('Camera', {check: 'out'})}>Realizar
+                                            Check-out
+                                        </button>
+                                    </p>
                                 </div>
                 }
             </div>
