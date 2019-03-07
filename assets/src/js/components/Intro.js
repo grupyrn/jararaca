@@ -24,8 +24,6 @@ class Intro extends Component {
 
 
     componentDidMount() {
-        console.log(this.props);
-
         if (this.state.busy) {
             current_events().then(response => {
                 console.log('data', response);

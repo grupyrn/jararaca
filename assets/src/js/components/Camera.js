@@ -46,9 +46,6 @@ class Camera extends Component {
         const { navigation } = this.props;
         const { result } = this.state;
 
-
-        console.log('Render: '+ result);
-
         return (
             <div>
                 <p>
