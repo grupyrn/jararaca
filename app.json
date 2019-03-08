@@ -13,16 +13,20 @@
     "DISABLE_COLLECTSTATIC": {
       "description": "Avoids collecting static prematurely.",
       "value": "1"
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "description": "Allows installation of dev dependencies",
+      "value": "false"
     }
   },
   "buildpacks": [
     {
       "url": "https://github.com/grauwoelfchen/heroku-buildpack-gettext"
     },
-  {
+    {
       "url": "https://github.com/heroku/heroku-buildpack-nodejs"
     },
-  {
+    {
       "url": "https://github.com/heroku/heroku-buildpack-python"
     }
   ]
