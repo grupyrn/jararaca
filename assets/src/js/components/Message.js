@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {Link} from "@react-navigation/web";
 import {setResponse} from "../reducers";
 import {connect} from "react-redux";
 

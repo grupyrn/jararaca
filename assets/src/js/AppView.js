@@ -8,13 +8,7 @@ export default class AppView extends Component {
         const descriptor = descriptors[activeKey];
         return (
             <div className="text-center">
-                <h3>Sistema de Check-in do GruPy-RN</h3>
-                <div
-                    style={{
-                        padding: 10
-                    }}
-                >
-                </div>
+                <h3 className="head-title">Sistema de Check-in do GruPy-RN</h3>
                 <div>
                     <SceneView
                         navigation={descriptor.navigation}

@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import QrReader from 'react-qr-reader'
-import {Link} from "@react-navigation/web";
 import {checkin_event} from "../api/API.js"
 import {setEvent, setResponse} from "../reducers";
 import {connect} from "react-redux";
