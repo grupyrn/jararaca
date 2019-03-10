@@ -74,12 +74,14 @@ class Event(models.Model):
     certificate_model = models.ForeignKey('CertificateModel', verbose_name=_('certificate model'), null=True,
                                           blank=True, on_delete=models.PROTECT)
     certificate_hours = models.IntegerField(_('certificate hours'), default=4)
+    certificate_minimum_time = models.IntegerField(_('minimum length of stay for certificate'),
+                                                   help_text=_('Percentage from total time'), default=75)
     closed_registration = models.BooleanField(_('closed registration'), default=False)
 
     @property
     def formated_duration(self):
         hours = self.certificate_hours
-        return f'{hours} horas' if hours != 1 else f'{hours} hora'
+        return _('%s hours') % (hours,) if hours != 1 else _('%s hour') % (hours,)
 
     @property
     def formated_dates(self):
@@ -225,7 +227,7 @@ class SubEvent(models.Model):
     @property
     def formated_duration(self):
         hours = self.certificate_hours
-        return f'{hours} horas' if hours != 1 else f'{hours} hora'
+        return _('%s hours') % (hours,) if hours != 1 else _('%s hour') % (hours,)
 
     @property
     def formated_dates(self):
