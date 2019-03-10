@@ -62,6 +62,7 @@ class SubEventSerializer(serializers.ModelSerializer):
 class EventCheckSerializer(serializers.Serializer):
     attendee = serializers.PrimaryKeyRelatedField(queryset=Attendee.objects)
     check = serializers.BooleanField(required=True)
+    event = serializers.PrimaryKeyRelatedField(queryset=Event.objects, required=False, default=None)
 
 
 class SubEventCheckSerializer(serializers.Serializer):

@@ -33,17 +33,22 @@ class EventCheckView(views.APIView):
     def post(self, request, format=None):
         serializer = EventCheckSerializer(data=request.data)
         if serializer.is_valid():
+            data = serializer.validated_data
 
-            events = Event.current_events(tolerance=timedelta(minutes=60)).filter(
-                id=serializer.validated_data['attendee'].event.id)
+            events = Event.current_events(tolerance=timedelta(minutes=60)).filter(id=data['attendee'].event.id)
 
             if events.all():
-                if serializer.validated_data['check']:
-                    return self.checkin(serializer.validated_data)
-                return self.checkout(serializer.validated_data)
+                if data['event'] and data['attendee'].event != data['event']:
+                    return Response(
+                        {'status': 'EVENT_INCOMPATIBLE', 'message': _('QR-Code incompatible with this event.')},
+                        status=status.HTTP_409_CONFLICT)
+
+                if data['check']:
+                    return self.checkin(data)
+                return self.checkout(data)
             else:
                 return Response({'status': 'EVENT_INACTIVE', 'message': _('Event inactive.')},
-                                status=status.HTTP_400_BAD_REQUEST)
+                                status=status.HTTP_417_EXPECTATION_FAILED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -55,13 +60,13 @@ class EventCheckView(views.APIView):
         if check:
             return Response({'status': 'ALREADY_CHECKED_IN',
                              'message': _('%(attendee)s already checked-in.') % {'attendee': attendee.name.split()[0]}},
-                            status=status.HTTP_400_BAD_REQUEST)
+                            status=status.HTTP_412_PRECONDITION_FAILED)
 
         EventDayCheck(event_day=attendee.event.current_day,
                       attendee=attendee).save()
 
         return Response(
-            {'status': 'OK',
+            {'status': 'CHECKIN_OK',
              'message': _('%(attendee)s successfully checked-in.') % {'attendee': attendee.name.split()[0]},
              'attendee': {
                  'name': attendee.name, 'email': attendee.email
@@ -77,23 +82,24 @@ class EventCheckView(views.APIView):
         if not event_day_check:
             return Response({'status': 'NOT_CHECKED_IN',
                              'message': _('%(attendee)s did not checkin.') % {'attendee': attendee.name.split()[0]}},
-                            status=status.HTTP_400_BAD_REQUEST)
+                            status=status.HTTP_412_PRECONDITION_FAILED)
         elif event_day_check.exit_date is not None:
             return Response({'status': 'ALREADY_CHECKED_OUT',
-                             'message': _('%(attendee)s already checked-out.') % {'attendee': attendee.name.split()[0]}},
-                            status=status.HTTP_400_BAD_REQUEST)
+                             'message': _('%(attendee)s already checked-out.') % {
+                                 'attendee': attendee.name.split()[0]}},
+                            status=status.HTTP_412_PRECONDITION_FAILED)
 
         event_day_check.checkout()
 
-        # if event_day.is_last:
-        #     if attendee.presence_percentage > 75:
-        #         senders.send_certificate_mail(attendee.name, attendee.email, attendee.event,
-        #                                       cpf=attendee.cpf)
-        #     else:
-        #         senders.send_no_certificate_mail(attendee.name, attendee.email, attendee.event)
+        if event_day.is_last and attendee.event.certificate_model:
+            if attendee.presence_percentage >= attendee.event.certificate_minimum_time:
+                senders.send_certificate_mail(attendee.name, attendee.email, attendee.event,
+                                              cpf=attendee.cpf)
+            else:
+                senders.send_no_certificate_mail(attendee.name, attendee.email, attendee.event)
 
         return Response(
-            {'status': 'OK',
+            {'status': 'CHECKOUT_OK',
              'message': _('%(attendee)s successfully checked-out.') % {'attendee': attendee.name.split()[0]},
              'attendee': {
                  'name': attendee.name, 'email': attendee.email
@@ -222,7 +228,6 @@ class PreviewCertificateView(generics.RetrieveAPIView):
         response = HttpResponse(data, content_type='image/png')
         response['Content-Disposition'] = 'attachment; filename=image.png'
         return response
-
 
 
 class SubEventListView(generics.ListAPIView):
