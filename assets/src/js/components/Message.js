@@ -1,10 +1,17 @@
 import React, {Component} from "react";
 import {setResponse} from "../reducers";
 import {connect} from "react-redux";
+import config from "../config"
+import {CSSTransitionGroup} from 'react-transition-group' // ES6
 
 class Message extends Component {
 
     static path = "check/message";
+
+    static navigationOptions = {
+        title: config.window_title,
+    };
+
 
     componentDidMount() {
         setTimeout(() => {
@@ -13,10 +20,12 @@ class Message extends Component {
     }
 
     renderResponse() {
-        const {status, message, attendee, check} = this.props.response;
+        const data = {typeStatus: 'warning', ...this.props.response};
+        const {status, message, attendee, check, typeStatus} = data;
+        console.log(data);
 
         if (status === 'OK') {
-            if (check){
+            if (check) {
                 return (
                     <div className="alert alert-success" role="alert">
                         <h5>Bem vindo(a), {attendee.name}!</h5></div>
@@ -27,7 +36,7 @@ class Message extends Component {
                     <h5>Até mais, {attendee.name}!</h5></div>
             )
         } else {
-            return <div className="alert alert-warning" role="alert">
+            return <div className={"alert alert-"+ typeStatus} role="alert">
                 <h5>{message}</h5></div>
         }
     }
@@ -44,7 +53,16 @@ class Message extends Component {
     render() {
         return (
             <div>
-                {this.renderResponse()}
+                <CSSTransitionGroup
+                    transitionName="example"
+                    transitionAppear={true}
+                    transitionAppearTimeout={400}
+                    transitionEnterTimeout={400}
+                    transitionLeaveTimeout={400}
+                    transitionEnter={true}
+                    transitionLeave={true}>
+                    {this.renderResponse()}
+                </CSSTransitionGroup>
             </div>
         );
     }

@@ -47,6 +47,7 @@
     "react-navigation": "^3.3.2",
     "react-qr-reader": "^2.2.1",
     "react-redux": "^6.0.1",
+    "react-transition-group": "1.x",
     "redux-starter-kit": "^0.4.3"
   }
 }

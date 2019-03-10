@@ -1,16 +1,18 @@
 import React, {Component} from "react";
 import QrReader from 'react-qr-reader'
 import {checkin_event} from "../api/API.js"
-import {setEvent, setResponse} from "../reducers";
+import {setResponse} from "../reducers";
 import {connect} from "react-redux";
+import config from "../config"
+import {CSSTransitionGroup} from "react-transition-group";
+
 
 class Camera extends Component {
 
     static path = "check/:check";
 
     static navigationOptions = {
-        title: "Camera",
-        linkName: "Camera Screen"
+        title: config.window_title,
     };
 
     state = {
@@ -47,14 +49,21 @@ class Camera extends Component {
 
         return (
             <div>
-                <p>
-                    Posicione o QR code na visão da câmera, abaixo.
-                </p>
+                <CSSTransitionGroup
+                    transitionName="example"
+                    transitionAppear={true}
+                    transitionAppearTimeout={400}
+                    transitionEnterTimeout={400}
+                    transitionLeaveTimeout={400}
+                    transitionEnter={true}
+                    transitionLeave={true}>
                 <p>
                 <button className={'btn btn-outline-info'}
                    onClick={() => this.props.navigation.navigate('Intro')}>Voltar</button>
                 </p>
-
+                <p>
+                    Posicione o QR code na visão da câmera, abaixo.
+                </p>
                 {
                     result === undefined ?
                         <div className={"row align-items-center"}>
@@ -67,10 +76,12 @@ class Camera extends Component {
                         onScan={this.handleScan}
                         style={{width: '100%'}}
                     />
-                        </div></div>   <div className={"col"}></div></div> : <h3>Carregando...</h3>
+                        </div></div>   <div className={"col"}></div></div> : <div className="spinner-border m-5 text-warning" role="status">
+                            <span className="sr-only">Carregando...</span>
+                        </div>
                 }
 
-
+                                                    </CSSTransitionGroup>
             </div>
         );
     }
@@ -87,7 +98,13 @@ class Camera extends Component {
                 this.props.navigation.navigate('Message');
             }).catch(error => {
                 if (error.response) {
-                    this.props.setResponse({check: check, ...error.response.data});
+                    data = error.response.data;
+                    if (data.attendee){
+                        data.message = "QR-Code inválido";
+                        data.typeStatus = "danger";
+                    }
+
+                    this.props.setResponse({check: check, ...data});
                     this.props.navigation.navigate('Message');
                 } else if (error.request) {
                     // The request was made but no response was received

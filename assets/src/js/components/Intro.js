@@ -2,14 +2,16 @@ import React, {Component} from "react";
 import {current_events} from "../api/API";
 import {connect} from "react-redux";
 import {setEvent} from "../reducers/index";
+import config from "../config"
+import {CSSTransitionGroup} from 'react-transition-group' // ES6
+import '../index.css';
 
 
 class Intro extends Component {
     static path = "check";
 
     static navigationOptions = {
-        title: "Intro",
-        linkName: "Intro Screen"
+        title: config.window_title,
     };
 
     constructor(props) {
@@ -62,9 +64,10 @@ class Intro extends Component {
         const lista = [];
         this.state.data.forEach((event, i) => {
             lista.push(<div key={event.id}>
-                <button className={"btn btn-secondary"}
-                        onClick={() => this.selectEvent.bind(this)(event)}>{event.name}</button>
-                <br/>
+                <p>
+                    <button className={"btn btn-secondary"}
+                            onClick={() => this.selectEvent.bind(this)(event)}>{event.name}</button>
+                </p>
             </div>)
         });
 
@@ -91,27 +94,38 @@ class Intro extends Component {
             <div>
                 {
                     this.state.busy ?
-                        <p>Carregando...</p> :
+                        <div className="spinner-border m-5 text-warning" role="status">
+                            <span className="sr-only">Carregando...</span>
+                        </div>
+                        :
                         this.state.error ? <div className="alert alert-danger" role="alert">
                                 {this.state.error}</div> :
                             this.props.event == null ?
                                 this.renderItems()
                                 :
                                 <div>
-                                    <h4>Bem vindo(a) ao {this.props.event.name} </h4>
-                                    {/*<Link routeName="Camera" className={'btn btn-primary'} params={{ check: 'in' }}>Realizar Check-in</Link> <br />*/}
-                                    <p>
-                                        <button className={'btn btn-outline-success btn-lg'}
-                                                onClick={() => this.props.navigation.navigate('Camera', {check: 'in'})}>Realizar
-                                            Check-in
-                                        </button>
-                                    </p>
-                                    <p>
-                                        <button className={'btn btn-outline-danger btn-lg'}
-                                                onClick={() => this.props.navigation.navigate('Camera', {check: 'out'})}>Realizar
-                                            Check-out
-                                        </button>
-                                    </p>
+                                    <CSSTransitionGroup
+                                        transitionName="example"
+                                        transitionAppear={true}
+                                        transitionAppearTimeout={400}
+                                        transitionEnterTimeout={400}
+                                        transitionLeaveTimeout={400}
+                                        transitionEnter={true}
+                                        transitionLeave={true}>
+                                        <h4 key={"title"} className={"title"}>Bem vindo(a) ao {this.props.event.name} </h4>
+                                        <p>
+                                            <button className={'btn btn-outline-success btn-lg'} key={"checkin"}
+                                                    onClick={() => this.props.navigation.navigate('Camera', {check: 'in'})}>Realizar
+                                                Check-in
+                                            </button>
+                                        </p>
+                                        <p>
+                                            <button className={'btn btn-outline-danger btn-lg'} key={"checkout"}
+                                                    onClick={() => this.props.navigation.navigate('Camera', {check: 'out'})}>Realizar
+                                                Check-out
+                                            </button>
+                                        </p>
+                                    </CSSTransitionGroup>
                                 </div>
                 }
             </div>
