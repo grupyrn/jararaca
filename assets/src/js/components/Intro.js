@@ -5,6 +5,8 @@ import {setEvent} from "../reducers/index";
 import config from "../config"
 import {CSSTransitionGroup} from 'react-transition-group' // ES6
 import '../index.css';
+import Alert from "./utils/Alert";
+import Animation from "./utils/Animation";
 
 
 class Intro extends Component {
@@ -23,7 +25,6 @@ class Intro extends Component {
             data: null
         }
     }
-
 
     componentDidMount() {
         if (this.state.busy) {
@@ -71,7 +72,6 @@ class Intro extends Component {
             </div>)
         });
 
-
         // console.log(this.state.data);
         if (lista.length > 0)
             return <div>
@@ -83,10 +83,7 @@ class Intro extends Component {
                     </div>
                 </div>
             </div>;
-        return <div className="alert alert-info" role="alert">
-            <h5>Não há nenhum evento ativo no momento.</h5></div>
-            ;
-
+        return <Animation><Alert type="info"><h5>Não há nenhum evento ativo no momento.</h5></Alert></Animation>;
     }
 
     render() {
@@ -98,20 +95,12 @@ class Intro extends Component {
                             <span className="sr-only">Carregando...</span>
                         </div>
                         :
-                        this.state.error ? <div className="alert alert-danger" role="alert">
-                                {this.state.error}</div> :
+                        this.state.error ? <Alert type="danger">{this.state.error}</Alert> :
                             this.props.event == null ?
                                 this.renderItems()
                                 :
                                 <div>
-                                    <CSSTransitionGroup
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={400}
-                                        transitionEnterTimeout={400}
-                                        transitionLeaveTimeout={400}
-                                        transitionEnter={true}
-                                        transitionLeave={true}>
+                                    <Animation>
                                         <h4 key={"title"} className={"title"}>Bem vindo(a) ao {this.props.event.name} </h4>
                                         <p>
                                             <button className={'btn btn-outline-success btn-lg'} key={"checkin"}
@@ -125,14 +114,12 @@ class Intro extends Component {
                                                 Check-out
                                             </button>
                                         </p>
-                                    </CSSTransitionGroup>
+                                    </Animation>
                                 </div>
                 }
             </div>
-
         );
     }
-
 }
 
 const mapStateToProps = state => {

@@ -2,7 +2,9 @@ import React, {Component} from "react";
 import {setResponse} from "../reducers";
 import {connect} from "react-redux";
 import config from "../config"
-import {CSSTransitionGroup} from 'react-transition-group' // ES6
+import {CSSTransitionGroup} from 'react-transition-group'
+import Alert from "./Intro";
+import Animation from "./utils/Animation"; // ES6
 
 class Message extends Component {
 
@@ -21,24 +23,15 @@ class Message extends Component {
 
     renderResponse() {
         const data = {typeStatus: 'warning', ...this.props.response};
-        const {status, message, attendee, check, typeStatus} = data;
+        let {status, message, attendee, check, typeStatus} = data;
         console.log(data);
 
-        if (status === 'OK') {
-            if (check) {
-                return (
-                    <div className="alert alert-success" role="alert">
-                        <h5>Bem vindo(a), {attendee.name}!</h5></div>
-                )
-            }
-            return (
-                <div className="alert alert-success" role="alert">
-                    <h5>Até mais, {attendee.name}!</h5></div>
-            )
-        } else {
-            return <div className={"alert alert-"+ typeStatus} role="alert">
-                <h5>{message}</h5></div>
-        }
+        if (status.includes('_OK'))
+            typeStatus = 'success';
+        else if (status.startsWith('EVENT'))
+            typeStatus = 'danger';
+
+        return <Alert type={typeStatus}><h5>{message}</h5></Alert>
     }
 
     componentWillMount() {
@@ -53,16 +46,9 @@ class Message extends Component {
     render() {
         return (
             <div>
-                <CSSTransitionGroup
-                    transitionName="example"
-                    transitionAppear={true}
-                    transitionAppearTimeout={400}
-                    transitionEnterTimeout={400}
-                    transitionLeaveTimeout={400}
-                    transitionEnter={true}
-                    transitionLeave={true}>
+                <Animation>
                     {this.renderResponse()}
-                </CSSTransitionGroup>
+                </Animation>
             </div>
         );
     }

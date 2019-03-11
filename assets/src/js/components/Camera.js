@@ -4,7 +4,7 @@ import {checkin_event} from "../api/API.js"
 import {setResponse} from "../reducers";
 import {connect} from "react-redux";
 import config from "../config"
-import {CSSTransitionGroup} from "react-transition-group";
+import Animation from "./utils/Animation";
 
 
 class Camera extends Component {
@@ -24,7 +24,7 @@ class Camera extends Component {
             this.setState({
                 result: data
             });
-            this.processRequest(this.props.event.id, {hash: data });
+            this.processRequest(this.props.event.id, {hash: data});
 
         }
     };
@@ -44,44 +44,41 @@ class Camera extends Component {
 
 
     render() {
-        const { navigation } = this.props;
-        const { result } = this.state;
+        const {navigation} = this.props;
+        const {result} = this.state;
 
         return (
             <div>
-                <CSSTransitionGroup
-                    transitionName="example"
-                    transitionAppear={true}
-                    transitionAppearTimeout={400}
-                    transitionEnterTimeout={400}
-                    transitionLeaveTimeout={400}
-                    transitionEnter={true}
-                    transitionLeave={true}>
-                <p>
-                <button className={'btn btn-outline-info'}
-                   onClick={() => this.props.navigation.navigate('Intro')}>Voltar</button>
-                </p>
-                <p>
-                    Posicione o QR code na visão da câmera, abaixo.
-                </p>
-                {
-                    result === undefined ?
-                        <div className={"row align-items-center"}>
-                            <div className={"col"}></div>
-                            <div className={"col"}>
-                        <div className={""}>
-                            <QrReader
-                        delay={300}
-                        onError={this.handleError}
-                        onScan={this.handleScan}
-                        style={{width: '100%'}}
-                    />
-                        </div></div>   <div className={"col"}></div></div> : <div className="spinner-border m-5 text-warning" role="status">
-                            <span className="sr-only">Carregando...</span>
-                        </div>
-                }
+                <Animation>
+                    <p>
+                        <button className={'btn btn-outline-info'}
+                                onClick={() => this.props.navigation.navigate('Intro')}>Voltar
+                        </button>
+                    </p>
+                    <p>
+                        Posicione o QR code na visão da câmera, abaixo.
+                    </p>
+                    {
+                        result === undefined ?
+                            <div className={"row align-items-center"}>
+                                <div className={"col"} />
+                                <div className={"col"}>
+                                    <div className={""}>
+                                        <QrReader
+                                            delay={300}
+                                            onError={this.handleError}
+                                            onScan={this.handleScan}
+                                            style={{width: '100%'}}
+                                        />
+                                    </div>
+                                </div>
+                                <div className={"col"}/>
+                            </div> : <div className="spinner-border m-5 text-warning" role="status">
+                                <span className="sr-only">Carregando...</span>
+                            </div>
+                    }
 
-                                                    </CSSTransitionGroup>
+                </Animation>
             </div>
         );
     }
@@ -99,7 +96,7 @@ class Camera extends Component {
             }).catch(error => {
                 if (error.response) {
                     data = error.response.data;
-                    if (data.attendee){
+                    if (data.attendee) {
                         data.message = "QR-Code inválido";
                         data.typeStatus = "danger";
                     }
@@ -125,7 +122,7 @@ class Camera extends Component {
 
 
 const mapStateToProps = state => {
-    return { event: state.event };
+    return {event: state.event};
 };
 
 function mapDispatchToProps(dispatch) {

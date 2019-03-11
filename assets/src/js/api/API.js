@@ -21,18 +21,12 @@ export const current_events = () => {
 };
 
 export const checkin_event = (event_id, attendee, check) => {
-  const data = {'attendee': attendee.hash, 'event_id': event_id, 'check': check};
-
-  console.log(data);
+  const data = {'attendee': attendee.hash, 'event': event_id, 'check': check};
   return axios.post(config.api_url + `/check/`, data, axiosConfig);
-
 };
 
 export const checkin_subevent = (subevent_id, attendee, check) => {
   var data = {force: attendee.force};
   data = {...data, 'attendee': attendee.hash, 'subevent': subevent_id, 'check': check};
-
-  console.log(data);
   return axios.post(config.api_url + `/subeventcheck/`, data, axiosConfig);
-
 };
