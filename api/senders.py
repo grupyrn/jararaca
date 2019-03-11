@@ -13,19 +13,21 @@ from sendgrid.helpers.mail import *
 from django.conf import settings
 
 sg = sendgrid.SendGridAPIClient(apikey=settings.SENDGRID_API_KEY)
+templates = settings.SENDGRID_TEMPLATES
 
 
 def send_registration_mail(attendee: Attendee, event: Event):
     qr_data = gen_qrcode(data=str(attendee.uuid)).read()
+    template = templates['REGISTRATION']
 
     mail = Mail()
-    mail.from_email = Email("coordenacao@grupyrn.org", "GruPy-RN")
-    mail.template_id = "78d0cc02-7d90-4aa4-b214-d842844131c8"
-    mail.add_category(Category("inscricao_grupy"))
+    mail.from_email = Email(template['FROM_EMAIL'], template['FROM_NAME'])
+    mail.template_id = template['ID']
+    mail.add_category(Category(template['CATEGORY']))
 
     attachment1 = Attachment()
     attachment1.content = base64.b64encode(qr_data).decode('ascii')
-    attachment1.filename = "credencial_grupy.png"
+    attachment1.filename = template['FILENAME']
     mail.add_attachment(attachment1)
 
     personalization = Personalization()
@@ -42,10 +44,12 @@ def send_registration_mail(attendee: Attendee, event: Event):
 
 
 def send_certificate_mail(name, email, event, cpf=None):
+    template = templates['CERTIFICATE_EMITTED']
+
     mail = Mail()
-    mail.from_email = Email("coordenacao@grupyrn.org", "GruPy-RN")
-    mail.template_id = "f26688fc-1854-455a-a2c0-bd72d2a38b56"
-    mail.add_category(Category("certificados_grupy"))
+    mail.from_email = Email(template['FROM_EMAIL'], template['FROM_NAME'])
+    mail.template_id = template['ID']
+    mail.add_category(Category(template['CATEGORY']))
 
     attachment1 = Attachment()
 
@@ -57,7 +61,7 @@ def send_certificate_mail(name, email, event, cpf=None):
 
 
     attachment1.content = base64.b64encode(certificate_data.read()).decode('ascii')
-    attachment1.filename = "certificado.pdf"
+    attachment1.filename = template['FILENAME']
     mail.add_attachment(attachment1)
 
     personalization = Personalization()
@@ -75,10 +79,12 @@ def send_certificate_mail(name, email, event, cpf=None):
 
 
 def send_no_certificate_mail(name, email, event):
+    template = templates['CERTIFICATE_NOT_EMITTED']
+
     mail = Mail()
-    mail.from_email = Email("coordenacao@grupyrn.org", "GruPy-RN")
-    mail.template_id = "637c0650-3dec-4505-a006-8b9149b3cce4"
-    mail.add_category(Category("sem_certificados_grupy"))
+    mail.from_email = Email(template['FROM_EMAIL'], template['FROM_NAME'])
+    mail.template_id = template['ID']
+    mail.add_category(Category(template['CATEGORY']))
 
     personalization = Personalization()
     personalization.add_substitution(Substitution("%first_name%", name.split()[0]))
@@ -92,8 +98,3 @@ def send_no_certificate_mail(name, email, event):
     except Exception as e:
         print(e.body)
         raise e
-
-
-
-
-
