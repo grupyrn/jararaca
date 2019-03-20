@@ -1,0 +1,101 @@
+{% extends 'site/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+  {% include 'site/parallax.html' %}
+
+
+  <section>
+    <div class="container">
+      <div class="row">
+
+        <h1 id="future-events" class="center-align black-title scrollspy">{% trans "Future events" %}</h1>
+
+        {% for event in future_events %}
+          <div class="col s12 m6">
+            <div class="card blue-card darken-1">
+              <div class="card-content white-text">
+                <span class="card-title">{{ event.name }}</span>
+                <p>{{ event.place }}</p>
+                <p>{% for date in event.date %}{{ date|date:'SHORT_DATE_FORMAT' }}{% if not forloop.last %},
+                {% endif %}{% endfor %}</p>
+              </div>
+              <div class="card-action">
+                {% if not event.closed_registration %}
+                  <a class="yellow-link" href="{% url 'attendee-registration' event.slug %}">{% trans "Register" %}</a>
+                {% endif %}
+                <a class="yellow-link" href="{% url 'event-info' event.slug %}">{% trans "More info" %}</a>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <p>{% trans "Coming soon..." %}</p>
+        {% endfor %}
+
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="container ">
+      <div class="row">
+        <div class="s12">
+          <h1 id="who-we-are" class="center-align black-title scrollspy">{% trans "Who we are" %}</h1>
+          <p>O GruPy - RN é a comunidade de Python do Rio Grande do Norte, tem como objetivo promover um ambiente
+            amistoso, de boa convivência, inclusivo e livre de intimidação, onde todas as pessoas são bem-vindas e a
+            civilidade é exigida.</p>
+          <p>Com esta finalidade, a organização do evento atua para garantir um ambiente com essas qualidades.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+
+          <h1 id="past-events" class="center-align black-title scrollspy">{% trans "Past events" %}</h1>
+
+        {% if past_events %}
+          <table class="highlight centered ">
+            <thead>
+            <tr>
+              <th>{% trans "Event" %}</th>
+              <th>{% trans "Date" %}</th>
+              <th>{% trans "Place" %}</th>
+              <th>{% trans "Content" %}</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for event in past_events %}
+              <tr>
+                <td>{{ event.name }}</td>
+                <td>{% for date in event.date %}{{ date|date:'SHORT_DATE_FORMAT' }}{% if not forloop.last %},
+                {% endif %}{% endfor %}</td>
+                <td>{{ event.place }}</td>
+                <td>
+                  {% if event.content_link %}
+                    <a href="{{ event.content_link }}" target="_blank">{% trans 'Open' %}</a>
+                  {% else %}
+                    {% trans "Unavailable" %}
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+
+            </tbody>
+          </table>
+        {% else %}
+          <p>{% trans "There are no past events to show." %}</p>
+        {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}
