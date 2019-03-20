@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-20 13:54-0300\n"
+"POT-Creation-Date: 2019-03-20 14:50-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: apps/api/admin.py:12
+msgid "Jararaca - GruPy-RN Event and Check-in System"
+msgstr ""
 
 #: apps/api/admin.py:71 apps/api/admin.py:118
 msgid "Generate XLSX spreadsheet"
@@ -86,7 +90,7 @@ msgstr "criado por"
 msgid "content link"
 msgstr "link de conteúdo"
 
-#: apps/api/models.py:74 apps/api/models.py:219 apps/api/models.py:332
+#: apps/api/models.py:74 apps/api/models.py:219 apps/api/models.py:333
 msgid "certificate model"
 msgstr "modelo de certificado"
 
@@ -243,71 +247,80 @@ msgstr "Imagem de tamanho 2000x1545"
 msgid "text"
 msgstr "texto"
 
-#: apps/api/models.py:271
+#: apps/api/models.py:270
+#, python-brace-format
+msgid ""
+"Available variables: {name}, {event}, {cpf}, {event_date}, {event_place}, "
+"{event_duration}."
+msgstr ""
+"Variáveis disponíveis: {name}, {event}, {cpf}, {event_date}, {event_place}, "
+"{event_duration}."
+
+#: apps/api/models.py:272
 msgid "font"
 msgstr "fonte"
 
-#: apps/api/models.py:271
+#: apps/api/models.py:272
 msgid "TrueType font file"
 msgstr "arquivo de fonte TrueType"
 
-#: apps/api/models.py:272
+#: apps/api/models.py:273
 msgid "font size"
 msgstr "tamanho da fonte"
 
-#: apps/api/models.py:273
+#: apps/api/models.py:274
 msgid "font color"
 msgstr "cor da fonte"
 
-#: apps/api/models.py:274
+#: apps/api/models.py:275
 msgid "alignment"
 msgstr "alinhamento"
 
-#: apps/api/models.py:275
+#: apps/api/models.py:276
 msgid "Left"
 msgstr "Esquerda"
 
-#: apps/api/models.py:275
+#: apps/api/models.py:276
 msgid "Right"
 msgstr "Direita"
 
-#: apps/api/models.py:275
+#: apps/api/models.py:276
 msgid "Center"
 msgstr "Centro"
 
-#: apps/api/models.py:276
+#: apps/api/models.py:277
 msgid "Justify"
 msgstr "Justificado"
 
-#: apps/api/models.py:277
+#: apps/api/models.py:278
 msgid "line spacing"
 msgstr "espaçamento de linhas"
 
-#: apps/api/models.py:278
+#: apps/api/models.py:279
 msgid "text X position"
 msgstr "posição X do texto"
 
-#: apps/api/models.py:278 apps/api/models.py:280
+#: apps/api/models.py:279 apps/api/models.py:281
 msgid "Percentage from model width"
 msgstr "Porcentagem a partir da largura do certificado"
 
-#: apps/api/models.py:279
+#: apps/api/models.py:280
 msgid "text Y position"
 msgstr "posição Y do texto"
 
-#: apps/api/models.py:279
+#: apps/api/models.py:280
 msgid "Percentage from model height"
 msgstr "Porcentagem a partir da altura do certificado"
 
-#: apps/api/models.py:280
+#: apps/api/models.py:281
 msgid "text width"
 msgstr "largura do texto"
 
-#: apps/api/models.py:288
+#: apps/api/models.py:289
 msgid "preview"
 msgstr "pré-visualização"
 
-#: apps/api/models.py:333
+#: apps/api/models.py:334
 #, fuzzy
 #| msgid "certificate model"
 msgid "certificate models"
