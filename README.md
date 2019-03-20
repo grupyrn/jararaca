@@ -11,6 +11,7 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 - Python 3
+- Node/NPM/Yarn
 
 ### Installing
 
@@ -25,6 +26,7 @@ cp .env.sample .env
 Install the dependencies
 
 ```
+yarn install
 pip install -r requirements.txt
 ```
 
@@ -53,6 +55,7 @@ python manage.py compilemessages -f
 And finally run the project
 
 ```
+yarn run start
 python manage.py runserver
 ```
 
@@ -63,7 +66,9 @@ Now you can open [http://localhost:8000](http://localhost:8000) in your browser
 - [Django](https://www.djangoproject.com/)
 - [Django REST Framework](http://www.django-rest-framework.org/)
 - [PyQRCode](https://pythonhosted.org/PyQRCode/)
-- [SendGrid](https://sendgrid.com/)
+- [Pillow](https://pillow.readthedocs.io/en/stable/)
+- [SendGrid API](https://sendgrid.com/)
+- [React](https://reactjs.org/)
 
 ## Contributing
 
