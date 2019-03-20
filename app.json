@@ -1,8 +1,8 @@
 {
-  "name": "Meetup GruPy-RN",
-  "description": "GruPy-RN Meetup and Check-in System",
+  "name": "Jararaca",
+  "description": "GruPy-RN Event and Check-in System",
   "website": "https://meetup.grupyrn.org/",
-  "repository": "https://github.com/GruPy-RN/checkin_api",
+  "repository": "https://github.com/GruPy-RN/jararaca",
   "logo": "https://raw.githubusercontent.com/grupy-rn/checkin_api/master/assets/logo.png",
   "scripts": {
     "dokku": {

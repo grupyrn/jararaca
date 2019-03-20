@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('end', models.TimeField(verbose_name='end time')),
                 ('title', models.CharField(max_length=150, verbose_name='title')),
                 ('certificate_model', models.ImageField(null=True, upload_to='', verbose_name='certificate model')),
-                ('event', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apps.api.EventDay',
+                ('event', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.EventDay',
                                             verbose_name='event day')),
             ],
             options={
@@ -33,9 +33,9 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('entrance_date', models.DateTimeField(null=True, verbose_name='entrance date/time')),
                 ('exit_date', models.DateTimeField(null=True, verbose_name='exit date/time')),
-                ('attendee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apps.api.Attendee',
+                ('attendee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.Attendee',
                                                verbose_name='attendee')),
-                ('subevent', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apps.api.SubEvent',
+                ('subevent', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.SubEvent',
                                                verbose_name='subevent')),
             ],
             options={

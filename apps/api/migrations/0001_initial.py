@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
                 ('member_email', models.EmailField(max_length=300)),
                 ('entrance_date', models.DateTimeField(auto_now_add=True)),
                 ('exit_date', models.DateTimeField(null=True)),
-                ('event', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apps.api.Event')),
+                ('event', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.Event')),
             ],
         ),
     ]

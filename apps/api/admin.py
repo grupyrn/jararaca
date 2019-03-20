@@ -9,7 +9,7 @@ from apps.api.exporters import generate_xlsx
 from apps.api.models import Event, EventDayCheck, EventSchedule, EventDay, Attendee, SubEventCheck, SubEvent, \
     CertificateModel
 
-admin.site.site_header = settings.ADMIN_HEADER
+admin.site.site_header = _("Jararaca - GruPy-RN Event and Check-in System")
 
 
 @admin.register(EventDayCheck)

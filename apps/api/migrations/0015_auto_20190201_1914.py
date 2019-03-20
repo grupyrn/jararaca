@@ -14,12 +14,12 @@ class Migration(migrations.Migration):
             model_name='event',
             name='certificate_model',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT,
-                                    to='apps.api.CertificateModel', verbose_name='certificate model'),
+                                    to='api.CertificateModel', verbose_name='certificate model'),
         ),
         migrations.AddField(
             model_name='subevent',
             name='certificate_model',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT,
-                                    to='apps.api.CertificateModel', verbose_name='certificate model'),
+                                    to='api.CertificateModel', verbose_name='certificate model'),
         ),
     ]

@@ -1,6 +1,6 @@
-# GruPy-RN Check-In API
+# Jararaca
 
-GruPy-RN Event Check-in System
+GruPy-RN Event and Check-in System
 
 ## Getting Started
 
@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-- Python 3
+- Python 3.6+
 - Node/NPM/Yarn
 
 ### Installing

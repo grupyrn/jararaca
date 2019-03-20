@@ -1,10 +1,12 @@
 {% load render_bundle from webpack_loader %}
 {% load staticfiles %}
+{% load i18n %}
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Check-in GruPy-RN</title>
+    <title>{% trans "Jararaca - GruPy-RN Event and Check-in System" %}</title>
     <!-- Webpack rendered CSS -->
     {% render_bundle 'main' 'css' %}
 </head>

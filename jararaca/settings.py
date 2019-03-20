@@ -25,8 +25,6 @@ SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY', None)
 
 GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY', None)
 
-ADMIN_HEADER = 'Administração de Check-in de Eventos do GruPy-RN'
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 

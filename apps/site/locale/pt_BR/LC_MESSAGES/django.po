@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-10 19:08-0300\n"
+"POT-Creation-Date: 2019-03-20 13:54-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: website/forms.py:10
+#: apps/site/forms.py:8
 msgid ""
 "Optional. Numbers only. Only if you wish to add this information in the "
 "certificate."
@@ -26,7 +26,7 @@ msgstr ""
 "Opcional. Somente números. Preencha se você desejar que conste essa "
 "informação no certificado."
 
-#: website/forms.py:12
+#: apps/site/forms.py:10
 #, fuzzy
 #| msgid ""
 #| "I authorize the use of the data reported solely and exclusively for "
@@ -38,7 +38,7 @@ msgstr ""
 "Eu autorizo o uso dos dados acima para propósito de identificação neste  "
 "evento do GruPy-RN."
 
-#: website/forms.py:14
+#: apps/site/forms.py:12
 msgid ""
 "I also authorize to share my name and e-mail information with GruPy-RN "
 "partners."
@@ -46,100 +46,99 @@ msgstr ""
 "Eu também autorizo o compartilhamento do meu nome e e-mail com parceiros do "
 "GruPy-RN"
 
-#: website/templates/website/event.html:17
-#: website/templates/website/index.html:27
+#: apps/site/templates/site/event.html:17
+#: apps/site/templates/site/index.html:27
 msgid "Register"
 msgstr "Inscreva-se"
 
-#: website/templates/website/event.html:22
+#: apps/site/templates/site/event.html:22
 msgid "Schedule"
 msgstr "Programação"
 
-#: website/templates/website/event.html:41
-#: website/templates/website/index.html:68
+#: apps/site/templates/site/event.html:41
+#: apps/site/templates/site/index.html:68
 msgid "Place"
 msgstr "Local"
 
-#: website/templates/website/footer.html:8
+#: apps/site/templates/site/footer.html:7
+msgid "Jararaca - GruPy-RN Event and Check-in System"
+msgstr "Jararaca - Sistema de Eventos e Check-in do GruPy-RN"
+
+#: apps/site/templates/site/footer.html:8
 msgid "From developers to the community."
 msgstr "De desenvolvedores para a comunidade."
 
-#: website/templates/website/footer.html:11
+#: apps/site/templates/site/footer.html:11
 msgid "Social networks"
 msgstr "Redes sociais"
 
-#: website/templates/website/form.html:9
+#: apps/site/templates/site/form.html:9
 #, fuzzy
 #| msgid "Register"
 msgid "Register now!"
 msgstr "Inscreva-se!"
 
-#: website/templates/website/form.html:18
+#: apps/site/templates/site/form.html:18
 msgid "Correct the following error(s):"
 msgstr "Corrija o(s) seguinte(s) erro(s):"
 
-#: website/templates/website/index.html:14
-#: website/templates/website/menu.html:10
-#: website/templates/website/menu.html:22
+#: apps/site/templates/site/index.html:14 apps/site/templates/site/menu.html:10
+#: apps/site/templates/site/menu.html:22
 msgid "Future events"
 msgstr "Eventos futuros"
 
-#: website/templates/website/index.html:29
+#: apps/site/templates/site/index.html:29
 msgid "More info"
 msgstr "Mais informações"
 
-#: website/templates/website/index.html:34
+#: apps/site/templates/site/index.html:34
 msgid "Coming soon..."
 msgstr "Em breve..."
 
-#: website/templates/website/index.html:45
-#: website/templates/website/menu.html:11
-#: website/templates/website/menu.html:23
+#: apps/site/templates/site/index.html:45 apps/site/templates/site/menu.html:11
+#: apps/site/templates/site/menu.html:23
 msgid "Who we are"
 msgstr "Quem somos"
 
-#: website/templates/website/index.html:60
-#: website/templates/website/menu.html:12
-#: website/templates/website/menu.html:24
+#: apps/site/templates/site/index.html:60 apps/site/templates/site/menu.html:12
+#: apps/site/templates/site/menu.html:24
 msgid "Past events"
 msgstr "Eventos anteriores"
 
-#: website/templates/website/index.html:66
+#: apps/site/templates/site/index.html:66
 msgid "Event"
 msgstr "Evento"
 
-#: website/templates/website/index.html:67
+#: apps/site/templates/site/index.html:67
 msgid "Date"
 msgstr "Data"
 
-#: website/templates/website/index.html:69
+#: apps/site/templates/site/index.html:69
 msgid "Content"
 msgstr "Conteúdo"
 
-#: website/templates/website/index.html:82
+#: apps/site/templates/site/index.html:82
 msgid "Open"
 msgstr "Abrir"
 
-#: website/templates/website/index.html:84
+#: apps/site/templates/site/index.html:84
 msgid "Unavailable"
 msgstr "Indisponível"
 
-#: website/templates/website/index.html:93
+#: apps/site/templates/site/index.html:93
 msgid "There are no past events to show."
 msgstr "Não há eventos passados para exibir."
 
-#: website/templates/website/menu.html:13
-#: website/templates/website/menu.html:25
+#: apps/site/templates/site/menu.html:13 apps/site/templates/site/menu.html:25
 msgid "Rules"
 msgstr "Regras"
 
-#: website/views.py:85
+#: apps/site/views.py:85
 msgid "Registration failed."
 msgstr "Falha no cadastro."
 
-#~ msgid "This field requires at most 11 digits or 14 characters."
-#~ msgstr ""
-#~ "CPF requer pelo menos 11 dígitos ou 14 caracteres digitados corretamente."
+msgid "This field requires at most 11 digits or 14 characters."
+msgstr "CPF requer pelo menos 11 dígitos ou 14 caracteres digitados corretamente."
 
-#~ msgid "Invalid CPF number."
-#~ msgstr "Número de CPF inválido."
+msgid "Invalid CPF number."
+msgstr "Número de CPF inválido."

@@ -45,9 +45,9 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('entrance_date', models.DateTimeField(auto_now_add=True, verbose_name='entrance date/time')),
                 ('exit_date', models.DateTimeField(null=True, verbose_name='exit date/time')),
-                ('attendee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apps.api.Attendee',
+                ('attendee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.Attendee',
                                                verbose_name='attendee')),
-                ('event_day', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apps.api.EventDay',
+                ('event_day', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.EventDay',
                                                 verbose_name='event day')),
             ],
             options={
@@ -65,7 +65,7 @@ class Migration(migrations.Migration):
                 ('place', models.CharField(blank=True, max_length=150, verbose_name='place')),
                 ('description', models.TextField(blank=True, verbose_name='description')),
                 ('authors', models.CharField(blank=True, max_length=500, verbose_name='authors')),
-                ('event', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apps.api.EventDay',
+                ('event', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.EventDay',
                                             verbose_name='event day')),
             ],
             options={
@@ -125,13 +125,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='eventday',
             name='event',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apps.api.Event',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.Event',
                                     verbose_name='event'),
         ),
         migrations.AddField(
             model_name='attendee',
             name='event',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apps.api.Event',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.Event',
                                     verbose_name='event'),
         ),
     ]
