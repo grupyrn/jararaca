@@ -9,7 +9,7 @@ const Animation = (props) => {
         transitionEnterTimeout={400}
         transitionLeaveTimeout={400}
         transitionEnter={true}
-        transitionLeave={true}>
+        transitionLeave={false}>
             {props.children}
     </CSSTransitionGroup>;
 };

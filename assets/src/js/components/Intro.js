@@ -3,7 +3,6 @@ import {current_events} from "../api/API";
 import {connect} from "react-redux";
 import {setEvent} from "../reducers/index";
 import config from "../config"
-import {CSSTransitionGroup} from 'react-transition-group' // ES6
 import '../index.css';
 import Alert from "./utils/Alert";
 import Animation from "./utils/Animation";
@@ -61,7 +60,7 @@ class Intro extends Component {
         setEvent(event);
     }
 
-    renderItems() {
+    renderEvents() {
         const lista = [];
         this.state.data.forEach((event, i) => {
             lista.push(<div key={event.id}>
@@ -97,27 +96,28 @@ class Intro extends Component {
                         :
                         this.state.error ? <Alert type="danger">{this.state.error}</Alert> :
                             this.props.event == null ?
-                                this.renderItems()
+                                <Animation>
+                                    {this.renderEvents()}
+                                </Animation>
                                 :
-                                <div>
-                                    <Animation>
-                                        <h4 key={"title"} className={"title"}>Bem vindo(a) ao {this.props.event.name} </h4>
-                                        <p>
-                                            <button className={'btn btn-outline-success btn-lg'} key={"checkin"}
-                                                    onClick={() => this.props.navigation.navigate('Camera', {check: 'in'})}>Realizar
-                                                Check-in
-                                            </button>
-                                        </p>
-                                        <p>
-                                            <button className={'btn btn-outline-danger btn-lg'} key={"checkout"}
-                                                    onClick={() => this.props.navigation.navigate('Camera', {check: 'out'})}>Realizar
-                                                Check-out
-                                            </button>
-                                        </p>
-                                    </Animation>
-                                </div>
+                                <Animation>
+                                    <h4 key={"title"} className={"title"}>Bem vindo(a) ao {this.props.event.name} </h4>
+                                    <p>
+                                        <button className={'btn btn-outline-success btn-lg'} key={"checkin"}
+                                                onClick={() => this.props.navigation.navigate('Camera', {check: 'in'})}>Realizar
+                                            Check-in
+                                        </button>
+                                    </p>
+                                    <p>
+                                        <button className={'btn btn-outline-danger btn-lg'} key={"checkout"}
+                                                onClick={() => this.props.navigation.navigate('Camera', {check: 'out'})}>Realizar
+                                            Check-out
+                                        </button>
+                                    </p>
+                                </Animation>
                 }
             </div>
+
         );
     }
 }
