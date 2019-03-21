@@ -155,8 +155,8 @@ STATICFILES_DIRS = (
 )
 
 
-STATIC_ROOT = Path(BASE_DIR) / 'run' 'static'
-MEDIA_ROOT = Path(BASE_DIR) / 'run' 'media'
+STATIC_ROOT = Path(BASE_DIR) / 'run' / 'static'
+MEDIA_ROOT = Path(BASE_DIR) / 'run' / 'media'
 
 if DEBUG:
    INTERNAL_IPS = ('127.0.0.1', 'localhost',)
