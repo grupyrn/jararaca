@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Running yarn"
+yarn
+
 echo "Packing React Check-in front end..."
 yarn build
 
