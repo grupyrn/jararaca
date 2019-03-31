@@ -1,0 +1,423 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-31 17:07-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: apps/api/admin.py:12
+msgid "Jararaca - GruPy-RN Event and Check-in System"
+msgstr ""
+
+#: apps/api/admin.py:71 apps/api/admin.py:118
+msgid "Generate XLSX spreadsheet"
+msgstr "Gerar planilha XLSX"
+
+#: apps/api/models.py:38 apps/api/models.py:127 apps/api/models.py:132
+msgid "event"
+msgstr "evento"
+
+#: apps/api/models.py:39 apps/api/models.py:65
+msgid "name"
+msgstr "nome"
+
+#: apps/api/models.py:40
+msgid "email"
+msgstr "e-mail"
+
+#: apps/api/models.py:41
+msgid "CPF"
+msgstr "CPF"
+
+#: apps/api/models.py:42
+#, fuzzy
+#| msgid "share with partners"
+msgid "share data with partners"
+msgstr "Autorizo o compartilhamento dos meus dados com parceiros do GruPy-RN"
+
+#: apps/api/models.py:43 apps/api/models.py:133
+msgid "date"
+msgstr "data"
+
+#: apps/api/models.py:60 apps/api/models.py:180 apps/api/models.py:253
+msgid "attendee"
+msgstr "participante"
+
+#: apps/api/models.py:61
+#, fuzzy
+#| msgid "attendee"
+msgid "attendees"
+msgstr "participantes"
+
+#: apps/api/models.py:66 apps/api/models.py:167
+msgid "description"
+msgstr "descrição"
+
+#: apps/api/models.py:67 apps/api/models.py:166
+msgid "place"
+msgstr "local"
+
+#: apps/api/models.py:68
+msgid "latitude"
+msgstr ""
+
+#: apps/api/models.py:69
+msgid "longitude"
+msgstr ""
+
+#: apps/api/models.py:70
+msgid "organizers"
+msgstr "organizadores"
+
+#: apps/api/models.py:71
+msgid "created by"
+msgstr "criado por"
+
+#: apps/api/models.py:73
+msgid "content link"
+msgstr "link de conteúdo"
+
+#: apps/api/models.py:74 apps/api/models.py:219 apps/api/models.py:333
+msgid "certificate model"
+msgstr "modelo de certificado"
+
+#: apps/api/models.py:76 apps/api/models.py:221
+msgid "certificate hours"
+msgstr "horas para certificado"
+
+#: apps/api/models.py:77
+msgid "minimum length of stay for certificate"
+msgstr "tempo de permanência mínima para certificado"
+
+#: apps/api/models.py:78
+#, fuzzy
+#| msgid "Percentage from model width"
+msgid "Percentage from total time"
+msgstr "Porcentagem a partir do tempo total do evento"
+
+#: apps/api/models.py:79
+msgid "closed registration"
+msgstr "inscrições encerradas"
+
+#: apps/api/models.py:84 apps/api/models.py:230
+#, python-format
+msgid "%s hours"
+msgstr "%s horas"
+
+#: apps/api/models.py:84 apps/api/models.py:230
+#, python-format
+msgid "%s hour"
+msgstr "%s hora"
+
+#: apps/api/models.py:128
+msgid "events"
+msgstr "eventos"
+
+#: apps/api/models.py:134 apps/api/models.py:163 apps/api/models.py:216
+#, fuzzy
+#| msgid "start date/time"
+msgid "start time"
+msgstr "hora de início"
+
+#: apps/api/models.py:135 apps/api/models.py:164 apps/api/models.py:217
+#, fuzzy
+#| msgid "end date/time"
+msgid "end time"
+msgstr "hora de término"
+
+#: apps/api/models.py:147
+#, fuzzy
+#| msgid "event check"
+msgid "change schedule"
+msgstr "alterar programação"
+
+#: apps/api/models.py:156 apps/api/models.py:162 apps/api/models.py:181
+#: apps/api/models.py:215
+#, fuzzy
+#| msgid "event"
+msgid "event day"
+msgstr "dia de evento"
+
+#: apps/api/models.py:157
+#, fuzzy
+#| msgid "events"
+msgid "event days"
+msgstr "dias de evento"
+
+#: apps/api/models.py:165 apps/api/models.py:218
+msgid "title"
+msgstr "título"
+
+#: apps/api/models.py:168
+msgid "authors"
+msgstr "autores"
+
+#: apps/api/models.py:174
+#, fuzzy
+#| msgid "event check"
+msgid "event schedule"
+msgstr "item de programação"
+
+#: apps/api/models.py:175
+#, fuzzy
+#| msgid "event checks"
+msgid "event schedules"
+msgstr "itens de programação"
+
+#: apps/api/models.py:182 apps/api/models.py:255
+msgid "entrance date/time"
+msgstr "data/hora de entrada"
+
+#: apps/api/models.py:183 apps/api/models.py:256
+msgid "exit date/time"
+msgstr "data/hora de saída"
+
+#: apps/api/models.py:195 apps/api/models.py:198
+#, fuzzy
+#| msgid "entrance date/time"
+msgid "permanence time"
+msgstr "tempo de permanência"
+
+#: apps/api/models.py:201
+#, fuzzy
+#| msgid "event check"
+msgid "not checked out"
+msgstr "não realizou checkout"
+
+#: apps/api/models.py:210
+#, fuzzy
+#| msgid "event check"
+msgid "event day check"
+msgstr "entrada de evento"
+
+#: apps/api/models.py:211
+#, fuzzy
+#| msgid "event checks"
+msgid "event day checks"
+msgstr "entradas de evento"
+
+#: apps/api/models.py:247 apps/api/models.py:254
+#, fuzzy
+#| msgid "event"
+msgid "subevent"
+msgstr "sub-evento"
+
+#: apps/api/models.py:248
+#, fuzzy
+#| msgid "events"
+msgid "subevents"
+msgstr "sub-eventos"
+
+#: apps/api/models.py:263
+#, fuzzy
+#| msgid "event check"
+msgid "subevent check"
+msgstr "entrada de sub-evento"
+
+#: apps/api/models.py:264
+#, fuzzy
+#| msgid "event checks"
+msgid "subevent checks"
+msgstr "entradas de sub-evento"
+
+#: apps/api/models.py:269
+#, fuzzy
+#| msgid "certificate model"
+msgid "certificate image"
+msgstr "modelo de certificado"
+
+#: apps/api/models.py:269
+msgid "Image sized 2000x1545"
+msgstr "Imagem de tamanho 2000x1545"
+
+#: apps/api/models.py:270
+msgid "text"
+msgstr "texto"
+
+#: apps/api/models.py:270
+#, fuzzy, python-brace-format
+msgid ""
+"Available variables: {name}, {event}, {cpf}, {event_date}, {event_place}, "
+"{event_duration}, {event_min_percent}."
+msgstr ""
+"Variáveis disponíveis: {name}, {event}, {cpf}, {event_date}, {event_place}, "
+"{event_duration}, {event_min_percent}."
+
+#: apps/api/models.py:272
+msgid "font"
+msgstr "fonte"
+
+#: apps/api/models.py:272
+msgid "TrueType font file"
+msgstr "arquivo de fonte TrueType"
+
+#: apps/api/models.py:273
+msgid "font size"
+msgstr "tamanho da fonte"
+
+#: apps/api/models.py:274
+msgid "font color"
+msgstr "cor da fonte"
+
+#: apps/api/models.py:275
+msgid "alignment"
+msgstr "alinhamento"
+
+#: apps/api/models.py:276
+msgid "Left"
+msgstr "Esquerda"
+
+#: apps/api/models.py:276
+msgid "Right"
+msgstr "Direita"
+
+#: apps/api/models.py:276
+msgid "Center"
+msgstr "Centro"
+
+#: apps/api/models.py:277
+msgid "Justify"
+msgstr "Justificado"
+
+#: apps/api/models.py:278
+msgid "line spacing"
+msgstr "espaçamento de linhas"
+
+#: apps/api/models.py:279
+msgid "text X position"
+msgstr "posição X do texto"
+
+#: apps/api/models.py:279 apps/api/models.py:281
+msgid "Percentage from model width"
+msgstr "Porcentagem a partir da largura do certificado"
+
+#: apps/api/models.py:280
+msgid "text Y position"
+msgstr "posição Y do texto"
+
+#: apps/api/models.py:280
+msgid "Percentage from model height"
+msgstr "Porcentagem a partir da altura do certificado"
+
+#: apps/api/models.py:281
+msgid "text width"
+msgstr "largura do texto"
+
+#: apps/api/models.py:289
+msgid "preview"
+msgstr "pré-visualização"
+
+#: apps/api/models.py:334
+#, fuzzy
+#| msgid "certificate model"
+msgid "certificate models"
+msgstr "modelos de certificado"
+
+#: apps/api/senders.py:52
+#, python-format
+msgid ", bearer of the registry number %(cpf)s,"
+msgstr ", portador(a) do CPF %(cpf)s,"
+
+#: apps/api/serializers.py:40
+msgid ""
+"I authorize the use of my data exclusively for my identification at this "
+"GruPy-RN event."
+msgstr ""
+
+#: apps/api/views.py:48
+msgid "QR-Code incompatible with this event."
+msgstr "QR-Code de inscrição não está relacionado a este evento."
+
+#: apps/api/views.py:55 apps/api/views.py:130
+msgid "Event inactive."
+msgstr "O evento está inativo."
+
+#: apps/api/views.py:67 apps/api/views.py:151
+#, fuzzy, python-format
+#| msgid "Attendee already checked-in."
+msgid "%(attendee)s already checked-in."
+msgstr "%(attendee)s já realizou check-in."
+
+#: apps/api/views.py:75 apps/api/views.py:144
+#, fuzzy, python-format
+#| msgid "Attendee successfully checked-in."
+msgid "%(attendee)s successfully checked-in."
+msgstr "%(attendee)s realizou check-in com sucesso."
+
+#: apps/api/views.py:89
+#, fuzzy, python-format
+#| msgid "Attendee did not checkin."
+msgid "%(attendee)s did not checkin."
+msgstr "%(attendee)s não realizou check-in."
+
+#: apps/api/views.py:93
+#, fuzzy, python-format
+#| msgid "Attendee already checked-out."
+msgid "%(attendee)s already checked-out."
+msgstr "%(attendee)s já realizou check-out."
+
+#: apps/api/views.py:108 apps/api/views.py:191
+#, fuzzy, python-format
+#| msgid "Attendee successfully checked-out."
+msgid "%(attendee)s successfully checked-out."
+msgstr "%(attendee)s realizou check-out com sucesso."
+
+#: apps/api/views.py:157
+#, fuzzy
+#| msgid "Attendee could not be registered with the received data."
+msgid "Attendee previsously not registered."
+msgstr "Participante não pôde ser registrado com os dados recebidos. "
+
+#: apps/api/views.py:160 apps/api/views.py:197
+msgid "Invalid data."
+msgstr "Dados inválidos."
+
+#: apps/api/views.py:180
+msgid "Check-ins not found."
+msgstr "Check-in não encontrado."
+
+#, fuzzy
+#~| msgid "certificate model"
+#~ msgid "certificate minimum time"
+#~ msgstr "modelo de certificado"
+
+#~ msgid "Image sized 2000x1545 "
+#~ msgstr "imagem de tamanho 2000x1545"
+
+#~ msgid "Error at sending e-mail. Please try again."
+#~ msgstr "Falha ao enviar e-mail. Por favor, tente novamente."
+
+#~ msgid ""
+#~ "Optional. Only if you wish to share name and e-mail information with our "
+#~ "partners."
+#~ msgstr ""
+#~ "Opcional. Somente se você desejar compartilhar seu nome e e-mail com "
+#~ "nossos parceiros."
+
+#~ msgid "start date/time"
+#~ msgstr "data/hora de início"
+
+#~ msgid "end date/time"
+#~ msgstr "data/hora de término"
+
+#~ msgid "schedule link"
+#~ msgstr "link da programação"
+
+#~ msgid "member name"
+#~ msgstr "nome do membro"
+
+#~ msgid "member email"
+#~ msgstr "e-mail do membro"

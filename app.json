@@ -1,7 +1,33 @@
 {
+  "name": "Jararaca",
+  "description": "GruPy-RN Event and Check-in System",
+  "website": "https://meetup.grupyrn.org/",
+  "repository": "https://github.com/GruPy-RN/jararaca",
+  "logo": "https://raw.githubusercontent.com/grupy-rn/checkin_api/master/assets/logo.png",
   "scripts": {
     "dokku": {
-      "predeploy": "django-admin compilemessages -f"
+      "predeploy": "bash predeploy.sh"
     }
-  }
+  },
+  "env": {
+    "DISABLE_COLLECTSTATIC": {
+      "description": "Avoids collecting static prematurely.",
+      "value": "1"
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "description": "Allows installation of dev dependencies",
+      "value": "false"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/grauwoelfchen/heroku-buildpack-gettext"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-python"
+    }
+  ]
 }

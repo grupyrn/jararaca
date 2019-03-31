@@ -1,0 +1,8 @@
+{
+  "name": "jararaca",
+  "description": "GruPy-RN Event and Check-in System",
+  "version": "1.0.0",
+  "engines": {
+    "yarn": "1.x"
+  }
+}
