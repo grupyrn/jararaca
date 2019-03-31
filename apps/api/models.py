@@ -268,7 +268,7 @@ class CertificateModel(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(_('certificate image'), help_text=_('Image sized 2000x1545'))
     text = models.TextField(_('text'), help_text=_('Available variables: {name}, {event}, {cpf}, {event_date}, '
-                                                   '{event_place}, {event_duration}.'))
+                                                   '{event_place}, {event_duration}, {event_min_percent}.'))
     font = models.FileField(_('font'), help_text=_('TrueType font file'))
     font_size = models.IntegerField(_('font size'))
     font_color = RGBColorField(_('font color'))

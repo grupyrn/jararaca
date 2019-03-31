@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-31 16:20-0300\n"
+"POT-Creation-Date: 2019-03-31 17:07-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -248,13 +248,13 @@ msgid "text"
 msgstr "texto"
 
 #: apps/api/models.py:270
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid ""
 "Available variables: {name}, {event}, {cpf}, {event_date}, {event_place}, "
-"{event_duration}."
+"{event_duration}, {event_min_percent}."
 msgstr ""
 "Variáveis disponíveis: {name}, {event}, {cpf}, {event_date}, {event_place}, "
-"{event_duration}."
+"{event_duration}, {event_min_percent}."
 
 #: apps/api/models.py:272
 msgid "font"
