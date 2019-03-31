@@ -36,7 +36,11 @@ class EventCheckView(views.APIView):
         if serializer.is_valid():
             data = serializer.validated_data
 
-            events = Event.current_events(tolerance=timedelta(minutes=60)).filter(id=data['attendee'].event.id)
+            if request.user.is_superuser:
+                events = Event.current_events(tolerance=timedelta(minutes=60)).filter(id=data['attendee'].event.id)
+            else:
+                events = Event.current_events(tolerance=timedelta(minutes=60)).filter(id=data['attendee'].event.id,
+                                                                                      created_by=request.user)
 
             if events.all():
                 if data['event'] and data['attendee'].event != data['event']:
@@ -196,12 +200,16 @@ class SubEventCheckoutAllView(views.APIView):
 
 class CurrentEventsView(APIView):
     """
-    API endpoint that shows current events.
+    API endpoint that returns current events.
     """
     permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
-        events = Event.current_events(tolerance=timedelta(minutes=60)).all()
+        if request.user.is_superuser:
+            events = Event.current_events(tolerance=timedelta(minutes=60)).all()
+        else:
+            events = Event.current_events(tolerance=timedelta(minutes=60)).filter(created_by=request.user).all()
+
         serializer = EventSerializer(events, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
