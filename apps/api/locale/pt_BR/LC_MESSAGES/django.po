@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-20 14:50-0300\n"
+"POT-Creation-Date: 2019-03-31 16:20-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -326,61 +326,66 @@ msgstr "pré-visualização"
 msgid "certificate models"
 msgstr "modelos de certificado"
 
+#: apps/api/senders.py:52
+#, python-format
+msgid ", bearer of the registry number %(cpf)s,"
+msgstr ", portador(a) do CPF %(cpf)s,"
+
 #: apps/api/serializers.py:40
 msgid ""
 "I authorize the use of my data exclusively for my identification at this "
 "GruPy-RN event."
 msgstr ""
 
-#: apps/api/views.py:44
+#: apps/api/views.py:48
 msgid "QR-Code incompatible with this event."
 msgstr "QR-Code de inscrição não está relacionado a este evento."
 
-#: apps/api/views.py:51 apps/api/views.py:126
+#: apps/api/views.py:55 apps/api/views.py:130
 msgid "Event inactive."
 msgstr "O evento está inativo."
 
-#: apps/api/views.py:63 apps/api/views.py:147
+#: apps/api/views.py:67 apps/api/views.py:151
 #, fuzzy, python-format
 #| msgid "Attendee already checked-in."
 msgid "%(attendee)s already checked-in."
 msgstr "%(attendee)s já realizou check-in."
 
-#: apps/api/views.py:71 apps/api/views.py:140
+#: apps/api/views.py:75 apps/api/views.py:144
 #, fuzzy, python-format
 #| msgid "Attendee successfully checked-in."
 msgid "%(attendee)s successfully checked-in."
 msgstr "%(attendee)s realizou check-in com sucesso."
 
-#: apps/api/views.py:85
+#: apps/api/views.py:89
 #, fuzzy, python-format
 #| msgid "Attendee did not checkin."
 msgid "%(attendee)s did not checkin."
 msgstr "%(attendee)s não realizou check-in."
 
-#: apps/api/views.py:89
+#: apps/api/views.py:93
 #, fuzzy, python-format
 #| msgid "Attendee already checked-out."
 msgid "%(attendee)s already checked-out."
 msgstr "%(attendee)s já realizou check-out."
 
-#: apps/api/views.py:104 apps/api/views.py:187
+#: apps/api/views.py:108 apps/api/views.py:191
 #, fuzzy, python-format
 #| msgid "Attendee successfully checked-out."
 msgid "%(attendee)s successfully checked-out."
 msgstr "%(attendee)s realizou check-out com sucesso."
 
-#: apps/api/views.py:153
+#: apps/api/views.py:157
 #, fuzzy
 #| msgid "Attendee could not be registered with the received data."
 msgid "Attendee previsously not registered."
 msgstr "Participante não pôde ser registrado com os dados recebidos. "
 
-#: apps/api/views.py:156 apps/api/views.py:193
+#: apps/api/views.py:160 apps/api/views.py:197
 msgid "Invalid data."
 msgstr "Dados inválidos."
 
-#: apps/api/views.py:176
+#: apps/api/views.py:180
 msgid "Check-ins not found."
 msgstr "Check-in não encontrado."
 

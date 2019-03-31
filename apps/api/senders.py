@@ -1,6 +1,7 @@
 import base64
 
 from django.conf import settings
+from django.utils.translation import gettext as _
 from sendgrid import *
 from sendgrid.helpers.mail import *
 
@@ -48,7 +49,7 @@ def send_certificate_mail(name, email, event, cpf=None):
 
     attachment1 = Attachment()
 
-    cpf_text = f', portador(a) do CPF {cpf},' if cpf else ''
+    cpf_text = _(', bearer of the registry number %(cpf)s,') % {'cpf': cpf} if cpf else ''
     data = {'name': name, 'event': event.name, 'cpf': cpf_text, 'event_date': event.formated_dates,
             'event_place': event.place, 'event_duration': event.formated_duration}
     certificate_data = event.certificate_model.generate_certificate(data)
