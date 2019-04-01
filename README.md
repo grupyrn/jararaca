@@ -26,9 +26,17 @@ cp .env.sample .env
 Install the dependencies
 
 ```
-yarn install
 pip install -r requirements.txt
 ```
+
+Checkout [Jararaquinha](https://github.com/grupyrn/jararaquinha) submodule
+
+```
+git submodule init
+git submodule update
+```
+
+Then, refer to [Jararaquinha's installation instructions](https://github.com/grupyrn/jararaquinha#installing).
 
 ### Running
 
@@ -52,11 +60,16 @@ Compile translations
 python manage.py compilemessages -f
 ```
 
-And finally run the project
+Run the project
 
 ```
-yarn run start
 python manage.py runserver
+```
+
+And also run [Jararaquinha](https://github.com/grupyrn/jararaquinha) in another terminal
+
+```
+yarn start
 ```
 
 Now you can open [http://localhost:8000](http://localhost:8000) in your browser
