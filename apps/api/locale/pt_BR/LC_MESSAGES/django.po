@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-31 17:07-0300\n"
+"POT-Creation-Date: 2019-04-06 19:43-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,236 +18,255 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: apps/api/admin.py:12
+#: apps/api/admin.py:15
 msgid "Jararaca - GruPy-RN Event and Check-in System"
 msgstr ""
 
-#: apps/api/admin.py:71 apps/api/admin.py:118
+#: apps/api/admin.py:79 apps/api/admin.py:152
 msgid "Generate XLSX spreadsheet"
 msgstr "Gerar planilha XLSX"
 
-#: apps/api/models.py:38 apps/api/models.py:127 apps/api/models.py:132
+#: apps/api/admin.py:86
+msgid ""
+"The certficates were successfuly sent to the eligible selected attendees."
+msgstr "Os certificados foram enviados com sucesso aos participantes selecionados que cumpriram o tempo mínimo do evento."
+
+#: apps/api/admin.py:89
+#, fuzzy
+#| msgid "certificate model"
+msgid "Send certificate"
+msgstr "modelo de certificado"
+
+#: apps/api/admin.py:105
+msgid "Check-in"
+msgstr "Check-in"
+
+#: apps/api/models.py:39 apps/api/models.py:141 apps/api/models.py:146
 msgid "event"
 msgstr "evento"
 
-#: apps/api/models.py:39 apps/api/models.py:65
+#: apps/api/models.py:40 apps/api/models.py:79
 msgid "name"
 msgstr "nome"
 
-#: apps/api/models.py:40
+#: apps/api/models.py:41
 msgid "email"
 msgstr "e-mail"
 
-#: apps/api/models.py:41
+#: apps/api/models.py:42
 msgid "CPF"
 msgstr "CPF"
 
-#: apps/api/models.py:42
+#: apps/api/models.py:43
 #, fuzzy
 #| msgid "share with partners"
 msgid "share data with partners"
 msgstr "Autorizo o compartilhamento dos meus dados com parceiros do GruPy-RN"
 
-#: apps/api/models.py:43 apps/api/models.py:133
+#: apps/api/models.py:44 apps/api/models.py:147
 msgid "date"
 msgstr "data"
 
-#: apps/api/models.py:60 apps/api/models.py:180 apps/api/models.py:253
+#: apps/api/models.py:63
+msgid "presence percentage"
+msgstr "porcentagem de tempo de presença"
+
+#: apps/api/models.py:67
+#, fuzzy
+#| msgid "minimum length of stay for certificate"
+msgid "eligible to certificate"
+msgstr "elegível para recebimento de certificado"
+
+#: apps/api/models.py:74 apps/api/models.py:194 apps/api/models.py:265
 msgid "attendee"
 msgstr "participante"
 
-#: apps/api/models.py:61
+#: apps/api/models.py:75
 #, fuzzy
 #| msgid "attendee"
 msgid "attendees"
 msgstr "participantes"
 
-#: apps/api/models.py:66 apps/api/models.py:167
+#: apps/api/models.py:80 apps/api/models.py:181
 msgid "description"
 msgstr "descrição"
 
-#: apps/api/models.py:67 apps/api/models.py:166
+#: apps/api/models.py:81 apps/api/models.py:180
 msgid "place"
 msgstr "local"
 
-#: apps/api/models.py:68
+#: apps/api/models.py:82
 msgid "latitude"
 msgstr ""
 
-#: apps/api/models.py:69
+#: apps/api/models.py:83
 msgid "longitude"
 msgstr ""
 
-#: apps/api/models.py:70
+#: apps/api/models.py:84
 msgid "organizers"
 msgstr "organizadores"
 
-#: apps/api/models.py:71
+#: apps/api/models.py:85
 msgid "created by"
 msgstr "criado por"
 
-#: apps/api/models.py:73
+#: apps/api/models.py:87
 msgid "content link"
 msgstr "link de conteúdo"
 
-#: apps/api/models.py:74 apps/api/models.py:219 apps/api/models.py:333
+#: apps/api/models.py:88 apps/api/models.py:231 apps/api/models.py:345
 msgid "certificate model"
 msgstr "modelo de certificado"
 
-#: apps/api/models.py:76 apps/api/models.py:221
+#: apps/api/models.py:90 apps/api/models.py:233
 msgid "certificate hours"
 msgstr "horas para certificado"
 
-#: apps/api/models.py:77
+#: apps/api/models.py:91
 msgid "minimum length of stay for certificate"
 msgstr "tempo de permanência mínima para certificado"
 
-#: apps/api/models.py:78
+#: apps/api/models.py:92
 #, fuzzy
 #| msgid "Percentage from model width"
 msgid "Percentage from total time"
 msgstr "Porcentagem a partir do tempo total do evento"
 
-#: apps/api/models.py:79
+#: apps/api/models.py:93
 msgid "closed registration"
 msgstr "inscrições encerradas"
 
-#: apps/api/models.py:84 apps/api/models.py:230
+#: apps/api/models.py:98 apps/api/models.py:242
 #, python-format
 msgid "%s hours"
 msgstr "%s horas"
 
-#: apps/api/models.py:84 apps/api/models.py:230
+#: apps/api/models.py:98 apps/api/models.py:242
 #, python-format
 msgid "%s hour"
 msgstr "%s hora"
 
-#: apps/api/models.py:128
+#: apps/api/models.py:142
 msgid "events"
 msgstr "eventos"
 
-#: apps/api/models.py:134 apps/api/models.py:163 apps/api/models.py:216
+#: apps/api/models.py:148 apps/api/models.py:177 apps/api/models.py:228
 #, fuzzy
 #| msgid "start date/time"
 msgid "start time"
 msgstr "hora de início"
 
-#: apps/api/models.py:135 apps/api/models.py:164 apps/api/models.py:217
+#: apps/api/models.py:149 apps/api/models.py:178 apps/api/models.py:229
 #, fuzzy
 #| msgid "end date/time"
 msgid "end time"
 msgstr "hora de término"
 
-#: apps/api/models.py:147
+#: apps/api/models.py:161
 #, fuzzy
 #| msgid "event check"
 msgid "change schedule"
 msgstr "alterar programação"
 
-#: apps/api/models.py:156 apps/api/models.py:162 apps/api/models.py:181
-#: apps/api/models.py:215
+#: apps/api/models.py:170 apps/api/models.py:176 apps/api/models.py:195
+#: apps/api/models.py:227
 #, fuzzy
 #| msgid "event"
 msgid "event day"
 msgstr "dia de evento"
 
-#: apps/api/models.py:157
+#: apps/api/models.py:171
 #, fuzzy
 #| msgid "events"
 msgid "event days"
 msgstr "dias de evento"
 
-#: apps/api/models.py:165 apps/api/models.py:218
+#: apps/api/models.py:179 apps/api/models.py:230
 msgid "title"
 msgstr "título"
 
-#: apps/api/models.py:168
+#: apps/api/models.py:182
 msgid "authors"
 msgstr "autores"
 
-#: apps/api/models.py:174
+#: apps/api/models.py:188
 #, fuzzy
 #| msgid "event check"
 msgid "event schedule"
 msgstr "item de programação"
 
-#: apps/api/models.py:175
+#: apps/api/models.py:189
 #, fuzzy
 #| msgid "event checks"
 msgid "event schedules"
 msgstr "itens de programação"
 
-#: apps/api/models.py:182 apps/api/models.py:255
+#: apps/api/models.py:196 apps/api/models.py:267
 msgid "entrance date/time"
 msgstr "data/hora de entrada"
 
-#: apps/api/models.py:183 apps/api/models.py:256
+#: apps/api/models.py:197 apps/api/models.py:268
 msgid "exit date/time"
 msgstr "data/hora de saída"
 
-#: apps/api/models.py:195 apps/api/models.py:198
+#: apps/api/models.py:210
 #, fuzzy
 #| msgid "entrance date/time"
 msgid "permanence time"
 msgstr "tempo de permanência"
 
-#: apps/api/models.py:201
-#, fuzzy
-#| msgid "event check"
-msgid "not checked out"
-msgstr "não realizou checkout"
-
-#: apps/api/models.py:210
+#: apps/api/models.py:222
 #, fuzzy
 #| msgid "event check"
 msgid "event day check"
 msgstr "entrada de evento"
 
-#: apps/api/models.py:211
+#: apps/api/models.py:223
 #, fuzzy
 #| msgid "event checks"
 msgid "event day checks"
 msgstr "entradas de evento"
 
-#: apps/api/models.py:247 apps/api/models.py:254
+#: apps/api/models.py:259 apps/api/models.py:266
 #, fuzzy
 #| msgid "event"
 msgid "subevent"
 msgstr "sub-evento"
 
-#: apps/api/models.py:248
+#: apps/api/models.py:260
 #, fuzzy
 #| msgid "events"
 msgid "subevents"
 msgstr "sub-eventos"
 
-#: apps/api/models.py:263
+#: apps/api/models.py:275
 #, fuzzy
 #| msgid "event check"
 msgid "subevent check"
 msgstr "entrada de sub-evento"
 
-#: apps/api/models.py:264
+#: apps/api/models.py:276
 #, fuzzy
 #| msgid "event checks"
 msgid "subevent checks"
 msgstr "entradas de sub-evento"
 
-#: apps/api/models.py:269
+#: apps/api/models.py:281
 #, fuzzy
 #| msgid "certificate model"
 msgid "certificate image"
 msgstr "modelo de certificado"
 
-#: apps/api/models.py:269
+#: apps/api/models.py:281
 msgid "Image sized 2000x1545"
 msgstr "Imagem de tamanho 2000x1545"
 
-#: apps/api/models.py:270
+#: apps/api/models.py:282
 msgid "text"
 msgstr "texto"
 
-#: apps/api/models.py:270
+#: apps/api/models.py:282
 #, fuzzy, python-brace-format
 msgid ""
 "Available variables: {name}, {event}, {cpf}, {event_date}, {event_place}, "
@@ -256,71 +275,71 @@ msgstr ""
 "Variáveis disponíveis: {name}, {event}, {cpf}, {event_date}, {event_place}, "
 "{event_duration}, {event_min_percent}."
 
-#: apps/api/models.py:272
+#: apps/api/models.py:284
 msgid "font"
 msgstr "fonte"
 
-#: apps/api/models.py:272
+#: apps/api/models.py:284
 msgid "TrueType font file"
 msgstr "arquivo de fonte TrueType"
 
-#: apps/api/models.py:273
+#: apps/api/models.py:285
 msgid "font size"
 msgstr "tamanho da fonte"
 
-#: apps/api/models.py:274
+#: apps/api/models.py:286
 msgid "font color"
 msgstr "cor da fonte"
 
-#: apps/api/models.py:275
+#: apps/api/models.py:287
 msgid "alignment"
 msgstr "alinhamento"
 
-#: apps/api/models.py:276
+#: apps/api/models.py:288
 msgid "Left"
 msgstr "Esquerda"
 
-#: apps/api/models.py:276
+#: apps/api/models.py:288
 msgid "Right"
 msgstr "Direita"
 
-#: apps/api/models.py:276
+#: apps/api/models.py:288
 msgid "Center"
 msgstr "Centro"
 
-#: apps/api/models.py:277
+#: apps/api/models.py:289
 msgid "Justify"
 msgstr "Justificado"
 
-#: apps/api/models.py:278
+#: apps/api/models.py:290
 msgid "line spacing"
 msgstr "espaçamento de linhas"
 
-#: apps/api/models.py:279
+#: apps/api/models.py:291
 msgid "text X position"
 msgstr "posição X do texto"
 
-#: apps/api/models.py:279 apps/api/models.py:281
+#: apps/api/models.py:291 apps/api/models.py:293
 msgid "Percentage from model width"
 msgstr "Porcentagem a partir da largura do certificado"
 
-#: apps/api/models.py:280
+#: apps/api/models.py:292
 msgid "text Y position"
 msgstr "posição Y do texto"
 
-#: apps/api/models.py:280
+#: apps/api/models.py:292
 msgid "Percentage from model height"
 msgstr "Porcentagem a partir da altura do certificado"
 
-#: apps/api/models.py:281
+#: apps/api/models.py:293
 msgid "text width"
 msgstr "largura do texto"
 
-#: apps/api/models.py:289
+#: apps/api/models.py:301
 msgid "preview"
 msgstr "pré-visualização"
 
-#: apps/api/models.py:334
+#: apps/api/models.py:346
 #, fuzzy
 #| msgid "certificate model"
 msgid "certificate models"
@@ -388,6 +407,11 @@ msgstr "Dados inválidos."
 #: apps/api/views.py:180
 msgid "Check-ins not found."
 msgstr "Check-in não encontrado."
+
+#, fuzzy
+#~| msgid "event check"
+#~ msgid "not checked out"
+#~ msgstr "não realizou checkout"
 
 #, fuzzy
 #~| msgid "certificate model"
