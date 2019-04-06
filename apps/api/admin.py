@@ -1,10 +1,11 @@
 from django.conf import settings
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.db.models import F
 from django.http import HttpResponse
 from django.utils.translation import gettext_lazy as _
 
 # Register your models here.
+from apps.api import senders
 from apps.api.exporters import generate_xlsx
 from apps.api.models import Event, EventDayCheck, EventSchedule, EventDay, Attendee, SubEventCheck, SubEvent, \
     CertificateModel
@@ -54,7 +55,7 @@ class EventDayAdmin(admin.ModelAdmin):
 class AttendeeAdmin(admin.ModelAdmin):
     list_filter = ('event', 'share_data_with_partners')
     list_display = ('name', 'event', 'date', 'share_data_with_partners')
-    actions = ['generate_xlsx']
+    actions = ['generate_xlsx', 'send_certificate']
 
     def get_queryset(self, request):
         qs = super(AttendeeAdmin, self).get_queryset(request)
@@ -69,6 +70,16 @@ class AttendeeAdmin(admin.ModelAdmin):
         return response
 
     generate_xlsx.short_description = _('Generate XLSX spreadsheet')
+
+    def send_certificate(self, request, queryset):
+        for attendee in queryset.all():
+            if attendee.presence_percentage >= attendee.event.certificate_minimum_time:
+                senders.send_certificate_mail(attendee.name, attendee.email, attendee.event,
+                                              cpf=attendee.cpf)
+        messages.add_message(request, messages.INFO, _('The certficates were successfuly sent to the eligible '
+                                                       'selected attendees.'))
+
+    send_certificate.short_description = _('Send certificate')
 
     def get_actions(self, request):
         actions = super().get_actions(request)
