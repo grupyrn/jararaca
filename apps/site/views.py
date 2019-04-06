@@ -73,15 +73,27 @@ class AttendeeRegistrationView(FormView):
 
         attendee = form.instance
         attendee.event = event
-        find_user = Attendee.objects.filter(event=event, email=attendee.email)
+        defaults = form.cleaned_data
+        authorize = defaults.pop('authorize')
+        
+        if not authorize:
+            messages.error(self.request, _('Registration failed.'))
+            return self.form_invalid(form)
+
+        user, created = Attendee.objects.get_or_create(
+            event=event,
+            email=attendee.email,
+            defaults=form.cleaned_data
+        )
         try:
-            qr_data = senders.send_registration_mail(attendee, event)
+            qr_data = senders.send_registration_mail(user, event)
             context = self.get_context_data(qr_code=base64.b64encode(qr_data).decode('ascii'))
-            if not find_user:
-                attendee.save()
+            if created:
                 return render(self.request, 'site/thanks.html', context)
             return render(self.request, 'site/duplicate.html', context)
+        
         except Exception as e:
+            print(e)
             messages.error(self.request, _('Registration failed.'))
             return self.form_invalid(form)
 
