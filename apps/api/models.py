@@ -13,6 +13,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
+from django.utils.formats import date_format
 from django.utils.text import format_lazy
 from django.utils.translation import gettext_lazy as _
 
@@ -55,6 +56,21 @@ class Attendee(models.Model):
         result = checked_time * 100 / event_time
 
         return result
+
+    def formated_presence_percentage(self):
+        if self.presence_percentage > 100:
+            return '100%'
+        return '%d%%' % self.presence_percentage
+
+    formated_presence_percentage.short_description = _('presence percentage')
+
+    def is_eligible_to_certificate(self):
+        return self.presence_percentage >= self.event.certificate_minimum_time
+    is_eligible_to_certificate.short_description = _('eligible to certificate')
+    is_eligible_to_certificate.boolean = True
+
+    def __str__(self):
+        return f'{self.name} ({self.uuid})'
 
     class Meta:
         verbose_name = _('attendee')
@@ -150,7 +166,7 @@ class EventDay(models.Model):
     schedule_link.short_description = ''
 
     def __str__(self):
-        return f'{self.event.name} - {self.date}'
+        return f'{self.event.name} - {date_format(self.date, format="SHORT_DATE_FORMAT", use_l10n=True)}'
 
     class Meta:
         verbose_name = _('event day')
@@ -183,11 +199,12 @@ class EventDayCheck(models.Model):
     exit_date = models.DateTimeField(_('exit date/time'), null=True)
 
     @property
-    def time_passed(self):
-        return self.exit_date - self.entrance_date if self.exit_date else None
-
     def attendee_name(self):
         return self.attendee.name
+
+    @property
+    def time_passed(self):
+        return self.exit_date - self.entrance_date if self.exit_date else None
 
     def event(self):
         return self.event_day.event
@@ -195,11 +212,8 @@ class EventDayCheck(models.Model):
     time_passed.fget.short_description = _('permanence time')
 
     def __str__(self):
-        text = _('permanence time')
-        passed = format_lazy('{text}: {time}', text=text, time=self.time_passed)
-        if not self.time_passed:
-            passed = _('not checked out')
-        return f'{self.attendee.name} - {passed}'
+        return f'{self.attendee.name} ({self.event_day.event.name} - ' \
+            f'{date_format(self.event_day.date, format="SHORT_DATE_FORMAT", use_l10n=True)})'
 
     def checkout(self):
         if not self.exit_date:

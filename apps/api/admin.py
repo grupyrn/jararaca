@@ -1,10 +1,13 @@
-from django.conf import settings
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.db.models import F
 from django.http import HttpResponse
+from django.urls import reverse
+from django.utils.formats import date_format
+from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
 # Register your models here.
+from apps.api import senders
 from apps.api.exporters import generate_xlsx
 from apps.api.models import Event, EventDayCheck, EventSchedule, EventDay, Attendee, SubEventCheck, SubEvent, \
     CertificateModel
@@ -15,7 +18,9 @@ admin.site.site_header = _("Jararaca - GruPy-RN Event and Check-in System")
 @admin.register(EventDayCheck)
 class EventDayCheckAdmin(admin.ModelAdmin):
     list_filter = ('event_day__event__name',)
-    list_display = ('attendee_name', 'event', 'entrance_date', 'exit_date')
+    search_fields = ('attendee__name', 'attendee__email', 'attendee__cpf')
+    list_display = ('attendee_name', 'event', 'entrance_date', 'exit_date', 'time_passed')
+    readonly_fields = ('event_day', 'attendee', 'entrance_date', 'exit_date', 'time_passed')
 
     def get_queryset(self, request):
         qs = super(EventDayCheckAdmin, self).get_queryset(request)
@@ -53,8 +58,11 @@ class EventDayAdmin(admin.ModelAdmin):
 @admin.register(Attendee)
 class AttendeeAdmin(admin.ModelAdmin):
     list_filter = ('event', 'share_data_with_partners')
-    list_display = ('name', 'event', 'date', 'share_data_with_partners')
-    actions = ['generate_xlsx']
+    list_display = ('name', 'event', 'date', 'eventdaycheck_link')
+    search_fields = ('name', 'email', 'cpf')
+    readonly_fields = ('uuid', 'event', 'name', 'email', 'cpf', 'share_data_with_partners',
+                       'formated_presence_percentage', 'is_eligible_to_certificate', 'eventdaycheck_link')
+    actions = ['generate_xlsx', 'send_certificate']
 
     def get_queryset(self, request):
         qs = super(AttendeeAdmin, self).get_queryset(request)
@@ -69,6 +77,32 @@ class AttendeeAdmin(admin.ModelAdmin):
         return response
 
     generate_xlsx.short_description = _('Generate XLSX spreadsheet')
+
+    def send_certificate(self, request, queryset):
+        for attendee in queryset.all():
+            if attendee.presence_percentage >= attendee.event.certificate_minimum_time:
+                senders.send_certificate_mail(attendee.name, attendee.email, attendee.event,
+                                              cpf=attendee.cpf)
+        messages.add_message(request, messages.INFO, _('The certficates were successfuly sent to the eligible '
+                                                       'selected attendees.'))
+
+    send_certificate.short_description = _('Send certificate')
+
+    @mark_safe
+    def eventdaycheck_link(self, obj):
+        chk = obj.eventdaycheck_set
+        if chk:
+            html = ''
+            for check in obj.eventdaycheck_set.all():
+                changeform_url = reverse(
+                    'admin:api_eventdaycheck_change', args=(check.id,)
+                )
+                html += '<a href="%s">%s</a> ' % (
+                    changeform_url, date_format(check.event_day.date, format='SHORT_DATE_FORMAT', use_l10n=True))
+            return html
+        return u''
+
+    eventdaycheck_link.short_description = _('Check-in')
 
     def get_actions(self, request):
         actions = super().get_actions(request)
