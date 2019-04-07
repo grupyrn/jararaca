@@ -35,7 +35,7 @@ msgstr "Os certificados foram enviados com sucesso aos participantes selecionado
 #, fuzzy
 #| msgid "certificate model"
 msgid "Send certificate"
-msgstr "modelo de certificado"
+msgstr "Enviar certificado"
 
 #: apps/api/admin.py:105
 msgid "Check-in"
