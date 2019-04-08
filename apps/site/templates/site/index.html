@@ -35,7 +35,10 @@
             </div>
           </div>
         {% empty %}
-          <p>{% trans "Coming soon..." %}</p>
+          <div class="center">
+            <p>{% trans "Coming soon." %}</p>
+            <p>{% trans "In the meantime, take a look at the "%} <a href="/#past-events">{% trans "previous events!" %}</a></p>
+          </div>
         {% endfor %}
 
       </div>
