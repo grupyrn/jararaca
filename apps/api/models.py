@@ -58,8 +58,6 @@ class Attendee(models.Model):
         return result
 
     def formated_presence_percentage(self):
-        if self.presence_percentage > 100:
-            return '100%'
         return '%d%%' % self.presence_percentage
 
     formated_presence_percentage.short_description = _('presence percentage')
