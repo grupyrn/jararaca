@@ -18,7 +18,7 @@
             <div class="card blue-card darken-1">
               <div class="card-content white-text">
                 <span class="card-title">{{ event.name }}</span>
-                <p>{{ event.place }}</p>
+                <p>{{ event.place }}</p>im
                 <p>{% for date in event.date %}{{ date|date:'SHORT_DATE_FORMAT' }}{% if not forloop.last %},
                 {% endif %}{% endfor %}</p>
               </div>
@@ -31,7 +31,10 @@
             </div>
           </div>
         {% empty %}
-          <p>{% trans "Coming soon..." %}</p>
+          <div class="center">
+            <p>{% trans "Coming soon." %}</p>
+            <p>{% trans "In the meantime, take a look at the "%} <a href="/#past-events">{% trans "previous events!" %}</a></p>
+          </div>
         {% endfor %}
 
       </div>
