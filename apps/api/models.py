@@ -4,7 +4,6 @@ import uuid
 from datetime import date, datetime, timedelta
 from io import BytesIO
 
-from loguru import logger
 from PIL import Image
 from colorful.fields import RGBColorField
 from django.contrib.auth import get_user_model
@@ -59,8 +58,6 @@ class Attendee(models.Model):
         return result
 
     def formated_presence_percentage(self):
-        if self.presence_percentage > 100:
-            return '100%'
         return '%d%%' % self.presence_percentage
 
     formated_presence_percentage.short_description = _('presence percentage')
@@ -72,24 +69,6 @@ class Attendee(models.Model):
 
     def __str__(self):
         return f'{self.name} ({self.uuid})'
-
-    def __repr__(self):
-        return f'{self.name} ({self.uuid})'
-    
-    def to_dict(self):
-        return {
-            'uuid': self.uuid,
-            'event': self.event.name,
-            'name': self.name,
-            'email': self.email,
-            'cpf': self.cpf,
-            'share': self.share_data_with_partners
-        }
-
-    @logger.catch
-    def save(self, *args, **kwargs):
-        logger.info(f'New Attendee: {self.to_dict()}')
-        return super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = _('attendee')
@@ -157,32 +136,6 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
-    
-    def __repr__(self):
-        return self.name
-
-    def to_dict(self):
-        return {
-            'name': self.name,
-            'description': self.description,
-            'place': self.place,
-            'latitude': self.latitude,
-            'longitude': self.longitude,
-            'organizers': self.organizers,
-            'created_by': self.created_by.username,
-            'slug': self.slug,
-            'content_link': self.content_link,
-            'certificate_model': self.certificate_model,
-            'closed_registration': self.closed_registration
-        }
-
-    @logger.catch
-    def save(self, *args, **kwargs):
-        if self.pk:
-            logger.info(f'Event Edited: {self.to_dict()}')
-        else:
-            logger.info(f'New Event: {self.to_dict()}')
-        return super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = _('event')
@@ -213,25 +166,6 @@ class EventDay(models.Model):
     def __str__(self):
         return f'{self.event.name} - {date_format(self.date, format="SHORT_DATE_FORMAT", use_l10n=True)}'
 
-    def __repr__(self):
-        return f'{self.event.name} - {date_format(self.date, format="SHORT_DATE_FORMAT", use_l10n=True)}'
-    
-    def to_dict(self):
-        return {
-            'event': self.event.name,
-            'date': self.date,
-            'start': self.start,
-            'end': self.end
-        }
-
-    @logger.catch
-    def save(self, *args, **kwargs):
-        if self.pk:
-            logger.info(f'Event Day Edited: {self.to_dict()}')
-        else:
-            logger.info(f'New Event Day: {self.to_dict()}')
-        return super().save(*args, **kwargs)
-
     class Meta:
         verbose_name = _('event day')
         verbose_name_plural = _('event days')
@@ -249,28 +183,6 @@ class EventSchedule(models.Model):
 
     def __str__(self):
         return self.title
-
-    def __repr__(self):
-        return self.title
-
-    def to_dict(self):
-        return {
-            'event': self.event.event.name,
-            'start': self.start,
-            'end': self.end,
-            'title': self.title,
-            'place': self.place,
-            'description': self.description,
-            'authors': self.authors
-        }
-
-    @logger.catch
-    def save(self, *args, **kwargs):
-        if self.pk:
-            logger.info(f'Event Schedule Edited: {self.to_dict()}')
-        else:
-            logger.info(f'New Event Schedule: {self.to_dict()}')
-        return super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = _('event schedule')
@@ -301,30 +213,10 @@ class EventDayCheck(models.Model):
         return f'{self.attendee.name} ({self.event_day.event.name} - ' \
             f'{date_format(self.event_day.date, format="SHORT_DATE_FORMAT", use_l10n=True)})'
 
-    def __repr__(self):
-        return f'{self.attendee.name} ({self.event_day.event.name} - ' \
-            f'{date_format(self.event_day.date, format="SHORT_DATE_FORMAT", use_l10n=True)})'
-
     def checkout(self):
         if not self.exit_date:
             self.exit_date = timezone.now()
             self.save()
-
-    def to_dict(self):
-        return {
-            'attendee': self.attendee,
-            'event_day': self.event_day,
-            'entrance_date': self.entrance_date,
-            'exit_date': self.exit_date
-        }
-    
-    @logger.catch
-    def save(self, *args, **kwargs):
-        if self.pk:
-            logger.info(f'Event Day Check Edited: {self.to_dict()}')
-        else:
-            logger.info(f'New Event Day Check: {self.to_dict()}')
-        return super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = _('event day check')
@@ -362,26 +254,6 @@ class SubEvent(models.Model):
 
     def __str__(self):
         return self.title
-
-    def __repr__(self):
-        return self.title
-
-    def to_dict(self):
-        return {
-            'event_day': self.event_day,
-            'start': self.start,
-            'end': self.end,
-            'title': self.title,
-            'certificate_model': self.certificate_model
-        }
-    
-    @logger.catch
-    def save(self, *args, **kwargs):
-        if self.pk:
-            logger.info(f'SubEvent Edited: {self.to_dict()}')
-        else:
-            logger.info(f'New SubEvent: {self.to_dict()}')
-        return super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = _('subevent')
