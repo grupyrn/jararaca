@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.utils.formats import date_format
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
+from django import forms
 
 # Register your models here.
 from apps.api import senders
@@ -111,8 +112,15 @@ class AttendeeAdmin(admin.ModelAdmin):
         return actions
 
 
+class EventAdminForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['certificate_model'].empty_label = _('without certificate')
+
+
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
+    form = EventAdminForm
     exclude = ('created_by',)
     inlines = [
         EventDayInline,
