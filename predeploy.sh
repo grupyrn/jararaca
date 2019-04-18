@@ -15,4 +15,7 @@ django-admin compilemessages -f -v 0
 echo "Applying migrations..."
 python manage.py migrate
 
+echo "Removing Node packages..."
+find -type d -name "node_modules" -printf "%p\n"|sort -nr | xargs rm -rf
+
 echo "Done."
