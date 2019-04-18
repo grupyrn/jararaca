@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-20 13:54-0300\n"
+"POT-Creation-Date: 2019-04-18 02:08-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,6 +46,11 @@ msgstr ""
 "Eu também autorizo o compartilhamento do meu nome e e-mail com parceiros do "
 "GruPy-RN"
 
+#: apps/site/templates/site/checkin.html:9
+#: apps/site/templates/site/footer.html:7
+msgid "Jararaca - GruPy-RN Event and Check-in System"
+msgstr "Jararaca - Sistema de Eventos e Check-in do GruPy-RN"
+
 #: apps/site/templates/site/event.html:17
 #: apps/site/templates/site/index.html:27
 msgid "Register"
@@ -56,17 +61,13 @@ msgid "Schedule"
 msgstr "Programação"
 
 #: apps/site/templates/site/event.html:41
-#: apps/site/templates/site/index.html:68
+#: apps/site/templates/site/index.html:71
 msgid "Place"
 msgstr "Local"
 
-#: apps/site/templates/site/footer.html:7
-msgid "Jararaca - GruPy-RN Event and Check-in System"
-msgstr "Jararaca - Sistema de Eventos e Check-in do GruPy-RN"
-
 #: apps/site/templates/site/footer.html:8
 msgid "From developers to the community."
-msgstr "De desenvolvedores para a comunidade."
+msgstr "Dos desenvolvedores para a comunidade."
 
 #: apps/site/templates/site/footer.html:11
 msgid "Social networks"
@@ -91,41 +92,51 @@ msgstr "Eventos futuros"
 msgid "More info"
 msgstr "Mais informações"
 
-#: apps/site/templates/site/index.html:34
-msgid "Coming soon..."
+#: apps/site/templates/site/index.html:35
+#, fuzzy
+#| msgid "Coming soon..."
+msgid "Coming soon."
 msgstr "Em breve..."
 
-#: apps/site/templates/site/index.html:45 apps/site/templates/site/menu.html:11
+#: apps/site/templates/site/index.html:36
+msgid "In the meantime, take a look at the "
+msgstr "Enquanto isso, dê uma olhada nos "
+
+#: apps/site/templates/site/index.html:36
+msgid "previous events!"
+msgstr "eventos anteriores!"
+
+#: apps/site/templates/site/index.html:48 apps/site/templates/site/menu.html:11
 #: apps/site/templates/site/menu.html:23
 msgid "Who we are"
 msgstr "Quem somos"
 
-#: apps/site/templates/site/index.html:60 apps/site/templates/site/menu.html:12
+#: apps/site/templates/site/index.html:63 apps/site/templates/site/menu.html:12
 #: apps/site/templates/site/menu.html:24
 msgid "Past events"
 msgstr "Eventos anteriores"
 
-#: apps/site/templates/site/index.html:66
+#: apps/site/templates/site/index.html:69
 msgid "Event"
 msgstr "Evento"
 
-#: apps/site/templates/site/index.html:67
+#: apps/site/templates/site/index.html:70
 msgid "Date"
 msgstr "Data"
 
-#: apps/site/templates/site/index.html:69
+#: apps/site/templates/site/index.html:72
 msgid "Content"
 msgstr "Conteúdo"
 
-#: apps/site/templates/site/index.html:82
+#: apps/site/templates/site/index.html:85
 msgid "Open"
 msgstr "Abrir"
 
-#: apps/site/templates/site/index.html:84
+#: apps/site/templates/site/index.html:87
 msgid "Unavailable"
 msgstr "Indisponível"
 
-#: apps/site/templates/site/index.html:93
+#: apps/site/templates/site/index.html:96
 msgid "There are no past events to show."
 msgstr "Não há eventos passados para exibir."
 
@@ -133,12 +144,13 @@ msgstr "Não há eventos passados para exibir."
 msgid "Rules"
 msgstr "Regras"
 
-#: apps/site/views.py:85
+#: apps/site/views.py:80 apps/site/views.py:97
 msgid "Registration failed."
 msgstr "Falha no cadastro."
 
 msgid "This field requires at most 11 digits or 14 characters."
-msgstr "CPF requer pelo menos 11 dígitos ou 14 caracteres digitados corretamente."
+msgstr ""
+"CPF requer pelo menos 11 dígitos ou 14 caracteres digitados corretamente."
 
 msgid "Invalid CPF number."
 msgstr "Número de CPF inválido."
