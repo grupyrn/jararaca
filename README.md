@@ -74,7 +74,13 @@ yarn start
 
 Now you can open [http://localhost:8000](http://localhost:8000) in your browser
 
-If the website interface isn't looking very well, try to run
+If the website interface isn't looking very well:
+
+Set your enviroment variable `DEBUG=True` on `.env` file and activate it using `source .env`
+
+OR
+
+Run the command below
 
 ```
 python manage.py collectstatic
