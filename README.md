@@ -74,6 +74,14 @@ yarn start
 
 Now you can open [http://localhost:8000](http://localhost:8000) in your browser
 
+If the website interface isn't looking very well, try to run
+
+```
+python manage.py collectstatic
+```
+
+Then, run the project again
+
 ## Built With
 
 - [Django](https://www.djangoproject.com/)
