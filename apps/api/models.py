@@ -11,10 +11,9 @@ from django.db import models
 from django.db.models import Q
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.formats import date_format
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
-from django.utils.formats import date_format
-from django.utils.text import format_lazy
 from django.utils.translation import gettext_lazy as _
 
 from apps.api.helpers import date_range_format, scale_to_width
@@ -66,6 +65,7 @@ class Attendee(models.Model):
 
     def is_eligible_to_certificate(self):
         return self.presence_percentage >= self.event.certificate_minimum_time
+
     is_eligible_to_certificate.short_description = _('eligible to certificate')
     is_eligible_to_certificate.boolean = True
 
@@ -130,10 +130,27 @@ class Event(models.Model):
         now_minus = now - tolerance
 
         return Event.objects.filter(
-            (Q(eventday__date=now.date()) & Q(eventday__start__lte=now.time()) & Q(eventday__end__gte=now.time())) |
-            (Q(eventday__date=now.date()) & Q(eventday__start__lte=now_plus.time()) & Q(
-                eventday__end__gte=now.time())) |
-            (Q(eventday__date=now.date()) & Q(eventday__start__lte=now.time()) & Q(eventday__end__gte=now_minus.time()))
+            (
+                    (Q(eventday__date=now.date()) & Q(eventday__start__lte=now.time()) & Q(
+                        eventday__end__gte=now.time())) |
+                    (Q(eventday__date=now.date()) & Q(eventday__start__lte=now_plus.time()) & Q(
+                        eventday__end__gte=now.time())) |
+                    (Q(eventday__date=now.date()) & Q(eventday__start__lte=now.time()) & Q(
+                        eventday__end__gte=now_minus.time()))
+            ) |
+            (
+                    (Q(eventday__date=now.date()) & Q(eventday__subevent__isnull=False))
+            )
+            # | (
+            #         (Q(eventday__date=now.date()) & Q(eventday__subevent__start__lte=now.time()) & Q(
+            #             eventday__subevent__end__lte=now.time())) |
+            #         (Q(eventday__date=now.date()) & Q(eventday__subevent__start__lte=now_plus.time()) & Q(
+            #             eventday__subevent__end__lte=now.time())) |
+            #         (Q(eventday__date=now.date()) & Q(eventday__subevent__start__lte=now.time()) & Q(
+            #             eventday__subevent__end__lte=now_minus.time()))
+            # )
+
+
         )
 
     def __str__(self):

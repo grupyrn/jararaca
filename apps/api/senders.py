@@ -49,10 +49,23 @@ def send_certificate_mail(name, email, event, cpf=None):
 
     attachment1 = Attachment()
 
+    if isinstance(event, Event):
+        event_place = event.place
+        event_duration = event.formated_duration
+        event_date = event.formated_dates
+        event_min_percent = event.certificate_minimum_time
+    else:
+        event_place = event.event_day.event.place
+        event_duration = event.event_day.event.formated_duration
+        event_date = event.event_day.event.formated_dates
+        event_min_percent = event.event_day.event.certificate_minimum_time
+
+
     cpf_text = _(', bearer of the registry number %(cpf)s,') % {'cpf': cpf} if cpf else ''
-    data = {'name': name, 'event': event.name, 'cpf': cpf_text, 'event_date': event.formated_dates,
-            'event_place': event.place, 'event_duration': event.formated_duration,
-            'event_min_percent': event.certificate_minimum_time}
+    data = {'name': name, 'event': event.name, 'cpf': cpf_text, 'event_date': event_date,
+            'event_place': event_place, 'event_duration': event_duration,
+            'event_min_percent': event_min_percent}
+
     certificate_data = event.certificate_model.generate_certificate(data)
 
     attachment1.content = base64.b64encode(certificate_data.read()).decode('ascii')

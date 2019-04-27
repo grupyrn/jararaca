@@ -18,12 +18,19 @@ class EventScheduleSerializer(serializers.ModelSerializer):
         exclude = ['id', 'event']
 
 
+class SubEventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SubEvent
+        fields = ['id', 'title', 'event_day', 'start', 'end']
+
+
 class EventDaySerializer(serializers.ModelSerializer):
     schedule = EventScheduleSerializer(source='eventschedule_set', many=True)
+    subevents = SubEventSerializer(source='subevent_set', many=True)
 
     class Meta:
         model = EventDay
-        fields = ['date', 'schedule']
+        fields = ['date', 'schedule', 'subevents']
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -49,12 +56,6 @@ class AttendeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attendee
         fields = ('uuid', 'name', 'email', 'date', 'share_data_with_partners')
-
-
-class SubEventSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SubEvent
-        fields = ['id', 'title', 'event_day']
 
 
 class EventCheckSerializer(serializers.Serializer):
