@@ -12,7 +12,7 @@ django-extensions==2.1.4
 django-localflavor==2.1
 django-sslserver==0.20
 django-webpack-loader==0.6.0
-djangorestframework==3.9.0
+djangorestframework~>3.9.1
 gunicorn==19.9.0
 idna==2.7
 Pillow==5.3.0
