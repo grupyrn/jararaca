@@ -23,7 +23,7 @@ PyQRCode==1.2.1
 python-http-client==3.1.0
 pytz==2018.9
 sendgrid==5.6.0
-six==1.11.0
+six==1.12.0
 sqlparse==0.2.4
 whitenoise==4.1.2
 XlsxWriter==1.1.2
@@ -35,4 +35,5 @@ pytest-cov
 # lint
 pylint==2.3.0
 pylint-django==2.0.6
-pylint-plugin-utils==0.5 
+pylint-plugin-utils==0.5
+
