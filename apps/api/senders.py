@@ -2,13 +2,13 @@ import base64
 
 from django.conf import settings
 from django.utils.translation import gettext as _
-from sendgrid import *
-from sendgrid.helpers.mail import *
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail, Email, Attachment, Personalization, Substitution, Category
 
 from apps.api.qrcode import gen_qrcode
 from .models import Attendee, Event
 
-sg = sendgrid.SendGridAPIClient(apikey=settings.SENDGRID_API_KEY)
+sg = SendGridAPIClient(apikey=settings.SENDGRID_API_KEY)
 templates = settings.SENDGRID_TEMPLATES
 
 
@@ -27,7 +27,8 @@ def send_registration_mail(attendee: Attendee, event: Event):
     mail.add_attachment(attachment1)
 
     personalization = Personalization()
-    personalization.add_substitution(Substitution("%first_name%", attendee.name.split()[0]))
+    personalization.add_substitution(Substitution(
+        "%first_name%", attendee.name.split()[0]))
     personalization.add_substitution(Substitution("%event_name%", event.name))
     personalization.add_to(Email(attendee.email, attendee.name))
     mail.add_personalization(personalization)
@@ -60,20 +61,22 @@ def send_certificate_mail(name, email, event, cpf=None):
         event_date = event.event_day.event.formated_dates
         event_min_percent = event.event_day.event.certificate_minimum_time
 
-
-    cpf_text = _(', bearer of the registry number %(cpf)s,') % {'cpf': cpf} if cpf else ''
+    cpf_text = _(', bearer of the registry number %(cpf)s,') % {
+        'cpf': cpf} if cpf else ''
     data = {'name': name, 'event': event.name, 'cpf': cpf_text, 'event_date': event_date,
             'event_place': event_place, 'event_duration': event_duration,
             'event_min_percent': event_min_percent}
 
     certificate_data = event.certificate_model.generate_certificate(data)
 
-    attachment1.content = base64.b64encode(certificate_data.read()).decode('ascii')
+    attachment1.content = base64.b64encode(
+        certificate_data.read()).decode('ascii')
     attachment1.filename = template['FILENAME']
     mail.add_attachment(attachment1)
 
     personalization = Personalization()
-    personalization.add_substitution(Substitution("%first_name%", name.split()[0]))
+    personalization.add_substitution(
+        Substitution("%first_name%", name.split()[0]))
     personalization.add_substitution(Substitution("%event_name%", event.name))
     personalization.add_to(Email(email, name))
     mail.add_personalization(personalization)
@@ -82,7 +85,7 @@ def send_certificate_mail(name, email, event, cpf=None):
         response = sg.client.mail.send.post(request_body=mail.get())
         return True
     except Exception as e:
-        print(e.body)
+        print(response.body)
         raise e
 
 
@@ -95,7 +98,8 @@ def send_no_certificate_mail(name, email, event):
     mail.add_category(Category(template['CATEGORY']))
 
     personalization = Personalization()
-    personalization.add_substitution(Substitution("%first_name%", name.split()[0]))
+    personalization.add_substitution(
+        Substitution("%first_name%", name.split()[0]))
     personalization.add_substitution(Substitution("%event_name%", event.name))
     personalization.add_to(Email(email, name))
     mail.add_personalization(personalization)
@@ -104,5 +108,5 @@ def send_no_certificate_mail(name, email, event):
         response = sg.client.mail.send.post(request_body=mail.get())
         return True
     except Exception as e:
-        print(e.body)
+        print(response.body)
         raise e
