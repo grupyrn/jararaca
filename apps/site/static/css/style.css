@@ -1,0 +1,155 @@
+.h1-header {
+    font-weight: bold;
+    color: rgba(43, 43, 43, 0.87);
+}
+
+.h1-welcome{
+    color: white;
+    font-weight: bold;
+}
+
+.container-header{
+    height: 70vh;
+    background-image: url(/static/img/meetup.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    filter: opacity(80%)
+}
+
+.about{
+    padding: 0.9rem;
+    background-color: #efc780;
+}
+.h1-header::after {
+    content: '';
+    border-top: solid 4px #5e89ab;
+    width: 10%;
+    display: block;
+    margin: 20px auto;
+}
+.p-form {
+    text-align: center;
+    line-height: 2rem;
+    font-size: 1.3rem;
+    margin-bottom: 3rem;
+    color: rgba(43, 43, 43, 0.87);
+}
+.p-thanks {
+    text-align: justify;
+    line-height: 2rem;
+    font-size: 1.3rem;
+    color: rgba(43, 43, 43, 0.87);
+}
+
+.center-logo {
+    padding: 0px;
+    margin-top: -5px;
+    width: 130px;
+    height: 80px;
+}
+
+.qrcode-size {
+    margin:30px 30px 0 30px;
+    width: 30vw;
+}
+
+.page-footer{
+    background-color: #102e46;
+}
+
+.blue-card{
+    background-color: #102e46;
+}
+
+.black-title{
+    color: #2d2d2d;
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform:uppercase;
+    font-stretch: condensed;
+}
+
+.yellow-link{
+    color: #efc780 !important
+}
+.error{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.error-h1{
+    font-weight: bold;
+    color: rgba(43, 43, 43, 0.87);
+    font-size: 2rem;
+    text-align: center;
+}
+
+.error img{
+    width: 25vw;
+}
+.error-p{
+    font-weight: bold;
+    color: rgba(43, 43, 43, 0.87);
+    font-size: 2rem;
+    text-align: center;
+}
+nav a {
+    color: black;
+}
+
+nav ul a{
+    color: #2d2d2d;
+}
+
+body{
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+}
+
+ul > li{
+    list-style: square !important;
+    padding-bottom: 15px;
+}
+.social-network-li {
+    display: inline;
+    margin: 0 0 3px 0
+}
+
+.social-network-li a {
+    margin-right: 1.7rem
+}
+
+@media only screen and (max-width: 992px) {
+    .center-logo {
+        width: 130px;
+        height: 80px;
+        margin-top: -12px;
+    }
+
+    .h1-header {
+        font-size: 2.4rem;
+    }
+
+    .qrcode-size {
+        margin: 0;
+        width: 80vw;
+    }
+
+    .card .card-action{
+        padding: 15px 0px;
+        margin-left: 8px;
+    }
+    .input-field > label{
+        position: initial;
+    }
+
+}
+
+@media only screen and (max-width: 425px) {
+    .error img{
+        width: 100vw;
+    }
+
+}

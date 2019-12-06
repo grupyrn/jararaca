@@ -1,0 +1,4 @@
+[submodule "assets/checkin"]
+	path = assets/checkin
+	url = https://github.com/GruPy-RN/jararaquinha.git
+	branch = master

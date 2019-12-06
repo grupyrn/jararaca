@@ -1,6 +1,6 @@
-# GruPy-RN Check-In API
+# Jararaca
 
-GruPy-RN Event Check-in System
+GruPy-RN Event and Check-in System
 
 ## Getting Started
 
@@ -10,7 +10,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-- Python 3
+- Python 3.6+
+- Node/NPM/Yarn
 
 ### Installing
 
@@ -27,6 +28,15 @@ Install the dependencies
 ```
 pip install -r requirements.txt
 ```
+
+Checkout [Jararaquinha](https://github.com/grupyrn/jararaquinha) submodule
+
+```
+git submodule init
+git submodule update
+```
+
+Then, refer to [Jararaquinha's installation instructions](https://github.com/grupyrn/jararaquinha#installing).
 
 ### Running
 
@@ -50,10 +60,16 @@ Compile translations
 python manage.py compilemessages -f
 ```
 
-And finally run the project
+Run the project
 
 ```
 python manage.py runserver
+```
+
+And also run [Jararaquinha](https://github.com/grupyrn/jararaquinha) in another terminal
+
+```
+yarn start
 ```
 
 Now you can open [http://localhost:8000](http://localhost:8000) in your browser
@@ -63,7 +79,9 @@ Now you can open [http://localhost:8000](http://localhost:8000) in your browser
 - [Django](https://www.djangoproject.com/)
 - [Django REST Framework](http://www.django-rest-framework.org/)
 - [PyQRCode](https://pythonhosted.org/PyQRCode/)
-- [SendGrid](https://sendgrid.com/)
+- [Pillow](https://pillow.readthedocs.io/en/stable/)
+- [SendGrid API](https://sendgrid.com/)
+- [React](https://reactjs.org/)
 
 ## Contributing
 
