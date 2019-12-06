@@ -33,12 +33,10 @@
     </div>
   {% endif %}
 
-
-
   <div class="row">
     <form class="col s12" method="post" action="">
       <input type="hidden" name="event" value="{{ event.slug }}">
-
+      
       {% crispy form %}
 
       <br /><br />

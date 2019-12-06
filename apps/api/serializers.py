@@ -49,7 +49,7 @@ class AttendeeRegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Attendee
-        fields = ['event', 'name', 'email', 'cpf', 'authorize', 'share_data_with_partners']
+        fields = ['event', 'name', 'email', 'want_to_be_an_organizer', 'cpf', 'authorize', 'share_data_with_partners']
 
 
 class AttendeeSerializer(serializers.ModelSerializer):

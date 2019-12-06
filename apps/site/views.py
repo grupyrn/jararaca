@@ -52,7 +52,7 @@ class AttendeeRegistrationView(FormView):
     form_class = AttendeeForm
 
     success_url = '/thanks/'
-
+    
     def get(self, request, *args, **kwargs):
         event = OrderedSet(Event.objects.filter(slug=kwargs['event'], eventday__date__gte=date.today(),
                                                 closed_registration=False))

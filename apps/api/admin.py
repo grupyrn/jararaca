@@ -84,6 +84,9 @@ class AttendeeAdmin(admin.ModelAdmin):
             if attendee.presence_percentage >= attendee.event.certificate_minimum_time:
                 senders.send_certificate_mail(attendee.name, attendee.email, attendee.event,
                                               cpf=attendee.cpf)
+            if attendee.permission_to_be_an_organizer and attendee.presence_percentage > 0:
+                senders.send_certificate_mail_org(attendee.name, attendee.email, attendee.event,
+                                              cpf=attendee.cpf)
         messages.add_message(request, messages.INFO, _('The certficates were successfuly sent to the eligible '
                                                        'selected attendees.'))
 
@@ -116,6 +119,7 @@ class EventAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['certificate_model'].empty_label = _('without certificate')
+        self.fields['certificate_org'].empty_label = _('without certificate')
 
 
 @admin.register(Event)

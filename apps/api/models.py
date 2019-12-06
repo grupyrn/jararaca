@@ -41,6 +41,8 @@ class Attendee(models.Model):
     cpf = models.CharField(_('CPF'), max_length=11)
     share_data_with_partners = models.BooleanField(_('share data with partners'), default=False)
     date = models.DateTimeField(_('date'), auto_now_add=True)
+    want_to_be_an_organizer = models.BooleanField(_('want to be an organizer'), default=False)
+    permission_to_be_an_organizer = models.BooleanField(_('permission to be an organizer'), default=False)
 
     @property
     def presence_percentage(self):
@@ -69,13 +71,18 @@ class Attendee(models.Model):
     is_eligible_to_certificate.short_description = _('eligible to certificate')
     is_eligible_to_certificate.boolean = True
 
+    def is_eligible_to_certificate_org(self):
+        return self.permission_to_be_an_organizer and self.presence_percentage > 0
+
+    is_eligible_to_certificate_org.short_description = _('eligible to organization certificate')
+    is_eligible_to_certificate_org.boolean = True
+
     def __str__(self):
         return f'{self.name} ({self.uuid})'
 
     class Meta:
         verbose_name = _('attendee')
         verbose_name_plural = _('attendees')
-
 
 class Event(models.Model):
     name = models.CharField(_('name'), max_length=500)
@@ -87,11 +94,13 @@ class Event(models.Model):
     created_by = models.ForeignKey(get_user_model(), _('created by'), null=True)
     slug = models.SlugField(unique=True)
     content_link = models.URLField(_('content link'), null=True, blank=True)
-    certificate_model = models.ForeignKey('CertificateModel', verbose_name=_('certificate model'), null=True,
-                                          blank=True, on_delete=models.PROTECT)
+    certificate_model = models.ForeignKey('CertificateModel', related_name='%(class)s_certificate_model', verbose_name=_('certificate model'), null=True, blank=True, on_delete=models.PROTECT)
     certificate_hours = models.IntegerField(_('certificate hours'), default=4)
     certificate_minimum_time = models.IntegerField(_('minimum length of stay for certificate'),
                                                    help_text=_('Percentage from total time'), default=75)
+    certificate_org = models.ForeignKey('CertificateModel', related_name='org_certificate_model', verbose_name=_('organization certificate model'), null=True, blank=True, on_delete=models.PROTECT)
+    certificate_hours_org = models.IntegerField(_('organization certificate hours'), default=10)
+
     closed_registration = models.BooleanField(_('closed registration'), default=False)
 
     @property
