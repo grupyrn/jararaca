@@ -202,20 +202,20 @@ CORS_URLS_REGEX = r'^/api/.*$'
 
 SENDGRID_TEMPLATES = {
     'CERTIFICATE_EMITTED': {
-        'ID': 'f26688fc-1854-455a-a2c0-bd72d2a38b56',
+        'ID': '08ccfe3b-0326-4775-82d0-ed22957487b3',
         'FROM_EMAIL': 'coordenacao@grupyrn.org',
         'FROM_NAME': 'GruPy-RN',
         'CATEGORY': 'certificados_grupy',
         'FILENAME': 'certificado.pdf'
     },
     'CERTIFICATE_NOT_EMITTED': {
-        'ID': '637c0650-3dec-4505-a006-8b9149b3cce4',
+        'ID': 'fd6ff5aa-5de3-4aa6-a729-431378ee4ec7',
         'FROM_EMAIL': 'coordenacao@grupyrn.org',
         'FROM_NAME': 'GruPy-RN',
         'CATEGORY': 'sem_certificados_grupy'
     },
     'REGISTRATION': {
-        'ID': '78d0cc02-7d90-4aa4-b214-d842844131c8',
+        'ID': 'ef971908-dc21-482f-8d71-9eddd06ad379',
         'FROM_EMAIL': 'coordenacao@grupyrn.org',
         'FROM_NAME': 'GruPy-RN',
         'CATEGORY': 'inscricao_grupy',
