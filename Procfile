@@ -1,1 +1,1 @@
-web: gunicorn jararaca.wsgi --log-file -
+web: gunicorn jararaca.wsgi --timeout 600 --log-file -
