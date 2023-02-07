@@ -1,7 +1,7 @@
 asn1crypto==0.24.0
 cffi==1.11.5
 -e git+https://github.com/sedir/crispy-forms-materialize.git@b42606b12323f99c963e8a7abd5b64666aaccee4#egg=crispy_forms_materialize
-cryptography==2.4.2
+cryptography==39.0.1
 dj-database-url==0.5.0
 Django==2.1.7
 django-colorful==1.3
