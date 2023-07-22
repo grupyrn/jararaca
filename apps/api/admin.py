@@ -36,8 +36,6 @@ class EventDayCheckAdmin(admin.ModelAdmin):
         "time_passed",
     )
     readonly_fields = (
-        "event_day",
-        "attendee",
         "time_passed",
     )
 
