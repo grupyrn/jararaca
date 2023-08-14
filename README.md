@@ -74,6 +74,20 @@ yarn start
 
 Now you can open [http://localhost:8000](http://localhost:8000) in your browser
 
+If the website interface isn't looking very well:
+
+Set your enviroment variable `DEBUG=True` on `.env` file and activate it using `source .env`
+
+OR
+
+Run the command below
+
+```
+python manage.py collectstatic
+```
+
+Then, run the project again
+
 ## Built With
 
 - [Django](https://www.djangoproject.com/)
