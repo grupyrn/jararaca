@@ -6,6 +6,7 @@ Para contribuir, siga as instruções do repositório original: https://github.c
 
 ## Roadmap
 - [ ] Criar issues para cada item e subitem dessa lista
+- [ ] Configurar coverage
 - [ ] Escrever testes unitários dos models
   - [ ] MemberInfo
   - [ ] Attendee
