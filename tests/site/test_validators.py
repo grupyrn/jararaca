@@ -1,7 +1,7 @@
-from rest_framework.serializers import ValidationError
 import pytest
+from rest_framework.serializers import ValidationError
 
-from apps.site.validators import cpf_validator, ExceptionMessage
+from apps.site.validators import ExceptionMessage, cpf_validator
 
 
 def test_cpf_validator_deve_retornar_none_para_cpf_valido():

@@ -1,4 +1,5 @@
 from django.conf import settings
+
 from jararaca import settings as jararaca_settings
 
 
