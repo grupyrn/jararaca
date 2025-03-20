@@ -5,8 +5,10 @@ Fork feito com o intuito de refatorar o código, atualizar as dependências e me
 Para contribuir, siga as instruções do repositório original: https://github.com/grupyrn/jararaca/blob/master/README.md
 
 ## Roadmap
+- [x] Configurar coverage
+- [ ] Adicionar pipeline de testes no github actions
+- [ ] Adicionar contributing guidelines
 - [ ] Criar issues para cada item e subitem dessa lista
-- [ ] Configurar coverage
 - [ ] Escrever testes unitários dos models
   - [ ] MemberInfo
   - [ ] Attendee
