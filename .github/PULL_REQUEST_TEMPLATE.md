@@ -2,6 +2,8 @@
 **Todas as Submissões:**
 
 * [ ] Você verificou se não há outros [Pull Requests](https://github.com/grupyrn/jararaca/pulls) abertos para a mesma atualização/mudança?
+* [ ] Você leu o nosso [Guia de contribuição] (https://github.com/grupyrn/jararaca/blob/main/CONTRIBUTING.md)
+* [ ] Você validou localmente suas alterações?
 
 ### Submissões de Novas Funcionalidades:
 
