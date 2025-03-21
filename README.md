@@ -1,110 +1,100 @@
+
 # Jararaca
 
 Sistema de gestão de eventos e check-in do Grupy-RN
 
 [![codecov](https://codecov.io/gh/grupyrn/jararaca/graph/badge.svg?token=cjKiEu5oaZ)](https://codecov.io/gh/grupyrn/jararaca)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-## Iniciando
+## Contribuindo
 
-Estas instruções irão ajudá-lo a obter uma cópia do projeto em funcionamento em sua máquina local para fins de desenvolvimento e teste.
+Contribuições são sempre bem-vindas!
 
-### Pré-requisitos
+Veja `contribuindo.md` para saber como começar.
 
-O que você precisa instalar para rodar o software e como instalá-los:
+## Rodando localmente
 
-- Python 3.7.17
+### Clone o projeto
 
-### Instalando
-
-Uma série de passos que explicam como configurar o ambiente de desenvolvimento.
-
-Primeiramente, faça uma cópia do arquivo `.env.sample` para `.env`:
-
+```bash
+  git clone https://github.com/grupyrn/jararaca
 ```
-cp .env.sample .env
+
+### Entre no diretório do projeto
+
+```bash
+  cd jararaca
 ```
+
+Para instalar as dependências, será preciso usar o python 3.7.17
+
+Para gerenciar o dependências, usaremos pip e o venv
 
 ### Crie um ambiente virtual
-
-```
-python -m venv venv
-```
-
-Instale as dependências:
-
-```
-pip install -r requirements.txt
+```bash
+  python -m venv .venv
 ```
 
-### Executando
+### Ative o ambiente virtual
 
-Entre no seu ambiente virtual:
+No linux:
 
-```
-source venv/bin/activate
-```
-
-Aplique as migrações:
-
-```
-python manage.py migrate
+```bash
+  source .venv/bin/activate
 ```
 
-Crie um usuário administrador:
-
-```
-python manage.py createsuperuser
-```
-
-Compile as traduções:
-
-```
-python manage.py compilemessages -f
+No windows:
+```bash
+  .venv/Scripts/Activate
 ```
 
-Execute o projeto:
-
+### Instale as dependências do projeto
+```bash
+  pip install -r requirements-dev.txt
 ```
-python manage.py runserver
+
+### Faça uma cópia do .env
+```bash
+  cp .env.sample .env
 ```
 
-Agora você pode acessar [http://localhost:8000](http://localhost:8000) no seu navegador.
+### Aplique as migrações:
 
-## Construído com
+```bash
+  python manage.py migrate
+```
+
+### Crie um usuário administrador
+
+```bash
+  python manage.py createsuperuser
+```
+
+### Compile as traduções
+
+```bash
+  python manage.py compilemessages -f
+```
+
+### Execute o servidor
+
+```bash
+  python manage.py runserver
+```
+
+## Rodando os testes
+
+Para rodar os testes, use:
+
+```bash
+  pytest .
+```
+
+
+## Stack utilizada
 
 - [Django](https://www.djangoproject.com/)
 - [Django REST Framework](http://www.django-rest-framework.org/)
 - [PyQRCode](https://pythonhosted.org/PyQRCode/)
 - [Pillow](https://pillow.readthedocs.io/en/stable/)
 - [SendGrid API](https://sendgrid.com/)
-- [React](https://reactjs.org/)
-
-## Contribuindo
-
-### Passos para submeter Código
-
-1. Faça um fork do repositório no GitHub.
-2. Faça suas alterações.
-3. Envie um Pull Request no GitHub para a branch `master` do repositório principal. Os Pull Requests no GitHub são o método esperado para colaboração neste projeto.
-
-### Traduzindo
-
-1. Prepare os arquivos de mensagens para o idioma desejado:
-
-```
-python manage.py makemessages --locale <código_do_idioma>
-```
-
-Exemplo:
-
-```
-python manage.py makemessages --locale pt_BR
-```
-
-2. Traduza os arquivos \*.po dentro de cada aplicação do projeto em `<nome_do_app>/locale/<código_do_idioma>/LC_MESSAGES/`
-
-3. Compile as mensagens:
-
-```
-python manage.py compilemessages -f
-```
