@@ -2,79 +2,75 @@
 
 Sistema de gestão de eventos e check-in do Grupy-RN
 
+[![codecov](https://codecov.io/gh/grupyrn/jararaca/graph/badge.svg?token=cjKiEu5oaZ)](https://codecov.io/gh/grupyrn/jararaca)
+
 ## Iniciando
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+Estas instruções irão ajudá-lo a obter uma cópia do projeto em funcionamento em sua máquina local para fins de desenvolvimento e teste.
 
-### Prerequisites
+### Pré-requisitos
 
-What things you need to install the software and how to install them
+O que você precisa instalar para rodar o software e como instalá-los:
 
-- Python 3.6+
-- Node/NPM/Yarn
+- Python 3.7.17
 
-### Installing
+### Instalando
 
-A step by step series of examples that tell you how to get a development env running
+Uma série de passos que explicam como configurar o ambiente de desenvolvimento.
 
-First of all, make a copy of `.env.sample` to `.env`
+Primeiramente, faça uma cópia do arquivo `.env.sample` para `.env`:
 
 ```
 cp .env.sample .env
 ```
 
-Install the dependencies
+### Crie um ambiente virtual
+
+```
+python -m venv venv
+```
+
+Instale as dependências:
 
 ```
 pip install -r requirements.txt
 ```
 
-Checkout [Jararaquinha](https://github.com/grupyrn/jararaquinha) submodule
+### Executando
+
+Entre no seu ambiente virtual:
 
 ```
-git submodule init
-git submodule update
+source venv/bin/activate
 ```
 
-Then, refer to [Jararaquinha's installation instructions](https://github.com/grupyrn/jararaquinha#installing).
-
-### Running
-
-Enter in your virtual environment.
-
-Apply the migrations
+Aplique as migrações:
 
 ```
 python manage.py migrate
 ```
 
-Create admin user
+Crie um usuário administrador:
 
 ```
 python manage.py createsuperuser
 ```
 
-Compile translations
+Compile as traduções:
 
 ```
 python manage.py compilemessages -f
 ```
 
-Run the project
+Execute o projeto:
 
 ```
 python manage.py runserver
 ```
 
-And also run [Jararaquinha](https://github.com/grupyrn/jararaquinha) in another terminal
+Agora você pode acessar [http://localhost:8000](http://localhost:8000) no seu navegador.
 
-```
-yarn start
-```
-
-Now you can open [http://localhost:8000](http://localhost:8000) in your browser
-
-## Built With
+## Construído com
 
 - [Django](https://www.djangoproject.com/)
 - [Django REST Framework](http://www.django-rest-framework.org/)
@@ -83,32 +79,31 @@ Now you can open [http://localhost:8000](http://localhost:8000) in your browser
 - [SendGrid API](https://sendgrid.com/)
 - [React](https://reactjs.org/)
 
-## Contributing
+## Contribuindo
 
+### Passos para submeter Código
 
-### Steps for Submitting Code
+1. Faça um fork do repositório no GitHub.
+2. Faça suas alterações.
+3. Envie um Pull Request no GitHub para a branch `master` do repositório principal. Os Pull Requests no GitHub são o método esperado para colaboração neste projeto.
 
-1. Fork the repository on GitHub.
-2. Make your change.
-3. Send a GitHub Pull Request to the main repository’s `master` branch. GitHub Pull Requests are the expected method of code collaboration on this project.
+### Traduzindo
 
-### Translate
-
-1. Prepare message files for the desired language.
+1. Prepare os arquivos de mensagens para o idioma desejado:
 
 ```
-python manage.py makemessages --locale <language_code>
+python manage.py makemessages --locale <código_do_idioma>
 ```
 
-Example:
+Exemplo:
 
 ```
 python manage.py makemessages --locale pt_BR
 ```
 
-2. Translate the \*.po files inside each project application <app_name>/locale/<language_code>/LC_MESSAGES/
+2. Traduza os arquivos \*.po dentro de cada aplicação do projeto em `<nome_do_app>/locale/<código_do_idioma>/LC_MESSAGES/`
 
-3. Compile messages
+3. Compile as mensagens:
 
 ```
 python manage.py compilemessages -f
