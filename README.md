@@ -11,7 +11,7 @@ Sistema de gestão de eventos e check-in do Grupy-RN
 
 Contribuições são sempre bem-vindas!
 
-Veja `contribuindo.md` para saber como começar.
+Veja [CONTRIBUTING.md](https://github.com/grupyrn/jararaca/blob/main/CONTRIBUTING.md) para saber como começar.
 
 ## Rodando localmente
 
