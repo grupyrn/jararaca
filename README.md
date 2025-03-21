@@ -1,8 +1,8 @@
 # Jararaca
 
-GruPy-RN Event and Check-in System
+Sistema de gestão de eventos e check-in do Grupy-RN
 
-## Getting Started
+## Iniciando
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
