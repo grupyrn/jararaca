@@ -4,6 +4,7 @@
 Sistema de gestão de eventos e check-in do Grupy-RN
 
 [![codecov](https://codecov.io/gh/grupyrn/jararaca/graph/badge.svg?token=cjKiEu5oaZ)](https://codecov.io/gh/grupyrn/jararaca)
+[![Testes](https://github.com/grupyrn/jararaca/actions/workflows/django.yml/badge.svg?branch=master)](https://github.com/grupyrn/jararaca/actions/workflows/django.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Contribuindo
