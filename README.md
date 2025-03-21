@@ -54,7 +54,7 @@ Create admin user
 python manage.py createsuperuser
 ```
 
-Compile translations        
+Compile translations
 
 ```
 python manage.py compilemessages -f
