@@ -31,4 +31,4 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: jhonatacaiob/jararaca
+          slug: grupyrn/jararaca
