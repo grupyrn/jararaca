@@ -4,3 +4,8 @@ django-debug-toolbar==1.11
 pytest==7.4.4
 pytest-django==4.5.2
 pytest-cov==4.1.0
+darker==1.7.3
+black==23.3.0
+flake8==5.0.4
+flynt==0.77
+isort==5.11.5
