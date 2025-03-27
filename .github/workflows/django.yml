@@ -2,9 +2,9 @@ name: Run tests and upload coverage
 
 on:
   push:
-    branches: ["master"]
+    branches: ["main"]
   pull_request:
-    branches: ["master"]
+    branches: ["main"]
 
 jobs:
   test:
