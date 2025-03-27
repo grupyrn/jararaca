@@ -1,0 +1,12 @@
+[tool.darker]
+src = ['.']
+isort = true
+lint = ["flake8"]
+line-length = 79
+
+[tool.black]
+preview = true
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3

@@ -6,6 +6,9 @@ Sistema de gestão de eventos e check-in do Grupy-RN
 [![codecov](https://codecov.io/gh/grupyrn/jararaca/graph/badge.svg?token=cjKiEu5oaZ)](https://codecov.io/gh/grupyrn/jararaca)
 [![Testes](https://github.com/grupyrn/jararaca/actions/workflows/django.yml/badge.svg?branch=master)](https://github.com/grupyrn/jararaca/actions/workflows/django.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Lint: flake8](https://img.shields.io/badge/flake8-checked-blueviolet)](https://flake8.pycqa.org/en/latest/)
 
 ## Contribuindo
 
