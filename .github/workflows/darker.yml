@@ -1,9 +1,11 @@
-name: Lint
+name: Roda o lint
 
 on: [push, pull_request]
 
 jobs:
   lint:
+    name: Roda o darker para verificar apenas o código que foi mudado nessas branch
+
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
