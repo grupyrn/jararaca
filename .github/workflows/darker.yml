@@ -1,6 +1,10 @@
 name: Roda o lint
 
-on: [push, pull_request]
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
   lint:
@@ -17,7 +21,8 @@ jobs:
 
       - uses: akaihola/darker@1.7.3
         with:
-          options: "--check --diff --isort --color"
+          options: "--check --diff --color --config pyproject.toml"
           src: "."
           version: "~=1.7.3"
+          revision: origin/main
           lint: "flake8==5.0.4"
