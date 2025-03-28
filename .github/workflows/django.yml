@@ -1,14 +1,14 @@
-name: Run tests and upload coverage
+name: Roda os testes e atualiza o coverage
 
 on:
   push:
-    branches: ["master"]
+    branches: ["main"]
   pull_request:
-    branches: ["master"]
+    branches: ["main"]
 
 jobs:
   test:
-    name: Run tests and collect coverage
+    name: Roda os testes e coleta o coverage
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
