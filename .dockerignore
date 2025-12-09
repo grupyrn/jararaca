@@ -1,2 +1,15 @@
+.git
 .venv
-venv
+.env
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+node_modules
+media
+staticfiles
+Dockerfile
+Dockerfile.node
+Dockerfile.python
+coverage
+.DS_Store
