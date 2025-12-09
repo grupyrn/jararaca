@@ -42,7 +42,21 @@ COPY package.json yarn.lock /app/
 RUN yarn install --frozen-lockfile
 
 # Copy project files
+# Copy project files
 COPY . /app/
+
+# Initialize submodules
+# We need to explicitly initialize submodules because .git might be in .dockerignore or not copied correctly otherwise.
+# However, standard COPY . /app/ copies the .git directory if it is not ignored.
+# We must ensure .git is NOT ignored for this step to work, OR we must clone the submodule explicitly.
+# Since we are inside the build, and the context is sent to the daemon, we rely on the context having the .git folder if we want to use git commands.
+# BUT: It is best practice to NOT copy .git into the image for size reasons.
+# A better approach for Dokku (which builds from git) is to rely on the fact that Dokku might not send the .git folder in the context if using `git push`.
+# If the user pushes via `git push dokku`, Dokku checks out the code.
+# The user says "we have to run git submodule init".
+# If I remove .git from .dockerignore, the entire history is copied.
+# Let's try running the command the user asked for.
+RUN git submodule update --init --recursive
 
 # Build checks:
 # 1. Build frontend (React Check-in)
