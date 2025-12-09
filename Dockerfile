@@ -37,11 +37,6 @@ WORKDIR /app
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Node dependencies
-COPY package.json yarn.lock /app/
-RUN yarn install --frozen-lockfile
-
-# Copy project files
 # Copy project files
 COPY . /app/
 
@@ -50,10 +45,11 @@ COPY . /app/
 RUN rm -rf assets/checkin && \
     git clone -b master https://github.com/GruPy-RN/jararaquinha.git assets/checkin
 
-
-# Build checks:
-# 1. Build frontend (React Check-in)
-RUN yarn build
+# Install Node dependencies and build frontend
+# We run this inside assets/checkin because that's where package.json and webpack config are.
+RUN cd assets/checkin && \
+    yarn install && \
+    yarn build
 
 # 2. Collect static files (replicating predeploy.sh exclusions)
 # We set a dummy SECRET_KEY to ensure collectstatic runs without needing the real prod secret
@@ -63,7 +59,9 @@ RUN SECRET_KEY=build_dummy python manage.py collectstatic -i node_modules -i src
 RUN django-admin compilemessages
 
 # Cleanup
-RUN rm -rf node_modules
+# Cleanup
+RUN rm -rf assets/checkin/node_modules
+
 
 # Runtime command
 # Uses port 8000 by default, ensure your host maps to this
