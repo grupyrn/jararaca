@@ -108,6 +108,10 @@ WSGI_APPLICATION = 'jararaca.wsgi.application'
 
 DATABASES = {'default': dj_database_url.config(default='sqlite:///db.sqlite3')}
 
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

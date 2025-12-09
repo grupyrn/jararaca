@@ -84,7 +84,7 @@ class Event(models.Model):
     latitude = models.FloatField(_('latitude'))
     longitude = models.FloatField(_('longitude'))
     organizers = models.CharField(_('organizers'), max_length=500)
-    created_by = models.ForeignKey(get_user_model(), _('created by'), null=True)
+    created_by = models.ForeignKey(get_user_model(), verbose_name=_('created by'), on_delete=models.SET_NULL, null=True)
     slug = models.SlugField(unique=True)
     content_link = models.URLField(_('content link'), null=True, blank=True)
     certificate_model = models.ForeignKey('CertificateModel', verbose_name=_('certificate model'), null=True,

@@ -88,7 +88,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='event',
             name='created_by',
-            field=models.ForeignKey(null=True, on_delete='created by', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL, verbose_name='created by'),
         ),
         migrations.AddField(
             model_name='event',

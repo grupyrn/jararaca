@@ -8,7 +8,7 @@ from sendgrid.helpers.mail import *
 from apps.api.qrcode import gen_qrcode
 from .models import Attendee, Event
 
-sg = sendgrid.SendGridAPIClient(apikey=settings.SENDGRID_API_KEY)
+sg = sendgrid.SendGridAPIClient(api_key=settings.SENDGRID_API_KEY)
 templates = settings.SENDGRID_TEMPLATES
 
 

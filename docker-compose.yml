@@ -1,0 +1,46 @@
+version: '3'
+
+# create service from dockerfile
+services:
+  # frontend:
+  #   build:
+  #     context: .
+  #     image: node:12.16.1-alpine
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - .:/app
+  #   command:
+  db:
+    image: postgres:12.2-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    command:
+      [
+        "sh",
+        "-c",
+        "/app/predeploy.sh && python manage.py runserver 0.0.0.0:8000"
+      ]
+
+volumes:
+  db_data:
