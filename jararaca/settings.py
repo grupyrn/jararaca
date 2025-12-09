@@ -16,6 +16,14 @@ from pathlib import Path
 import dj_database_url
 
 
+# Monkeypatch to bypass PostgreSQL version check
+# Dokku env is on Postgres 10.4, but Django 4.2 requires 12+.
+try:
+    from django.db.backends.postgresql.base import DatabaseWrapper
+    DatabaseWrapper.check_database_version_supported = lambda self: None
+except ImportError:
+    pass
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
