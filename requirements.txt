@@ -22,7 +22,6 @@ pypng==0.20220715.0
 PyQRCode==1.2.1
 python-http-client==3.3.7
 pytz==2024.1
-sendgrid==6.11.0
 sqlparse==0.4.4
 whitenoise==6.6.0
 XlsxWriter==3.2.0

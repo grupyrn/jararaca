@@ -29,7 +29,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 CRYPTO_KEY = os.environ.get('CRYPTO_KEY', None)
 
-SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY', None)
+# SENDGRID_API_KEY removed
+
 
 GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY', None)
 
@@ -224,25 +225,13 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/api/.*$'
 
 
-SENDGRID_TEMPLATES = {
-    'CERTIFICATE_EMITTED': {
-        'ID': '08ccfe3b-0326-4775-82d0-ed22957487b3',
-        'FROM_EMAIL': 'coordenacao@grupyrn.org',
-        'FROM_NAME': 'GruPy-RN',
-        'CATEGORY': 'certificados_grupy',
-        'FILENAME': 'certificado.pdf'
-    },
-    'CERTIFICATE_NOT_EMITTED': {
-        'ID': 'fd6ff5aa-5de3-4aa6-a729-431378ee4ec7',
-        'FROM_EMAIL': 'coordenacao@grupyrn.org',
-        'FROM_NAME': 'GruPy-RN',
-        'CATEGORY': 'sem_certificados_grupy'
-    },
-    'REGISTRATION': {
-        'ID': 'ef971908-dc21-482f-8d71-9eddd06ad379',
-        'FROM_EMAIL': 'coordenacao@grupyrn.org',
-        'FROM_NAME': 'GruPy-RN',
-        'CATEGORY': 'inscricao_grupy',
-        'FILENAME': 'credencial_grupyrn.png'
-    }
-}
+
+# Email Configuration (Resend via SMTP)
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.resend.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'resend'
+# Pass the Resend API Key via environment variable RESEND_API_KEY
+EMAIL_HOST_PASSWORD = os.environ.get('RESEND_API_KEY')
+
