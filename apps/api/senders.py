@@ -12,7 +12,7 @@ def send_registration_mail(attendee: Attendee, event: Event):
     qr_data = gen_qrcode(data=str(attendee.uuid)).read()
     
     subject = f"Inscrição Confirmada - {event.name}"
-    from_email = "GruPy-RN <coordenacao@grupyrn.org>"
+    from_email = settings.DEFAULT_FROM_EMAIL
     to_email = [attendee.email]
     
     context = {
@@ -57,7 +57,7 @@ def send_certificate_mail(name, email, event, cpf=None):
     certificate_data = event.certificate_model.generate_certificate(data)
     
     subject = f"Certificado - {event.name}"
-    from_email = "GruPy-RN <coordenacao@grupyrn.org>"
+    from_email = settings.DEFAULT_FROM_EMAIL
     to_email = [email]
     
     context = {
@@ -86,7 +86,7 @@ def send_certificate_mail(name, email, event, cpf=None):
 
 def send_no_certificate_mail(name, email, event):
     subject = f"Certificado - {event.name}"
-    from_email = "GruPy-RN <coordenacao@grupyrn.org>"
+    from_email = settings.DEFAULT_FROM_EMAIL
     to_email = [email]
     
     context = {

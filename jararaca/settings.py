@@ -235,3 +235,5 @@ EMAIL_HOST_USER = 'resend'
 # Pass the Resend API Key via environment variable RESEND_API_KEY
 EMAIL_HOST_PASSWORD = os.environ.get('RESEND_API_KEY')
 
+DEFAULT_FROM_EMAIL = "GruPy-RN <naoresponder@notificacoes.grupyrn.org>"
+
