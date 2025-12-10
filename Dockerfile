@@ -43,7 +43,7 @@ COPY . /app/
 # Manually clone the submodule because .git directory is not available in Dokku build context
 # We remove the existing directory (which might be an empty placeholder) and clone fresh.
 RUN rm -rf assets/checkin && \
-    git clone -b master https://github.com/GruPy-RN/jararaquinha.git assets/checkin
+    git clone -b upgrade https://github.com/GruPy-RN/jararaquinha.git assets/checkin
 
 # Install Node dependencies and build frontend
 # We run this inside assets/checkin because that's where package.json and webpack config are.
