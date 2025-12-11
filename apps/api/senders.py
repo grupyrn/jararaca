@@ -10,16 +10,16 @@ from .models import Attendee, Event
 
 def send_registration_mail(attendee: Attendee, event: Event):
     qr_data = gen_qrcode(data=str(attendee.uuid)).read()
-    
+
     subject = f"Inscrição Confirmada - {event.name}"
     from_email = settings.DEFAULT_FROM_EMAIL
     to_email = [attendee.email]
-    
+
     context = {
         'first_name': attendee.name.split()[0],
         'event_name': event.name,
     }
-    
+
     html_content = render_to_string('api/email/registration.html', context)
     text_content = (
         f"Olá {context['first_name']}, sua inscrição no "
@@ -28,12 +28,11 @@ def send_registration_mail(attendee: Attendee, event: Event):
 
     msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
     msg.attach_alternative(html_content, "text/html")
-    
 
-# Attach QR Code
+    # Attach QR Code
     # qr_data is bytes
     msg.attach('credencial_grupyrn.png', qr_data, 'image/png')
-    
+
     try:
         msg.send()
         return qr_data
@@ -54,22 +53,30 @@ def send_certificate_mail(name, email, event, cpf=None):
         event_min_percent = event.event_day.event.certificate_minimum_time
 
     cpf_text = _(', bearer of the registry number %(cpf)s,') % {'cpf': cpf} if cpf else ''
-    data = {'name': name, 'event': event.name, 'cpf': cpf_text, 'event_date': event_date,
-            'event_place': event_place, 'event_duration': event_duration,
-            'event_min_percent': event_min_percent}
+    data = {
+        'name': name,
+        'event': event.name,
+        'cpf': cpf_text,
+        'event_date': event_date,
+        'event_place': event_place,
+        'event_duration': event_duration,
+        'event_min_percent': event_min_percent
+    }
 
     certificate_data = event.certificate_model.generate_certificate(data)
-    
+
     subject = f"Certificado - {event.name}"
     from_email = settings.DEFAULT_FROM_EMAIL
     to_email = [email]
-    
+
     context = {
         'first_name': name.split()[0],
         'event_name': event.name,
     }
 
-    html_content = render_to_string('api/email/certificate_emitted.html', context)
+    html_content = render_to_string(
+        'api/email/certificate_emitted.html', context
+    )
     text_content = (
         f"Olá {context['first_name']}, seu certificado do "
         f"{context['event_name']} está pronto. Veja em anexo."
@@ -101,7 +108,9 @@ def send_no_certificate_mail(name, email, event):
         'event_name': event.name,
     }
 
-    html_content = render_to_string('api/email/certificate_not_emitted.html', context)
+    html_content = render_to_string(
+        'api/email/certificate_not_emitted.html', context
+    )
     text_content = (
         f"Olá {context['first_name']}, infelizmente você não atingiu a "
         f"frequência mínima para o certificado do {context['event_name']}."
