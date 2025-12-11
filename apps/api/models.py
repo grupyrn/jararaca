@@ -46,11 +46,14 @@ class Attendee(models.Model):
     def presence_percentage(self):
         event_time = 0
         for day in self.event.eventday_set.all():
-            event_time += (datetime.combine(date.min, day.end) - datetime.combine(date.min, day.start)).seconds
+            event_time += (datetime.combine(date.min, day.end) - datetime.combine(date.min, day.start)).total_seconds()
 
         checked_time = 0
         for checked_day in self.eventdaycheck_set.filter(exit_date__isnull=False):
-            checked_time += (checked_day.exit_date - checked_day.entrance_date).seconds
+            checked_time += (checked_day.exit_date - checked_day.entrance_date).total_seconds()
+
+        if event_time == 0:
+            return 0
 
         result = checked_time * 100 / event_time
 

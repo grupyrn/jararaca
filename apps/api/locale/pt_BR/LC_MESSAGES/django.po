@@ -318,6 +318,8 @@ msgid ""
 "I authorize the use of my data exclusively for my identification at this "
 "GruPy-RN event."
 msgstr ""
+"Autorizo o uso dos meus dados exclusivamente para minha identificação neste "
+"evento do GruPy-RN."
 
 #: apps/api/views.py:48
 msgid "QR-Code incompatible with this event."
