@@ -102,7 +102,7 @@ def send_no_certificate_mail(name, email, event):
     subject = f"Certificado - {event.name}"
     from_email = settings.DEFAULT_FROM_EMAIL
     to_email = [email]
-    
+
     context = {
         'first_name': name.split()[0],
         'event_name': event.name,

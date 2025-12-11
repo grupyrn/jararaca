@@ -228,10 +228,7 @@ WEBPACK_LOADER = {
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
-
 CORS_URLS_REGEX = r'^/api/.*$'
-
-
 
 # Email Configuration (Resend via SMTP)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
