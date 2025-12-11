@@ -27,15 +27,11 @@ msgstr ""
 "informação no certificado."
 
 #: apps/site/forms.py:10
-#, fuzzy
-#| msgid ""
-#| "I authorize the use of the data reported solely and exclusively for "
-#| "identification purposes in the GruPy-RN events."
 msgid ""
 "I authorize the use of my data exclusively for my identification at this "
 "GruPy-RN event."
 msgstr ""
-"Eu autorizo o uso dos dados acima para propósito de identificação neste  "
+"Autorizo o uso dos meus dados exclusivamente para minha identificação neste "
 "evento do GruPy-RN."
 
 #: apps/site/forms.py:12
@@ -74,8 +70,6 @@ msgid "Social networks"
 msgstr "Redes sociais"
 
 #: apps/site/templates/site/form.html:9
-#, fuzzy
-#| msgid "Register"
 msgid "Register now!"
 msgstr "Inscreva-se!"
 

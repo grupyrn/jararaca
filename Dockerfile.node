@@ -1,0 +1,10 @@
+FROM python:3.11
+
+# Install gettext
+RUN apt-get update && apt-get install -y gettext
+
+# Install requirements
+COPY requirements-dev.txt /app/requirements-dev.txt
+RUN pip install -r /app/requirements-dev.txt
+
+# Copy the rest of the code

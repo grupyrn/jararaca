@@ -16,12 +16,21 @@ from pathlib import Path
 import dj_database_url
 
 
+# Monkeypatch to bypass PostgreSQL version check
+# Dokku env is on Postgres 10.4, but Django 4.2 requires 12+.
+try:
+    from django.db.backends.postgresql.base import DatabaseWrapper
+    DatabaseWrapper.check_database_version_supported = lambda self: None
+except ImportError:
+    pass
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 CRYPTO_KEY = os.environ.get('CRYPTO_KEY', None)
 
-SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY', None)
+# SENDGRID_API_KEY removed
+
 
 GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY', None)
 
@@ -34,7 +43,26 @@ SECRET_KEY = '@k!t4rpasopjjgdao!3iml)n1s1olest&z4i4xz7y85hpf9zdi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
 
-ALLOWED_HOSTS = ['meetup.grupyrn.org', 'www.meetup.grupyrn.org', 'localhost', '127.0.0.1']
+
+# Security Settings for Dokku/Proxy
+# Trust the secure headers from the proxy (Dokku/Nginx)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# For Django 4.0+ CSRF protection on HTTPS
+CSRF_TRUSTED_ORIGINS = [
+    'https://meetup.grupyrn.org',
+    'https://www.meetup.grupyrn.org',
+    'https://test.grupyrn.org',
+]
+
+ALLOWED_HOSTS = [
+    'meetup.grupyrn.org',
+    'www.meetup.grupyrn.org',
+    'meetup.sedir.io',
+    'test.grupyrn.org',
+    'localhost',
+    '127.0.0.1'
+]
 
 
 # Application definition
@@ -107,6 +135,10 @@ WSGI_APPLICATION = 'jararaca.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {'default': dj_database_url.config(default='sqlite:///db.sqlite3')}
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
 # Password validation
@@ -196,29 +228,14 @@ WEBPACK_LOADER = {
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
-
 CORS_URLS_REGEX = r'^/api/.*$'
 
-
-SENDGRID_TEMPLATES = {
-    'CERTIFICATE_EMITTED': {
-        'ID': '08ccfe3b-0326-4775-82d0-ed22957487b3',
-        'FROM_EMAIL': 'coordenacao@grupyrn.org',
-        'FROM_NAME': 'GruPy-RN',
-        'CATEGORY': 'certificados_grupy',
-        'FILENAME': 'certificado.pdf'
-    },
-    'CERTIFICATE_NOT_EMITTED': {
-        'ID': 'fd6ff5aa-5de3-4aa6-a729-431378ee4ec7',
-        'FROM_EMAIL': 'coordenacao@grupyrn.org',
-        'FROM_NAME': 'GruPy-RN',
-        'CATEGORY': 'sem_certificados_grupy'
-    },
-    'REGISTRATION': {
-        'ID': 'ef971908-dc21-482f-8d71-9eddd06ad379',
-        'FROM_EMAIL': 'coordenacao@grupyrn.org',
-        'FROM_NAME': 'GruPy-RN',
-        'CATEGORY': 'inscricao_grupy',
-        'FILENAME': 'credencial_grupyrn.png'
-    }
-}
+# Email Configuration (Resend via SMTP)
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.resend.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'resend'
+# Pass the Resend API Key via environment variable RESEND_API_KEY
+EMAIL_HOST_PASSWORD = os.environ.get('RESEND_API_KEY')
+DEFAULT_FROM_EMAIL = "GruPy-RN <naoresponder@notificacoes.grupyrn.org>"
