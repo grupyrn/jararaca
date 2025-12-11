@@ -55,7 +55,14 @@ CSRF_TRUSTED_ORIGINS = [
     'https://test.grupyrn.org',
 ]
 
-ALLOWED_HOSTS = ['meetup.grupyrn.org', 'www.meetup.grupyrn.org', 'meetup.sedir.io', 'test.grupyrn.org', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'meetup.grupyrn.org',
+    'www.meetup.grupyrn.org',
+    'meetup.sedir.io',
+    'test.grupyrn.org',
+    'localhost',
+    '127.0.0.1'
+]
 
 
 # Application definition
@@ -231,9 +238,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.resend.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
 EMAIL_HOST_USER = 'resend'
 # Pass the Resend API Key via environment variable RESEND_API_KEY
 EMAIL_HOST_PASSWORD = os.environ.get('RESEND_API_KEY')
 
 DEFAULT_FROM_EMAIL = "GruPy-RN <naoresponder@notificacoes.grupyrn.org>"
-

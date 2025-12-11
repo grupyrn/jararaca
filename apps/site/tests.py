@@ -4,6 +4,7 @@ from django.utils.datastructures import OrderedSet
 from apps.api.models import Event, EventDay
 from datetime import date, time
 
+
 class SiteTests(TestCase):
     def setUp(self):
         self.client = Client()

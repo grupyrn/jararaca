@@ -1,4 +1,4 @@
-import base64
+
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
@@ -21,12 +21,16 @@ def send_registration_mail(attendee: Attendee, event: Event):
     }
     
     html_content = render_to_string('api/email/registration.html', context)
-    text_content = f"Olá {context['first_name']}, sua inscrição no {context['event_name']} foi confirmada. Credencial em anexo."
+    text_content = (
+        f"Olá {context['first_name']}, sua inscrição no "
+        f"{context['event_name']} foi confirmada. Credencial em anexo."
+    )
 
     msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
     msg.attach_alternative(html_content, "text/html")
     
-    # Attach QR Code
+
+# Attach QR Code
     # qr_data is bytes
     msg.attach('credencial_grupyrn.png', qr_data, 'image/png')
     
@@ -66,7 +70,10 @@ def send_certificate_mail(name, email, event, cpf=None):
     }
 
     html_content = render_to_string('api/email/certificate_emitted.html', context)
-    text_content = f"Olá {context['first_name']}, seu certificado do {context['event_name']} está pronto. Veja em anexo."
+    text_content = (
+        f"Olá {context['first_name']}, seu certificado do "
+        f"{context['event_name']} está pronto. Veja em anexo."
+    )
 
     msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
     msg.attach_alternative(html_content, "text/html")
@@ -95,7 +102,10 @@ def send_no_certificate_mail(name, email, event):
     }
 
     html_content = render_to_string('api/email/certificate_not_emitted.html', context)
-    text_content = f"Olá {context['first_name']}, infelizmente você não atingiu a frequência mínima para o certificado do {context['event_name']}."
+    text_content = (
+        f"Olá {context['first_name']}, infelizmente você não atingiu a "
+        f"frequência mínima para o certificado do {context['event_name']}."
+    )
 
     msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
     msg.attach_alternative(html_content, "text/html")
