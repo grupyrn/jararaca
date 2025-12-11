@@ -1,0 +1,24 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+fail_fast: true
+exclude: ^apps/(api|site)/migrations/.*
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: debug-statements
+  - repo: https://github.com/akaihola/darker
+    rev: 1.7.3
+    hooks:
+      - id: darker
+        args:
+          - --flynt
+        additional_dependencies:
+          - black==23.3.0
+          - flake8==5.0.4
+          - flynt==0.77
+          - isort==5.11.5

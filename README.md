@@ -1,115 +1,104 @@
+
 # Jararaca
 
-GruPy-RN Event and Check-in System
+Sistema de gestão de eventos e check-in do Grupy-RN
 
-## Getting Started
+[![codecov](https://codecov.io/gh/grupyrn/jararaca/graph/badge.svg?token=cjKiEu5oaZ)](https://codecov.io/gh/grupyrn/jararaca)
+[![Testes](https://github.com/grupyrn/jararaca/actions/workflows/django.yml/badge.svg?branch=master)](https://github.com/grupyrn/jararaca/actions/workflows/django.yml)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Lint: flake8](https://img.shields.io/badge/flake8-checked-blueviolet)](https://flake8.pycqa.org/en/latest/)
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+## Contribuindo
 
-### Prerequisites
+Contribuições são sempre bem-vindas!
 
-What things you need to install the software and how to install them
+Veja [CONTRIBUTING.md](https://github.com/grupyrn/jararaca/blob/main/CONTRIBUTING.md) para saber como começar.
 
-- Python 3.6+
-- Node/NPM/Yarn
+## Rodando localmente
 
-### Installing
+### Clone o projeto
 
-A step by step series of examples that tell you how to get a development env running
-
-First of all, make a copy of `.env.sample` to `.env`
-
-```
-cp .env.sample .env
-```
-
-Install the dependencies
-
-```
-pip install -r requirements.txt
+```bash
+  git clone https://github.com/grupyrn/jararaca
 ```
 
-Checkout [Jararaquinha](https://github.com/grupyrn/jararaquinha) submodule
+### Entre no diretório do projeto
 
-```
-git submodule init
-git submodule update
-```
-
-Then, refer to [Jararaquinha's installation instructions](https://github.com/grupyrn/jararaquinha#installing).
-
-### Running
-
-Enter in your virtual environment.
-
-Apply the migrations
-
-```
-python manage.py migrate
+```bash
+  cd jararaca
 ```
 
-Create admin user
+Para instalar as dependências, será preciso usar o python 3.7.17
 
-```
-python manage.py createsuperuser
-```
+Para gerenciar o dependências, usaremos pip e o venv
 
-Compile translations        
-
-```
-python manage.py compilemessages -f
+### Crie um ambiente virtual
+```bash
+  python -m venv .venv
 ```
 
-Run the project
+### Ative o ambiente virtual
 
-```
-python manage.py runserver
-```
+No linux:
 
-And also run [Jararaquinha](https://github.com/grupyrn/jararaquinha) in another terminal
-
-```
-yarn start
+```bash
+  source .venv/bin/activate
 ```
 
-Now you can open [http://localhost:8000](http://localhost:8000) in your browser
+No windows:
+```bash
+  .venv/Scripts/Activate
+```
 
-## Built With
+### Instale as dependências do projeto
+```bash
+  pip install -r requirements-dev.txt
+```
+
+### Faça uma cópia do .env
+```bash
+  cp .env.sample .env
+```
+
+### Aplique as migrações:
+
+```bash
+  python manage.py migrate
+```
+
+### Crie um usuário administrador
+
+```bash
+  python manage.py createsuperuser
+```
+
+### Compile as traduções
+
+```bash
+  python manage.py compilemessages -f
+```
+
+### Execute o servidor
+
+```bash
+  python manage.py runserver
+```
+
+## Rodando os testes
+
+Para rodar os testes, use:
+
+```bash
+  pytest .
+```
+
+
+## Stack utilizada
 
 - [Django](https://www.djangoproject.com/)
 - [Django REST Framework](http://www.django-rest-framework.org/)
 - [PyQRCode](https://pythonhosted.org/PyQRCode/)
 - [Pillow](https://pillow.readthedocs.io/en/stable/)
 - [SendGrid API](https://sendgrid.com/)
-- [React](https://reactjs.org/)
-
-## Contributing
-
-
-### Steps for Submitting Code
-
-1. Fork the repository on GitHub.
-2. Make your change.
-3. Send a GitHub Pull Request to the main repository’s `master` branch. GitHub Pull Requests are the expected method of code collaboration on this project.
-
-### Translate
-
-1. Prepare message files for the desired language.
-
-```
-python manage.py makemessages --locale <language_code>
-```
-
-Example:
-
-```
-python manage.py makemessages --locale pt_BR
-```
-
-2. Translate the \*.po files inside each project application <app_name>/locale/<language_code>/LC_MESSAGES/
-
-3. Compile messages
-
-```
-python manage.py compilemessages -f
-```
